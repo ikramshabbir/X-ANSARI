@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/x-ansari-banner.png" alt="X-ANSARI" width="100%">
+<img src="assets/x-ansari-banner.png" alt="X-ANSARI MD" width="100%">
 
 <br>
 
