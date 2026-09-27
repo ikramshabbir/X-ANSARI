@@ -375,7 +375,9 @@ pkg install ffmpeg
 
 X-ANSARI can run on multiple environments.
 
-📱 Termux
+---
+
+<b>📱 Termux</b>
 
 Install Node.js and required packages, then:
 
