@@ -1,3 +1,5 @@
+<img src="./assets/x-ansari-banner.png" alt="X-ANSARI MD" width="100%">
+
 <div align="center"><b>🦅 X-ANSARI MD</b>
 
 ⚡ Fast • Powerful • Modern WhatsApp Automation
@@ -122,7 +124,7 @@ nano .env
 
 ---
 
-⚙️ Configuration
+<b>⚙️ Configuration</b>
 
 A typical ".env" configuration can look like:
 
@@ -136,7 +138,7 @@ SUDO=
 STICKER_PACKNAME=X-ANSARI
 STICKER_AUTHOR=X-ANSARI
 
-🔧 Configuration options
+<b>🔧 Configuration options</b>
 
 Variable| Description
 "BOT_MODE"| Bot mode: "public" or "private"
@@ -373,7 +375,9 @@ pkg install ffmpeg
 
 X-ANSARI can run on multiple environments.
 
-📱 Termux
+---
+
+<b>📱 Termux</b>
 
 Install Node.js and required packages, then:
 
@@ -396,7 +400,7 @@ pm2 save
 
 ---
 
-☁️ VPS / Linux
+<b>☁️ VPS / Linux</b>
 
 Clone the repository:
 
