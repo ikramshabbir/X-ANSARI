@@ -1,4 +1,8 @@
+<div align="center">
+
 <img src="assets/x-ansari-banner.png" alt="X-ANSARI MD" width="100%">
+
+<br>
 
 <div align="center"><b>🦅 X-ANSARI MD</b>
 
