@@ -3,6 +3,8 @@
  * Premium Dynamic Menu
  */
 
+import fs from "fs";
+import path from "path";
 import { command, getMenuCommands } from "../plugins.js";
 import { reply } from "../utils/message.js";
 import { BOT_INFO } from "../config/constants.js";
@@ -528,11 +530,35 @@ async function buildMenuText(showDescriptions = true) {
 }
 
 async function sendMenu(message, conn, showDescriptions = true) {
-  await reply(
-    conn,
-    message,
-    await buildMenuText(showDescriptions)
-  );
+  const menuText = await buildMenuText(showDescriptions);
+
+  try {
+    const imagePath = path.resolve(process.cwd(), "assets/menu-banner.png");
+
+    if (fs.existsSync(imagePath)) {
+      const imageBuffer = fs.readFileSync(imagePath);
+
+      await conn.sendMessage(
+        message.from,
+        {
+          image: imageBuffer,
+          caption: menuText,
+        },
+        {
+          quoted: {
+            key: message.key,
+            message: message.message,
+          },
+        }
+      );
+
+      return;
+    }
+  } catch (error) {
+    console.error("⚠️ Menu banner send failed:", error);
+  }
+
+  await reply(conn, message, menuText);
 }
 
 /*
