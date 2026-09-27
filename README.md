@@ -124,7 +124,7 @@ nano .env
 
 ---
 
-⚙️ Configuration
+<b>⚙️ Configuration</b>
 
 A typical ".env" configuration can look like:
 
@@ -138,7 +138,7 @@ SUDO=
 STICKER_PACKNAME=X-ANSARI
 STICKER_AUTHOR=X-ANSARI
 
-🔧 Configuration options
+<b>🔧 Configuration options</b>
 
 Variable| Description
 "BOT_MODE"| Bot mode: "public" or "private"
