@@ -1,8 +1,8 @@
 <div align="center">
 
-<img X-ANSARI ="assets/x-ansari-banner.png" alt="file_00000000f43881fa996decdf32e043c0.png" width="100%">
+<img src="./assets/x-ansari-banner.png" alt="X-ANSARI MD" width="100%">
 
-<br>
+<br><br>
 
 <div align="center"><b>🦅 X-ANSARI MD</b>
 
