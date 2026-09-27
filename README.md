@@ -398,7 +398,7 @@ pm2 save
 
 ---
 
-☁️ VPS / Linux
+<b>☁️ VPS / Linux</b>
 
 Clone the repository:
 
