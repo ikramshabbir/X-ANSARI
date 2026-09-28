@@ -1,4 +1,5 @@
 import { findCommand } from "../plugins.js";
+import { getCommandReaction } from "../config/commandReactions.js";
 
 import { validateCommand } from "../utils/validation.js";
 
@@ -1244,7 +1245,8 @@ export async function messageHandler(
 
       await ackCommand(
         conn,
-        message
+        message,
+        getCommandReaction(name)
       );
 
     } catch (error) {
