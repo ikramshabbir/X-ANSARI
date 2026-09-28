@@ -35,11 +35,11 @@ command(
         }
         const participantIds = getParticipantIds(groupMetadata);
 
-        const finalMessage = `╭━━━━*〔 📢 MENTION 〕*━━━━╮
+        const finalMessage = `╭━━━〔 *📢 MENTION* 〕━━━╮
 ┃
 ┃ ${mentionText}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━━╯`;
 
                                       await sendMessage(conn, message.from, finalMessage, {
                                           mentions: participantIds,
@@ -50,12 +50,12 @@ command(
       await sendError(
         conn,
         message.from,
-        `╭━━━━*〔 📢 MENTION 〕*━━━━╮
+        `╭━━━〔 *📢 MENTION* 〕━━━╮
 ┃
 ┃ ❌ *MENTION FAILED*
 ┃ Failed to mention group members.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
