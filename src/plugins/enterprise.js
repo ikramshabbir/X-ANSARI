@@ -46,11 +46,29 @@ command(
   },
   async (message, conn) => {
     if (!(await can(message, conn, "audit.read"))) {
-      await replyFail(conn, message, "No permission.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📋 AUDIT 〕*━━━━╮
+┃
+┃ ❌ *PERMISSION DENIED*
+┃ No permission.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     if (!(await requireLogGroup(message))) {
-      await replyFail(conn, message, "Use `#audit` only in the *system log group*.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📋 AUDIT 〕*━━━━╮
+┃
+┃ ⚠️ *SYSTEM LOG GROUP REQUIRED*
+┃ Use \`#audit\` only in the *system log group*.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
 
@@ -62,7 +80,16 @@ command(
         actor: message.sender,
         chat: message.from,
       });
-      await replyOk(conn, message, "Audit log cleared.");
+      await replyOk(
+      conn,
+      message,
+      `╭━━━━*〔 📋 AUDIT 〕*━━━━╮\n` +
+      `┃\n` +
+      `┃ ✅ *AUDIT LOG CLEARED*\n` +
+      `┃ 🧹 All audit entries removed.\n` +
+      `┃\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
 
@@ -74,7 +101,16 @@ command(
     });
 
     if (!rows.length) {
-      await reply(conn, message, "*Audit:* _(empty)_");
+      await reply(
+      conn,
+      message,
+      `╭━━━━*〔 📋 AUDIT 〕*━━━━╮\n` +
+      `┃\n` +
+      `┃ 📭 *AUDIT LOG EMPTY*\n` +
+      `┃ No audit entries found.\n` +
+      `┃\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
 
@@ -84,7 +120,21 @@ command(
         (r.target ? ` → ${r.target}` : "") +
         (r.chat ? `\n  chat:${r.chat}` : "");
     });
-    await reply(conn, message, `*Audit (latest)*\n${lines.join("\n")}`);
+    await reply(
+    conn,
+    message,
+    `╭━━━━*〔 📋 AUDIT 〕*━━━━╮\n` +
+    `┃\n` +
+    `┃ 📋 *AUDIT LOG — LATEST*\n` +
+    `┃\n` +
+    `${lines
+      .join("\n")
+      .split("\n")
+      .map((x) => `┃ ${x}`)
+      .join("\n")}\n` +
+    `┃\n` +
+    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+  );
   }
 );
 
@@ -97,7 +147,16 @@ command(
   },
   async (message, conn) => {
     if (!(await can(message, conn, "flag")) && !(await isPrivileged(message, conn))) {
-      await replyFail(conn, message, "No permission.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🚩 FLAG 〕*━━━━╮
+┃
+┃ ❌ *PERMISSION DENIED*
+┃ No permission.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
 
@@ -108,13 +167,20 @@ command(
         .map(([k, v]) => `• ${k}: *${v ? "ON" : "OFF"}*`)
         .join("\n");
       await reply(
-        conn,
-        message,
-        `*Feature flags*\n${lines}\n\n` +
-          `Mapped cmds: ${Object.keys(COMMAND_FLAGS).slice(0, 12).join(", ")}…\n` +
-          `Usage: \`${BOT_INFO.PREFIX}flag <name> on|off\``
-      );
-      return;
+      conn,
+      message,
+      `╭━━━━*〔 🚩 FLAG 〕*━━━━╮\n` +
+      `┃\n` +
+      `┃ 🚩 *FEATURE FLAGS*\n` +
+      `┃\n` +
+      `${lines.split("\n").map((x) => `┃ ${x.replace(/^• /, "")}`).join("\n")}\n` +
+      `┃\n` +
+      `┃ 🔗 *Mapped:* ${Object.keys(COMMAND_FLAGS).slice(0, 12).join(", ")}…\n` +
+      `┃ 💡 *Usage:* \`${BOT_INFO.PREFIX}flag <name> on|off\`\n` +
+      `┃\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
+    return;
     }
 
     const [name, state] = raw.split(/\s+/);
@@ -134,7 +200,17 @@ command(
       meta: { name, on },
       chat: message.from,
     });
-    await replyOk(conn, message, `Flag *${name}* → *${flags[name] ? "ON" : "OFF"}*`);
+    await replyOk(
+      conn,
+      message,
+      `╭━━━━*〔 🚩 FLAG 〕*━━━━╮\n` +
+      `┃\n` +
+      `┃ ✅ *FLAG UPDATED*\n` +
+      `┃ 🚩 *NAME:* ${name}\n` +
+      `┃ ${flags[name] ? "🟢" : "🔴"} *STATUS:* ${flags[name] ? "ON" : "OFF"}\n` +
+      `┃\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
   }
 );
 
@@ -147,7 +223,16 @@ command(
   },
   async (message, conn) => {
     if (!(await can(message, conn, "policy"))) {
-      await replyFail(conn, message, "No permission.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📜 POLICY 〕*━━━━╮
+┃
+┃ ❌ *PERMISSION DENIED*
+┃ No permission.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     const raw = (getCommandArgs(message.body, "policy") || "").trim();
@@ -156,10 +241,17 @@ command(
       await reply(
         conn,
         message,
-        `*Policies*\n${Object.entries(p)
-          .map(([k, v]) => `• ${k}: \`${v}\``)
-          .join("\n")}\n\n` +
-          `Set: \`${BOT_INFO.PREFIX}policy rateLimitPerUser 30\``
+        `╭━━━━*〔 📜 POLICY 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ 📜 *GLOBAL POLICIES*\n` +
+        `┃\n` +
+        `${Object.entries(p)
+          .map(([k, v]) => `┃ • ${k}: \`${v}\``)
+          .join("\n")}\n` +
+        `┃\n` +
+        `┃ 💡 *Set:* \`${BOT_INFO.PREFIX}policy rateLimitPerUser 30\`\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -178,7 +270,17 @@ command(
       meta: { key, value },
       chat: message.from,
     });
-    await replyOk(conn, message, `Policy *${key}* = \`${p[key]}\``);
+    await replyOk(
+      conn,
+      message,
+      `╭━━━━*〔 📜 POLICY 〕*━━━━╮\n` +
+      `┃\n` +
+      `┃ ✅ *POLICY UPDATED*\n` +
+      `┃ 📜 *KEY:* ${key}\n` +
+      `┃ ⚙️ *VALUE:* \`${p[key]}\`\n` +
+      `┃\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
   }
 );
 
@@ -191,7 +293,16 @@ command(
   },
   async (message, conn) => {
     if (!(await can(message, conn, "role.manage")) && !isOwnerMessage(message, conn)) {
-      await replyFail(conn, message, "Owner/admin only.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 👤 ROLE 〕*━━━━╮
+┃
+┃ ❌ *PERMISSION DENIED*
+┃ Owner/admin only.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
 
@@ -200,13 +311,29 @@ command(
       const map = await listRoles();
       const entries = Object.entries(map);
       if (!entries.length) {
-        await reply(conn, message, "*Roles:* _(none — sudo defaults to admin)_");
+        await reply(
+          conn,
+          message,
+          `╭━━━━*〔 👤 ROLE 〕*━━━━╮\n` +
+          `┃\n` +
+          `┃ 📭 *ROLE LIST EMPTY*\n` +
+          `┃ No custom roles assigned.\n` +
+          `┃ 🛡️ Sudo users default to admin.\n` +
+          `┃\n` +
+          `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
         return;
       }
       await reply(
         conn,
         message,
-        `*Roles*\n${entries.map(([n, r]) => `• ${n}: *${r}*`).join("\n")}`
+        `╭━━━━*〔 👤 ROLE 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ 👤 *ROLE LIST*\n` +
+        `┃\n` +
+        `${entries.map(([n, r]) => `┃ • ${n}: *${r}*`).join("\n")}\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -214,7 +341,16 @@ command(
     const [action, a2, a3] = raw.split(/\s+/);
     if (action === "me") {
       const r = await resolveRole(message, conn);
-      await reply(conn, message, `Your role: *${r}*`);
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 👤 ROLE 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ 👤 *YOUR ROLE*\n` +
+        `┃ 🛡️ *ROLE:* ${r}\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
 
@@ -242,14 +378,42 @@ command(
           target: n,
           meta: { role: r },
         });
-        await replyOk(conn, message, `Set *${n}* → *${r}*`);
+        await replyOk(
+        conn,
+        message,
+        `╭━━━━*〔 👤 ROLE 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ ✅ *ROLE UPDATED*\n` +
+        `┃ 👤 *USER:* ${n}\n` +
+        `┃ 🛡️ *ROLE:* ${r}\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       } catch (err) {
-        await replyFail(conn, message, err.message);
+        await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 👤 ROLE 〕*━━━━╮
+┃
+┃ ❌ *ROLE UPDATE FAILED*
+┃ ${err.message}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
       }
       return;
     }
 
-    await replyFail(conn, message, "Use `list`, `me`, or `set`.");
+    await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 👤 ROLE 〕*━━━━╮
+┃
+┃ ⚠️ *INVALID ACTION*
+┃ Use \`list\`, \`me\`, or \`set\`.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
   }
 );
 
@@ -262,7 +426,16 @@ command(
   },
   async (message, conn) => {
     if (!(await can(message, conn, "backup")) && !isOwnerMessage(message, conn)) {
-      await replyFail(conn, message, "No permission.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 💾 BACKUP 〕*━━━━╮
+┃
+┃ ❌ *PERMISSION DENIED*
+┃ No permission.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
 
@@ -286,11 +459,26 @@ command(
           document: buf,
           mimetype: "application/json",
           fileName: `xasena-backup-${checksum}.json`,
-          caption: `✅ Backup ready\nSHA256∶ \`${checksum}\`` +
-            (dbCopy ? `\nDB copy: \`${dbCopy}\`` : ""),
-        });
+          caption:
+              `╭━━━━*〔 💾 BACKUP 〕*━━━━╮\n` +
+              `┃\n` +
+              `┃ ✅ *BACKUP READY*\n` +
+              `┃ 🔐 *SHA256:* \`${checksum}\`\n` +
+              (dbCopy ? `┃ 💿 *DB COPY:* \`${dbCopy}\`\n` : "") +
+              `┃\n` +
+              `╰━━━━━━━━━━━━━━━━━━━━━━╯`,
+});
       } catch (err) {
-        await replyFail(conn, message, err?.message || "Backup failed");
+        await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 💾 BACKUP 〕*━━━━╮
+┃
+┃ ❌ *BACKUP FAILED*
+┃ ${err?.message || "Backup failed"}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
       }
     });
   }
@@ -305,7 +493,16 @@ command(
   },
   async (message, conn) => {
     if (!(await isPrivileged(message, conn))) {
-      await replyFail(conn, message, "Owner/sudo only.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📈 METRICS 〕*━━━━╮
+┃
+┃ ❌ *PERMISSION DENIED*
+┃ Owner/sudo only.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     const m = getMetricsSnapshot();
@@ -313,14 +510,19 @@ command(
     await reply(
       conn,
       message,
-      `*Metrics*\n` +
-        `• Uptime: ${m.uptime_s}s\n` +
-        `• Commands: ${m.counters.commands || 0}\n` +
-        `• Errors: ${m.counters.errors || 0} (last min: ${m.errors_last_min})\n` +
-        `• Jobs ok/fail: ${m.counters.jobs_ok || 0}/${m.counters.jobs_fail || 0}\n` +
-        `• Avg job ms: ${m.avg_job_ms}\n` +
-        `• Queue: ${q.active} active / ${q.pending} pending\n` +
-        `• Tenant: \`${process.env.TENANT_ID || "default"}\``
-    );
+      `╭━━━━*〔 📈 METRICS 〕*━━━━╮\n` +
+    `┃\n` +
+    `┃ 📈 *RUNTIME METRICS*\n` +
+    `┃\n` +
+    `┃ ⏱️ *Uptime:* ${m.uptime_s}s\n` +
+    `┃ 📊 *Commands:* ${m.counters.commands || 0}\n` +
+    `┃ ❌ *Errors:* ${m.counters.errors || 0} (last min: ${m.errors_last_min})\n` +
+    `┃ ⚙️ *Jobs:* ${m.counters.jobs_ok || 0}/${m.counters.jobs_fail || 0}\n` +
+    `┃ ⚡ *Avg Job:* ${m.avg_job_ms}ms\n` +
+    `┃ 📦 *Queue:* ${q.active} active / ${q.pending} pending\n` +
+    `┃ 🏢 *Tenant:* \`${process.env.TENANT_ID || "default"}\`\n` +
+    `┃\n` +
+    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+);
   }
 );

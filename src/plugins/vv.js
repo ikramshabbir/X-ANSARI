@@ -36,7 +36,13 @@ command(
         return replyFail(
           conn,
           message,
-          "Reply to a View Once image, video, audio or document."
+          `╭━━━━*〔 👁️ VV 〕*━━━━╮
+┃
+┃ ⚠️ *VIEW ONCE MEDIA REQUIRED*
+┃ Reply to a View Once image, video,
+┃ audio or document.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
       }
 
@@ -63,7 +69,12 @@ command(
         return replyFail(
           conn,
           message,
-          "Failed to download the View Once media."
+          `╭━━━━*〔 👁️ VV 〕*━━━━╮
+┃
+┃ ❌ *DOWNLOAD FAILED*
+┃ Failed to download the View Once media.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
       }
 
@@ -71,7 +82,12 @@ command(
         return replyFail(
           conn,
           message,
-          "View Once media could not be recovered."
+          `╭━━━━*〔 👁️ VV 〕*━━━━╮
+┃
+┃ ❌ *RECOVERY FAILED*
+┃ View Once media could not be recovered.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
       }
 
@@ -201,7 +217,12 @@ command(
       return replyFail(
         conn,
         message,
-        "Unsupported View Once media type."
+        `╭━━━━*〔 👁️ VV 〕*━━━━╮
+┃
+┃ ⚠️ *UNSUPPORTED MEDIA*
+┃ Unsupported View Once media type.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     } catch (error) {
       console.log(
@@ -214,7 +235,12 @@ command(
       return replyFail(
         conn,
         message,
-        "Failed to open View Once message."
+        `╭━━━━*〔 👁️ VV 〕*━━━━╮
+┃
+┃ ❌ *VV FAILED*
+┃ Failed to open View Once message.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     }
   }

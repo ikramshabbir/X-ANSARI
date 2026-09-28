@@ -35,13 +35,28 @@ command(
         }
         const participantIds = getParticipantIds(groupMetadata);
 
-        await sendMessage(conn, message.from, mentionText, {
-          mentions: participantIds,
-        });
+        const finalMessage = `╭━━━━*〔 📢 MENTION 〕*━━━━╮
+┃
+┃ ${mentionText}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`;
+
+                                      await sendMessage(conn, message.from, finalMessage, {
+                                          mentions: participantIds,
+                                      });
       });
     } catch (error) {
       console.error("Error in mention command:", error);
-      await sendError(conn, message.from, "FAILED");
+      await sendError(
+        conn,
+        message.from,
+        `╭━━━━*〔 📢 MENTION 〕*━━━━╮
+┃
+┃ ❌ *MENTION FAILED*
+┃ Failed to mention group members.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );

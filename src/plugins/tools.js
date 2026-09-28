@@ -337,7 +337,16 @@ command(
       try {
         const media = await downloadQuotedOrSelf(conn, message);
         if (!media || !["video", "audio"].includes(media.type)) {
-          await replyFail(conn, message, "Reply to a video or audio.");
+          await replyFail(
+            conn,
+            message,
+            `╭━━━━*〔 🎵 TOMP3 〕*━━━━╮
+┃
+┃ ⚠️ *MEDIA REQUIRED*
+┃ Reply to a video or audio.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+          );
           return;
         }
         const ext = media.type === "audio" ? ".audio" : ".mp4";
@@ -442,7 +451,16 @@ async function urlHandler(message, conn) {
     try {
       const media = await downloadQuotedOrSelf(conn, message);
       if (!media) {
-        await replyFail(conn, message, "Reply to an image/video/audio/document.");
+        await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 🔗 TOURURL 〕*━━━━╮
+┃
+┃ ⚠️ *MEDIA REQUIRED*
+┃ Reply to an image, video, audio, or document.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
         return;
       }
       let ext = "bin";
@@ -457,9 +475,27 @@ async function urlHandler(message, conn) {
       if (!url.startsWith("http")) {
         throw new Error("Upload failed.");
       }
-      await reply(conn, message, `🔗 ${url}`);
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 🔗 TOURURL 〕*━━━━╮
+┃
+┃ 🔗 *URL:*
+┃ ${url}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     } catch (err) {
-      await replyFail(conn, message, err?.message || "Upload failed.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🔗 TOURURL 〕*━━━━╮
+┃
+┃ ❌ *UPLOAD FAILED*
+┃ ${err?.message || "Upload failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }, { timeoutMs: 90_000 });
 }
@@ -503,7 +539,19 @@ command(
         text = String(text).trim().replace(/^["']|["']$/g, "").slice(0, 200);
 
         if (!text) {
-          await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}quote <text>\` or reply to a message`);
+          await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 💬 QUOTE 〕*━━━━╮
+┃
+┃ ⚠️ *TEXT REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}quote <text>
+┃ Or reply to a message.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
           return;
         }
 
@@ -565,7 +613,16 @@ command(
           { quoted: { key: message.key, message: message.message } }
         );
       } catch (err) {
-        await replyFail(conn, message, err?.message || "quote failed.");
+        await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 💬 QUOTE 〕*━━━━╮
+┃
+┃ ❌ *QUOTE FAILED*
+┃ ${err?.message || "Unable to create quote sticker."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
       } finally {
         if (out) await safeUnlink(out);
       }
@@ -585,14 +642,37 @@ command(
       message.quoted?.text ||
       "";
     if (!String(text).trim()) {
-      await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}fancy <text>\``);
+      await replyFail(
+      conn,
+      message,
+      `╭━━━━*〔 ✨ FANCY 〕*━━━━╮
+┃
+┃ ⚠️ *TEXT REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}fancy <text>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
     const styles = fancyText(String(text).trim().slice(0, 80));
+    const fancyOutput = styles
+      .map((s, i) => {
+        const clean = String(s.text).replace(/^\s*\d+\s*[•·.]\s*/, "");
+        return `┃ ${i + 1}. ${clean}`;
+      })
+      .join("\n");
+
     await reply(
       conn,
       message,
-      styles.map((s) => s.text).join("\n")
+      `╭━━━━*〔 ✨ FANCY 〕*━━━━╮
+┃
+┃ 😎 *Stylish Font:*
+${fancyOutput}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -613,7 +693,18 @@ command(
           "";
         text = String(text).trim();
         if (!text) {
-          await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}tts <text>\``);
+          await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 🔊 TTS 〕*━━━━╮
+┃
+┃ ⚠️ *TEXT REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}tts <text>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
           return;
         }
         // Urdu script -> Pakistani Urdu TTS; explicit lang:text remains supported
@@ -642,7 +733,16 @@ command(
           { quoted: { key: message.key, message: message.message } }
         );
       } catch (err) {
-        await replyFail(conn, message, err?.message || "tts failed.");
+        await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 🔊 TTS 〕*━━━━╮
+┃
+┃ ❌ *TTS FAILED*
+┃ ${err?.message || "Unable to generate audio."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
       }
     });
   }
@@ -661,7 +761,14 @@ async function textToSticker(message, conn, { animated = false } = {}) {
     await replyFail(
       conn,
       message,
-      `Usage: \`${BOT_INFO.PREFIX}${pattern} <text>\``
+      `╭━━━━*〔 📝 ${pattern.toUpperCase()} 〕*━━━━╮
+┃
+┃ ⚠️ *TEXT REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}${pattern} <text>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
     return;
   }
@@ -804,7 +911,16 @@ command(
       try {
         await textToSticker(message, conn, { animated: false });
       } catch (err) {
-        await replyFail(conn, message, err?.message || "ttp failed.");
+        await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 📝 TTP 〕*━━━━╮
+┃
+┃ ❌ *STICKER FAILED*
+┃ ${err?.message || "Unable to create sticker."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
       }
     });
   }
@@ -822,7 +938,16 @@ command(
       try {
         await textToSticker(message, conn, { animated: true });
       } catch (err) {
-        await replyFail(conn, message, err?.message || "attp failed.");
+        await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 🎞️ ATTP 〕*━━━━╮
+┃
+┃ ❌ *STICKER FAILED*
+┃ ${err?.message || "Unable to create animated sticker."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
       }
     }, { timeoutMs: 60_000 });
   }

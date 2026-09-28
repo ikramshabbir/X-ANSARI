@@ -47,10 +47,14 @@ command(
         const participants = groupMetadata.participants;
         const mentionIds = getParticipantIds(groupMetadata);
 
-        let tagMessage = `*${groupMetadata.subject}*\n\n`;
-        tagMessage += `👥 *Total Members:* ${participants.length}\n\n`;
+        let tagMessage = `╭━━━━*〔 👥 TAGALL 〕*━━━━╮
+┃
+┃ 🏷️ *GROUP:* ${groupMetadata.subject}
+┃ 👥 *TOTAL MEMBERS:* ${participants.length}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n`;
 
-        participants.forEach((participant, index) => {
+participants.forEach((participant, index) => {
           tagMessage += `${index + 1}. @${displayId(participant)}\n`;
         });
 
@@ -61,7 +65,16 @@ command(
       });
     } catch (error) {
       console.error("Error in tagall command:", error);
-      await replyFail(conn, message, "Failed to tag all members.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 👥 TAGALL 〕*━━━━╮
+┃
+┃ ❌ *TAGALL FAILED*
+┃ Failed to tag all members.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );
@@ -79,14 +92,29 @@ command(
     try {
       await withTyping(conn, message.from, async () => {
         const groupMetadata = await getGroupMeta(conn, message.from);
-        await sendMessage(conn, message.from, "🔔 Attention everyone! 🔔", {
-          mentions: getParticipantIds(groupMetadata),
-          quoted: message,
-        });
+        const notifyMessage = `╭━━━━*〔 📢 NOTIFY 〕*━━━━╮
+┃
+┃ 🔔 *ATTENTION EVERYONE!*
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`;
+
+                  await sendMessage(conn, message.from, notifyMessage, {
+                      mentions: getParticipantIds(groupMetadata),
+                      quoted: message,
+                  });
       });
     } catch (error) {
       console.error("Error in notify command:", error);
-      await replyFail(conn, message, "Failed to notify members.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📢 NOTIFY 〕*━━━━╮
+┃
+┃ ❌ *NOTIFY FAILED*
+┃ Failed to notify members.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );
@@ -106,15 +134,27 @@ command(
       const lidUsers = groupMetadata.participants.filter((p) => isLidUser(p.id));
       const pnUsers = groupMetadata.participants.filter((p) => isPnUser(p.id));
 
-      let info = formatGroupInfo(groupMetadata);
-      info += `\n*🆔 Identifier Types:*\n`;
+      let info = `╭━━━━*〔 👥 GROUP INFO 〕*━━━━╮
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n`;
+                                              info += formatGroupInfo(groupMetadata);
+                                              info += `\n*🆔 Identifier Types:*\n`;
       info += `• LID Users: ${lidUsers.length}\n`;
       info += `• PN Users: ${pnUsers.length}\n`;
 
       await sendMessage(conn, message.from, info);
     } catch (error) {
       console.error("Error in groupinfo command:", error);
-      await replyFail(conn, message, "Failed to get group information.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 👥 GROUP INFO 〕*━━━━╮
+┃
+┃ ❌ *GROUP INFO FAILED*
+┃ Failed to get group information.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );
@@ -143,13 +183,28 @@ command(
         await replyOk(
           conn,
           message,
-          `Promoted @${displayId(targetUser)} to admin!`,
+          `╭━━━━*〔 ⬆️ PROMOTE 〕*━━━━╮
+┃
+┃ ✅ *PROMOTED*
+┃ 👤 @${displayId(targetUser)}
+┃ 🛡️ *ROLE:* Admin
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
           { mentions: [targetUser] }
         );
       });
     } catch (error) {
       console.error("Error in promote command:", error);
-      await replyFail(conn, message, "Failed to promote user.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 ⬆️ PROMOTE 〕*━━━━╮
+┃
+┃ ❌ *PROMOTE FAILED*
+┃ Failed to promote user.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );
@@ -178,13 +233,28 @@ command(
         await replyOk(
           conn,
           message,
-          `Demoted @${displayId(targetUser)} to member!`,
+          `╭━━━━*〔 ⬇️ DEMOTE 〕*━━━━╮
+┃
+┃ ✅ *DEMOTED*
+┃ 👤 @${displayId(targetUser)}
+┃ 👤 *ROLE:* Member
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
           { mentions: [targetUser] }
         );
       });
     } catch (error) {
       console.error("Error in demote command:", error);
-      await replyFail(conn, message, "Failed to demote user.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 ⬇️ DEMOTE 〕*━━━━╮
+┃
+┃ ❌ *DEMOTE FAILED*
+┃ Failed to demote user.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );
@@ -210,7 +280,12 @@ command(
           return await sendError(
             conn,
             message.from,
-            "No pending join requests found."
+            `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+┃
+┃ 📭 *NO PENDING REQUESTS*
+┃ No join requests found.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
           );
         }
 
@@ -222,7 +297,12 @@ command(
           return await sendError(
             conn,
             message.from,
-            "No valid pending requests found."
+            `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+┃
+┃ ⚠️ *NO VALID REQUESTS*
+┃ No valid pending requests found.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
           );
         }
 
@@ -235,12 +315,26 @@ command(
         await replyOk(
           conn,
           message,
-          `Approved ${participants.length} pending request${participants.length === 1 ? "" : "s"}!`
+          `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+┃
+┃ ✅ *REQUESTS APPROVED*
+┃ 👥 *COUNT:* ${participants.length}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
       });
     } catch (error) {
       console.error("Error in acceptall command:", error);
-      await replyFail(conn, message, "Failed to approve pending requests.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+┃
+┃ ❌ *APPROVAL FAILED*
+┃ Failed to approve pending requests.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );
@@ -260,14 +354,26 @@ command(
       const adminsList = getAdmins(groupMetadata);
 
       if (adminsList.length === 0) {
-        return await sendError(conn, message.from, "No admins found in this group.");
+        return await sendError(
+          conn,
+          message.from,
+          `╭━━━━*〔 👑 ADMINS 〕*━━━━╮
+┃
+┃ 📭 *NO ADMINS FOUND*
+┃ This group has no admins.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
       }
 
-      let adminList = `*👑 GROUP ADMINS*\n\n`;
-      adminList += `*Group:* ${groupMetadata.subject}\n`;
-      adminList += `*Total Admins:* ${adminsList.length}\n\n`;
+      let adminList = `╭━━━━*〔 👑 ADMINS 〕*━━━━╮
+┃
+┃ 🏷️ *GROUP:* ${groupMetadata.subject}
+┃ 👥 *TOTAL ADMINS:* ${adminsList.length}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n`;
 
-      const mentionIds = [];
+                                                const mentionIds = [];
       adminsList.forEach((admin, index) => {
         mentionIds.push(admin.id);
         const role = admin.admin === "superadmin" ? "👑 Super Admin" : "🛡️ Admin";
@@ -277,7 +383,16 @@ command(
       await sendMessage(conn, message.from, adminList, { mentions: mentionIds });
     } catch (error) {
       console.error("Error in admins command:", error);
-      await replyFail(conn, message, "Failed to get admin list.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 👑 ADMINS 〕*━━━━╮
+┃
+┃ ❌ *ADMINS FAILED*
+┃ Failed to get admin list.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   }
 );

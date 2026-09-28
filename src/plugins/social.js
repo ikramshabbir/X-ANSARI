@@ -325,11 +325,17 @@ async function igHandler(message, conn) {
     async () => {
       try {
         const result = await fetchInstagram(url);
+        const caption = `╭━━━━〔 🎬 IG 〕━━━━╮
+┃
+┃ *▶️ Instagram Video*
+┃
+╰━━━━━━━━━━━━━━━╯`;
+
         await sendMediaUrl(
           conn,
           message,
           result.mediaUrl,
-          result.caption
+          caption
         );
       } catch (err) {
         await replyFail(
@@ -377,19 +383,31 @@ async function ttHandler(message, conn) {
   await withTyping(conn, message.from, async () => {
     try {
       const result = await fetchTikTok(url);
+      const caption = `╭━━━━〔 🎬 TIKTOK 〕━━━━╮
+┃
+┃ *▶️ TikTok Video*
+┃
+╰━━━━━━━━━━━━━━━━━━╯`;
+
       if (result.images?.length) {
         for (const img of result.images.slice(0, 5)) {
-          await sendMediaUrl(conn, message, img, result.caption);
+          await sendMediaUrl(conn, message, img, caption);
         }
         return;
       }
-      await sendMediaUrl(conn, message, result.mediaUrl, result.caption);
+      await sendMediaUrl(conn, message, result.mediaUrl, caption);
     } catch (err) {
       await replyFail(
         conn,
         message,
         err?.message ||
-          "TikTok download failed. The free API may be down — try later."
+                               `╭━━━━*〔 🎵 TIKTOK 〕*━━━━╮
+┃
+┃ ❌ *DOWNLOAD FAILED*
+┃ TikTok download failed.
+┃ The free API may be down — try later.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     }
   }, { timeoutMs: 90_000 });
@@ -430,7 +448,14 @@ command(
       await replyFail(
         conn,
         message,
-        `Usage: \`${BOT_INFO.PREFIX}fb <facebook url>\``
+        `╭━━━━*〔 📘 FACEBOOK 〕*━━━━╮
+┃
+┃ ⚠️ *FACEBOOK URL REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}fb <facebook url>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -449,11 +474,17 @@ command(
 
           assertVideoSize(buffer.length);
 
+          const caption = `╭━━━━〔 🎬 FB 〕━━━━╮
+┃
+┃ *▶️ Facebook Video*
+┃
+╰━━━━━━━━━━━━━━━━╯`;
+
           await conn.sendMessage(
             message.from,
             {
               video: buffer,
-              caption: result.caption,
+              caption,
               mimetype: "video/mp4",
             },
             {
@@ -468,7 +499,12 @@ command(
             conn,
             message,
             err?.message ||
-              "Facebook download failed."
+                               `╭━━━━*〔 📘 FACEBOOK 〕*━━━━╮
+┃
+┃ ❌ *DOWNLOAD FAILED*
+┃ Facebook download failed.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
           );
         } finally {
           if (result?.tempDir) {

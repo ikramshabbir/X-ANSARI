@@ -37,10 +37,13 @@ command(
       await reply(
         conn,
         message,
-        await t("LANG_LIST", {
-          list: AVAILABLE_LANGS.join(", "),
-          lang,
-        })
+        `╭━━━━*〔 🌐 LANG 〕*━━━━╮
+┃
+┃ 🌐 *LANGUAGE*
+┃ 🗣️ *CURRENT:* ${lang}
+┃ 📋 *AVAILABLE:* ${AVAILABLE_LANGS.join(", ")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -71,11 +74,17 @@ command(
       .trim()
       .toLowerCase();
     if (!name) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        `Usage: ${BOT_INFO.PREFIX}disable <command>`
-      );
+        `╭━━━━*〔 🚫 DISABLE 〕*━━━━╮
+┃
+┃ ⚠️ *COMMAND NAME REQUIRED*
+┃
+┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}disable <command>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      )
       return;
     }
     // Protect critical commands
@@ -89,7 +98,16 @@ command(
       "plugins",
     ]);
     if (protectedCmds.has(name)) {
-      await replyFail(conn, message, "That command cannot be disabled.");
+      await reply(
+      conn,
+      message,
+      `╭━━━━*〔 🚫 DISABLE 〕*━━━━╮
+┃
+┃ 🔒 *COMMAND PROTECTED*
+┃ That command cannot be disabled.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    )
       return;
     }
     const s = await getGroupSettings(message.from);
@@ -98,7 +116,16 @@ command(
     await setGroupSettings(message.from, {
       disabledPlugins: [...list],
     });
-    await replyOk(conn, message, `Disabled \`${BOT_INFO.PREFIX}${name}\` in this group.`);
+    await reply(
+      conn,
+      message,
+      `╭━━━━*〔 🚫 DISABLE 〕*━━━━╮
+┃
+┃ ✅ *COMMAND DISABLED*
+┃ 🔧 *COMMAND:* ${BOT_INFO.PREFIX}${name}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    )
   }
 );
 
@@ -116,11 +143,17 @@ command(
       .trim()
       .toLowerCase();
     if (!name) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        `Usage: ${BOT_INFO.PREFIX}enable <command>`
-      );
+        `╭━━━━*〔 ✅ ENABLE 〕*━━━━╮
+┃
+┃ ⚠️ *COMMAND NAME REQUIRED*
+┃
+┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}enable <command>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      )
       return;
     }
     const s = await getGroupSettings(message.from);
@@ -129,7 +162,16 @@ command(
         (x) => x.toLowerCase() !== name
       ),
     });
-    await replyOk(conn, message, `Enabled \`${BOT_INFO.PREFIX}${name}\`.`);
+    await reply(
+      conn,
+      message,
+      `╭━━━━*〔 ✅ ENABLE 〕*━━━━╮
+┃
+┃ ✅ *COMMAND ENABLED*
+┃ 🔧 *COMMAND:* ${BOT_INFO.PREFIX}${name}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    )
   }
 );
 
@@ -145,14 +187,29 @@ command(
     const s = await getGroupSettings(message.from);
     const disabled = s.disabledPlugins || [];
     if (!disabled.length) {
-      await reply(conn, message, "*Disabled commands:* _(none)_");
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 🔌 PLUGINS 〕*━━━━╮
+┃
+┃ 📭 *NO DISABLED COMMANDS*
+┃ All commands are enabled.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     await reply(
       conn,
       message,
-      `*Disabled in this group:*\n${disabled.map((c) => `• ${BOT_INFO.PREFIX}${c}`).join("\n")}`
-    );
+      `╭━━━━*〔 🔌 PLUGINS 〕*━━━━╮
+┃
+┃ 🚫 *DISABLED COMMANDS*
+┃
+┃ ${disabled.map((c) => `• ${BOT_INFO.PREFIX}${c}`).join("\n┃ ")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    )
   }
 );
 
@@ -165,16 +222,31 @@ command(
   },
   async (message, conn) => {
     if (!isOwnerMessage(message, conn) && !message.key.fromMe) {
-      await replyFail(conn, message, await t("OWNER_ONLY"));
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+┃
+┃ 🔒 *OWNER ONLY*
+┃ This command is restricted to the owner.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
 
     const text = (getCommandArgs(message.body, "broadcast") || "").trim();
     if (!text) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        `Usage: ${BOT_INFO.PREFIX}broadcast <message>`
+        `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+┃
+┃ ⚠️ *MESSAGE REQUIRED*
+┃
+┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}broadcast <message>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -184,10 +256,15 @@ command(
       try {
         groups = await conn.groupFetchAllParticipating();
       } catch (err) {
-        await replyFail(
+        await reply(
           conn,
           message,
-          `Could not fetch groups: ${err?.message || err}`
+          `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+┃
+┃ ❌ *GROUP FETCH FAILED*
+┃ ${err?.message || err}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
         return;
       }
@@ -210,7 +287,13 @@ command(
       await replyOk(
         conn,
         message,
-        await t("BROADCAST_DONE", { ok, total: jids.length })
+        `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+┃
+┃ ✅ *BROADCAST COMPLETE*
+┃ 📤 *SENT:* ${ok}
+┃ 👥 *TOTAL GROUPS:* ${jids.length}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     }, { timeoutMs: 120_000 });
   }
@@ -229,6 +312,16 @@ command(
     const cmds = getMenuCommands()
       .map((c) => c.patternName)
       .sort();
-    await reply(conn, message, `*Commands (${cmds.length}):*\n${cmds.join(", ")}`);
+    await reply(
+        conn,
+        message,
+        `╭━━━━*〔 📋 CMDLIST 〕*━━━━╮
+┃
+┃ 📋 *TOTAL COMMANDS:* ${cmds.length}
+┃
+┃ ${cmds.join(", ")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      )
   }
 );

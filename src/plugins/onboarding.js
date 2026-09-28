@@ -30,7 +30,11 @@ command(
   },
   async (message, conn) => {
     if (!(await isPrivileged(message, conn))) {
-      await replyFail(conn, message, "Owner/sudo only.");
+      await replyFail(conn, message, `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+┃
+┃ 🔒 *OWNER/SUDO ONLY*
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
       return;
     }
     await kvDel("log_group_jid");
@@ -39,18 +43,40 @@ command(
       await replyFail(
         conn,
         message,
-        "Create a group, add the bot, then `#setlog`."
+        `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+┃
+┃ ⚠️ *MANUAL SETUP REQUIRED*
+┃
+┃ Create a group, add the bot,
+┃ then ${BOT_INFO.PREFIX}setlog
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
     if (!res.jid) {
-      await replyFail(conn, message, `Failed: ${res.error || "unknown"}`);
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+┃
+┃ ❌ *CREATELOG FAILED*
+┃ ${res.error || "Unknown error"}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     await replyOk(
       conn,
       message,
-      `${res.created ? "Created" : "Using"} system group:\n\`${res.jid}\``
+      `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+┃
+┃ ${res.created ? "✅ *SYSTEM GROUP CREATED*" : "✅ *SYSTEM GROUP FOUND*"}
+┃
+┃ 🆔 *JID:* \`${res.jid}\`
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -65,21 +91,36 @@ command(
   },
   async (message, conn) => {
     if (!isOwnerMessage(message, conn) && !message.key.fromMe) {
-      await replyFail(conn, message, "Owner only.");
+      await replyFail(conn, message, `╭━━━━*〔 📝 SETLOG 〕*━━━━╮
+┃
+┃ 🔒 *OWNER ONLY*
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
       return;
     }
     if (!message.isGroup) {
-      await replyFail(conn, message, "Run inside a group.");
+      await replyFail(conn, message, `╭━━━━*〔 📝 SETLOG 〕*━━━━╮
+┃
+┃ ⚠️ *GROUP REQUIRED*
+┃ Run this command inside a group.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
       return;
     }
     await setLogGroupJid(message.from);
     await replyOk(
-      conn,
-      message,
-      "This group is now the *system log / onboarding* chat.\n" +
-        `Run \`${BOT_INFO.PREFIX}setup\` here.\n` +
-        "_Errors will only be posted in this group._"
-    );
+        conn,
+        message,
+        `╭━━━━*〔 📝 SETLOG 〕*━━━━╮
+┃
+┃ ✅ *SYSTEM LOG GROUP SET*
+┃
+┃ Run ${BOT_INFO.PREFIX}setup here.
+┃
+┃ _Errors will only be posted in this group._
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     await systemLog("success", `Log group set to ${message.from}`);
   }
 );
@@ -93,7 +134,16 @@ command(
   },
   async (message, conn) => {
     if (!(await isPrivileged(message, conn))) {
-      await replyFail(conn, message, "Owner/sudo only.");
+      await replyFail(
+      conn,
+      message,
+      `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ 🔒 *OWNER/SUDO ONLY*
+┃ This command is restricted to owner/sudo.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
     const args = getCommandArgs(message.body, "setup") || "";
@@ -124,11 +174,22 @@ command(
       await reply(
         conn,
         message,
-        `*Group setup*\n\n` +
-          `\`${BOT_INFO.PREFIX}groupsetup recommended\` — welcome + antilink + antispam on\n` +
-          `\`${BOT_INFO.PREFIX}groupsetup minimal\` — welcome only\n` +
-          `\`${BOT_INFO.PREFIX}groupsetup off\` — disable welcome/goodbye/antilink/antispam\n\n` +
-          `Then tweak with \`${BOT_INFO.PREFIX}groupsettings\``
+        `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+┃
+┃ ⚙️ *QUICK GROUP MODERATION*
+┃
+┃ ${BOT_INFO.PREFIX}groupsetup recommended
+┃ Welcome + antilink + antispam ON
+┃
+┃ ${BOT_INFO.PREFIX}groupsetup minimal
+┃ Welcome only
+┃
+┃ ${BOT_INFO.PREFIX}groupsetup off
+┃ Disable all moderation features
+┃
+┃ 💡 Tweak with ${BOT_INFO.PREFIX}groupsettings
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -143,7 +204,16 @@ command(
       await replyOk(
         conn,
         message,
-        "Applied *recommended*: welcome, goodbye, antilink, antispam ON."
+        `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+┃
+┃ ✅ *RECOMMENDED APPLIED*
+┃
+┃ 👋 Welcome: ON
+┃ 👋 Goodbye: ON
+┃ 🔗 Antilink: ON
+┃ 🛡️ Antispam: ON
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -155,7 +225,15 @@ command(
         antilink: false,
         antispam: false,
       });
-      await replyOk(conn, message, "Applied *minimal*: welcome ON only.");
+      await replyOk(conn, message, `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+┃
+┃ ✅ *MINIMAL APPLIED*
+┃
+┃ 👋 Welcome: ON
+┃ 🔗 Antilink: OFF
+┃ 🛡️ Antispam: OFF
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
       return;
     }
 
@@ -166,11 +244,29 @@ command(
         antilink: false,
         antispam: false,
       });
-      await replyOk(conn, message, "Moderation features turned OFF.");
+      await replyOk(conn, message, `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+┃
+┃ 🔴 *MODERATION DISABLED*
+┃
+┃ 👋 Welcome: OFF
+┃ 👋 Goodbye: OFF
+┃ 🔗 Antilink: OFF
+┃ 🛡️ Antispam: OFF
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
       return;
     }
 
-    await replyFail(conn, message, "Use recommended | minimal | off");
+    await replyFail(conn, message, `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+┃
+┃ ⚠️ *INVALID OPTION*
+┃
+┃ Use:
+┃ ${BOT_INFO.PREFIX}groupsetup recommended
+┃ ${BOT_INFO.PREFIX}groupsetup minimal
+┃ ${BOT_INFO.PREFIX}groupsetup off
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
   }
 );
 
@@ -188,24 +284,47 @@ command(
     const lang = await getLang();
     const logJid = await getLogGroupJid();
     const setup = await isSetupDone();
-    const uptime = Math.floor(process.uptime());
-    const mem = Math.round(process.memoryUsage().rss / 1024 / 1024);
+
+    const totalSeconds = Math.floor(process.uptime());
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    const uptime =
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    const mem = Math.round(
+      process.memoryUsage().rss / 1024 / 1024
+    );
 
     let text =
-      `*${BOT_INFO.NAME}* v${BOT_INFO.VERSION}\n` +
-      `• Uptime: ${uptime}s\n` +
-      `• Mode: ${mode}\n` +
-      `• Lang: ${lang}\n` +
-      `• FFmpeg: ${ff.ok ? "✅" : "❌"}\n` +
-      `• Setup: ${setup ? "done" : "pending"}\n`;
+      `╭━━━━*〔 📊 STATUS 〕*━━━━╮\n` +
+      `┃\n` +
+      `┃ 🤖 *BOT*\n` +
+      `┃ ├─ Name      : ${BOT_INFO.NAME}\n` +
+      `┃ └─ Version   : v${BOT_INFO.VERSION}\n` +
+      `┃\n` +
+      `┃ ⚡ *SYSTEM*\n` +
+      `┃ ├─ Uptime    : ${uptime}\n` +
+      `┃ ├─ Mode      : ${mode}\n` +
+      `┃ ├─ Language  : ${lang}\n` +
+      `┃ ├─ FFmpeg    : ${ff.ok ? "✅ Ready" : "❌ Missing"}\n` +
+      `┃ └─ Setup     : ${setup ? "✅ Complete" : "⏳ Pending"}\n`;
 
     if (privileged) {
       text +=
-        `• RSS: ${mem} MB\n` +
-        `• Platform: ${os.platform()}\n` +
-        `• Log group: ${logJid || "_(not set)_"}\n` +
-        `• User: ${conn.user?.id || "?"}\n`;
+        `┃\n` +
+        `┃ 🔐 *OWNER INFO*\n` +
+        `┃ ├─ RSS       : ${mem} MB\n` +
+        `┃ ├─ Platform  : ${os.platform()}\n` +
+        `┃ ├─ Log Group : ${logJid || "Not set"}\n` +
+        `┃ └─ User      : ${conn.user?.id || "Unknown"}\n`;
     }
+
+    text +=
+      `┃\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━━━╯`;
 
     await reply(conn, message, text);
   }

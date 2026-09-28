@@ -83,8 +83,16 @@ export async function runSetupCommand(message, conn, args) {
     return {
       ok: false,
       text:
-        `Setup runs only in the *system log group*.\n` +
-        `Use \`${BOT_INFO.PREFIX}createlog\` / \`${BOT_INFO.PREFIX}setlog\` first, then run setup there.`,
+        `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ⚠️ *SYSTEM LOG GROUP REQUIRED*
+┃
+┃ Setup runs only in the system log group.
+┃
+┃ 💡 Use ${BOT_INFO.PREFIX}createlog / ${BOT_INFO.PREFIX}setlog
+┃ first, then run setup there.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
     };
   }
 
@@ -95,7 +103,13 @@ export async function runSetupCommand(message, conn, args) {
     await setSetupStep("done");
     return {
       ok: true,
-      text: `✅ Setup marked complete. Use \`${BOT_INFO.PREFIX}menu\` anywhere.`,
+      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ✅ *SETUP COMPLETE*
+┃
+┃ Use ${BOT_INFO.PREFIX}menu anywhere.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
     };
   }
 
@@ -104,7 +118,12 @@ export async function runSetupCommand(message, conn, args) {
     await setSetupStep("owner");
     return {
       ok: true,
-      text: "Setup reset. Continuing wizard…",
+      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ 🔄 *SETUP RESET*
+┃ Continuing wizard…
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
       continue: true,
     };
   }
@@ -126,10 +145,18 @@ async function advanceWizard(message, conn, step, raw) {
       ok: true,
       text:
         `✅ Owner: Linked WhatsApp session\n\n` +
-        `*Step 1/3 — Mode*\n` +
-        `Reply:\n• \`${p}setup public\` — anyone can use commands\n` +
-        `• \`${p}setup private\` — owner + sudo only\n\n` +
-        `Current: *${await getMode()}*`,
+        `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ✅ *OWNER:* Linked WhatsApp session
+┃
+┃ *STEP 1/4 — MODE*
+┃
+┃ ${p}setup public — anyone can use commands
+┃ ${p}setup private — owner + sudo only
+┃
+┃ *CURRENT:* ${await getMode()}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
     };
   }
 
@@ -139,22 +166,47 @@ async function advanceWizard(message, conn, step, raw) {
     } else if (raw && raw !== "start") {
       return {
         ok: false,
-        text: `Reply \`${p}setup public\` or \`${p}setup private\``,
+        text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ⚠️ *INVALID MODE*
+┃
+┃ Reply:
+┃ ${p}setup public
+┃ ${p}setup private
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
       };
     } else {
       return {
         ok: true,
         text:
-          `*Step 2/4 — Mode*\n\`${p}setup public\` or \`${p}setup private\`\nCurrent: *${await getMode()}*`,
+          `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ *STEP 2/4 — MODE*
+┃
+┃ ${p}setup public
+┃ ${p}setup private
+┃
+┃ *CURRENT:* ${await getMode()}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
       };
     }
     await setSetupStep("lang");
     return {
       ok: true,
       text:
-        `✅ Mode: *${await getMode()}*\n\n*Step 3/4 — Language*\n` +
-        `Reply \`${p}setup en\` | \`id\` | \`hi\`\n` +
-        `Available: ${AVAILABLE_LANGS.join(", ")}\nCurrent: *${await getLang()}*`,
+        `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ✅ *MODE:* ${await getMode()}
+┃
+┃ *STEP 3/4 — LANGUAGE*
+┃
+┃ Reply: ${p}setup en | id | hi
+┃ *AVAILABLE:* ${AVAILABLE_LANGS.join(", ")}
+┃ *CURRENT:* ${await getLang()}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
     };
   }
 
@@ -164,21 +216,43 @@ async function advanceWizard(message, conn, step, raw) {
     } else if (raw && !["start", "public", "private"].includes(raw)) {
       return {
         ok: false,
-        text: `Pick a language: ${AVAILABLE_LANGS.join(", ")}`,
+        text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ⚠️ *INVALID LANGUAGE*
+┃
+┃ Pick one:
+┃ ${AVAILABLE_LANGS.join(", ")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
       };
     } else if (!AVAILABLE_LANGS.includes(raw)) {
       return {
         ok: true,
-        text: `*Step 3/4 — Language*\n\`${p}setup en|id|hi\`\nCurrent: *${await getLang()}*`,
+        text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ *STEP 3/4 — LANGUAGE*
+┃
+┃ ${p}setup en | id | hi
+┃ *CURRENT:* ${await getLang()}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
       };
     }
     await setSetupStep("exif");
     return {
       ok: true,
-      text:
-        `✅ Lang: *${await getLang()}*\n\n*Step 4/4 — Sticker pack*\n` +
-        `Reply \`${p}setup PackName|Author\`\n` +
-        `Or \`${p}setup skip\` to keep defaults (*${MEDIA.STICKER_PACKNAME}* / *${MEDIA.STICKER_AUTHOR}*)`,
+      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ✅ *LANG:* ${await getLang()}
+┃
+┃ *STEP 4/4 — STICKER PACK*
+┃
+┃ Reply: ${p}setup PackName|Author
+┃
+┃ Or ${p}setup skip to keep defaults
+┃ *DEFAULT:* ${MEDIA.STICKER_PACKNAME} / ${MEDIA.STICKER_AUTHOR}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
     };
   }
 
@@ -194,20 +268,35 @@ async function advanceWizard(message, conn, step, raw) {
     const author = (await kvGetRaw("sticker_author")) || MEDIA.STICKER_AUTHOR;
     return {
       ok: true,
-      text:
-        `✅ *Setup complete!*\n\n` +
-        `• Mode: *${await getMode()}*\n` +
-        `• Lang: *${await getLang()}*\n` +
-        `• Stickers: *${pack}* / *${author}*\n\n` +
-        `*Try next:*\n` +
-        `• \`${p}ping\`\n• \`${p}menu\`\n• \`${p}status\`\n` +
-        `• In a user group: \`${p}groupsetup\`\n\n` +
-        `_System errors will only appear in this group._`,
+      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ ✅ *SETUP COMPLETE*
+┃
+┃ ⚙️ *MODE:* ${await getMode()}
+┃ 🌐 *LANG:* ${await getLang()}
+┃ 🏷️ *STICKERS:* ${pack} / ${author}
+┃
+┃ *TRY NEXT:*
+┃ ${p}ping
+┃ ${p}menu
+┃ ${p}status
+┃ ${p}groupsetup — in a user group
+┃
+┃ _System errors stay in this group._
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
     };
   }
 
   return {
     ok: true,
-    text: `Setup idle. Run \`${p}setup\` to begin or \`${p}setup reset\`.`,
+    text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+┃
+┃ 💤 *SETUP IDLE*
+┃
+┃ Run ${p}setup to begin
+┃ or ${p}setup reset.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`,
   };
 }

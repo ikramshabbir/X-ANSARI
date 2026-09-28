@@ -53,7 +53,14 @@ command(
       await reply(
         conn,
         message,
-        `*Bot mode:* ${mode}\n\n` +
+        `╭━━━━*〔 ⚙️ MODE 〕*━━━━╮\n` +
+          `┃\n` +
+          `┃ ⚙️ *BOT MODE:* ${mode}\n` +
+          `┃\n` +
+          `┃ 🌐 \`${BOT_INFO.PREFIX}mode public\` — anyone can use commands\n` +
+          `┃ 🔒 \`${BOT_INFO.PREFIX}mode private\` — owner + sudo only\n` +
+          `┃\n` +
+          `╰━━━━━━━━━━━━━━━━━━━━━━╯`
           `• \`${BOT_INFO.PREFIX}mode public\` — anyone can use commands\n` +
           `• \`${BOT_INFO.PREFIX}mode private\` — owner + sudo only`
       );
@@ -112,7 +119,12 @@ command(
         await reply(
           conn,
           message,
-          "*Sudo list:* _(empty)_"
+          `╭━━━━*〔 🛡️ SUDO 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ 📭 *SUDO LIST EMPTY*\n` +
+        `┃ No sudo users added.\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
 
         return;
@@ -121,9 +133,13 @@ command(
       await reply(
         conn,
         message,
-        `*Sudo list:*\n${list
-          .map((n, i) => `${i + 1}. ${n}`)
-          .join("\n")}`
+        `╭━━━━*〔 🛡️ SUDO 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ 🛡️ *SUDO LIST*\n` +
+        `┃\n` +
+        `${list.map((n, i) => `┃ ${i + 1}. ${n}`).join("\n")}\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -177,7 +193,12 @@ command(
       await replyOk(
         conn,
         message,
-        `Added sudo: *${number}*`
+        `╭━━━━*〔 🛡️ SUDO 〕*━━━━╮\n` +
+                                    `┃\n` +
+                                    `┃ ✅ *SUDO ADDED*\n` +
+                                    `┃ 👤 *USER:* ${number}\n` +
+                                    `┃\n` +
+                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -193,7 +214,12 @@ command(
       await replyOk(
         conn,
         message,
-        `Removed sudo: *${number}*`
+        `╭━━━━*〔 🛡️ SUDO 〕*━━━━╮\n` +
+                                    `┃\n` +
+                                    `┃ 🗑️ *SUDO REMOVED*\n` +
+                                    `┃ 👤 *USER:* ${number}\n` +
+                                    `┃\n` +
+                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -254,12 +280,17 @@ command(
       await reply(
         conn,
         message,
-        `🤖 *Auto Reaction:* ${statusText}\n\n` +
-          `• \`${BOT_INFO.PREFIX}autoreact on\` — Groups + Private\n` +
-          `• \`${BOT_INFO.PREFIX}autoreact group\` — Groups only\n` +
-          `• \`${BOT_INFO.PREFIX}autoreact private\` — Private only\n` +
-          `• \`${BOT_INFO.PREFIX}autoreact off\` — OFF\n` +
-          `• \`${BOT_INFO.PREFIX}autoreact status\` — Current status`
+        `╭━━━━*〔 🤖 AUTOREACT 〕*━━━━╮\n` +
+          `┃\n` +
+          `┃ 🤖 *STATUS:* ${statusText}\n` +
+          `┃\n` +
+          `┃ 🟢 \`${BOT_INFO.PREFIX}autoreact on\` — Groups + Private\n` +
+          `┃ 👥 \`${BOT_INFO.PREFIX}autoreact group\` — Groups only\n` +
+          `┃ 💬 \`${BOT_INFO.PREFIX}autoreact private\` — Private only\n` +
+          `┃ 🔴 \`${BOT_INFO.PREFIX}autoreact off\` — OFF\n` +
+          `┃ 📊 \`${BOT_INFO.PREFIX}autoreact status\` — Current status\n` +
+          `┃\n` +
+          `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -272,7 +303,12 @@ command(
       await replyOk(
         conn,
         message,
-        "✅ Auto Reaction is now ON — Groups + Private ❤️"
+        `╭━━━━*〔 🤖 AUTOREACT 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ ✅ *AUTOREACTION ENABLED*\n` +
+        `┃ 🌐 *MODE:* Groups + Private\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -285,7 +321,12 @@ command(
       await replyOk(
         conn,
         message,
-        "❌ Auto Reaction is now OFF"
+        `╭━━━━*〔 🤖 AUTOREACT 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ 🔴 *AUTOREACTION DISABLED*\n` +
+        `┃ ⚪ *MODE:* OFF\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -298,7 +339,12 @@ command(
       await replyOk(
         conn,
         message,
-        "✅ Auto Reaction is now ON — Groups only"
+        `╭━━━━*〔 🤖 AUTOREACT 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ ✅ *AUTOREACTION ENABLED*\n` +
+        `┃ 👥 *MODE:* Groups Only\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -363,10 +409,15 @@ command(
       await reply(
         conn,
         message,
-        `👁️ *Presence:* ${labels[current] || "Normal"}\n\n` +
-          `• \`${BOT_INFO.PREFIX}presence 1\` — Normal\n` +
-          `• \`${BOT_INFO.PREFIX}presence 2\` — Freeze\n` +
-          `• \`${BOT_INFO.PREFIX}presence 3\` — Always Online`
+        `╭━━━━*〔 👁️ PRESENCE 〕*━━━━╮\n` +
+          `┃\n` +
+          `┃ 👁️ *STATUS:* ${labels[current] || "Normal"}\n` +
+          `┃\n` +
+          `┃ 1️⃣ \`${BOT_INFO.PREFIX}presence 1\` — Normal\n` +
+          `┃ 2️⃣ \`${BOT_INFO.PREFIX}presence 2\` — Freeze\n` +
+          `┃ 3️⃣ \`${BOT_INFO.PREFIX}presence 3\` — Always Online\n` +
+          `┃\n` +
+          `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -379,7 +430,12 @@ command(
       await replyOk(
         conn,
         message,
-        "👁️ Presence set to *Normal*"
+        `╭━━━━*〔 👁️ PRESENCE 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ ✅ *PRESENCE UPDATED*\n` +
+        `┃ 🟢 *MODE:* Normal\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -392,7 +448,12 @@ command(
       await replyOk(
         conn,
         message,
-        "👁️ Presence set to *Freeze*"
+        `╭━━━━*〔 👁️ PRESENCE 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ ✅ *PRESENCE UPDATED*\n` +
+        `┃ ❄️ *MODE:* Freeze\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;
@@ -405,7 +466,12 @@ command(
       await replyOk(
         conn,
         message,
-        "👁️ Presence set to *Always Online*"
+        `╭━━━━*〔 👁️ PRESENCE 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ ✅ *PRESENCE UPDATED*\n` +
+        `┃ 🟢 *MODE:* Always Online\n` +
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
 
       return;

@@ -650,7 +650,12 @@ command(
       return replyOk(
         conn,
         message,
-        "AntiDelete is ON 🟢 for this number."
+        `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+                                    `┃\n` +
+                                    `┃ ✅ *ANTIDELETE ENABLED*\n` +
+                                    `┃ 🟢 *STATUS:* ON\n` +
+                                    `┃\n` +
+                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     }
 
@@ -663,7 +668,12 @@ command(
       return replyOk(
         conn,
         message,
-        "AntiDelete is OFF 🔴 for this number."
+        `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+                                    `┃\n` +
+                                    `┃ 🔴 *ANTIDELETE DISABLED*\n` +
+                                    `┃ ⚪ *STATUS:* OFF\n` +
+                                    `┃\n` +
+                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     }
 
@@ -671,8 +681,16 @@ command(
       conn,
       message,
       (await isAntiDeleteEnabled(sessionId))
-        ? "✅ AntiDelete is ON 🟢 for this number."
-        : "❌ AntiDelete is OFF 🔴 for this number."
+        ? `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+                                    `┃\n` +
+                                    `┃ 🟢 *STATUS:* ON\n` +
+                                    `┃\n` +
+                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        : `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+                                    `┃\n` +
+                                    `┃ 🔴 *STATUS:* OFF\n` +
+                                    `┃\n` +
+                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );

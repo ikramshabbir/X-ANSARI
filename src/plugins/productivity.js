@@ -34,7 +34,15 @@ command(
       await replyFail(
         conn,
         message,
-        `Usage:\n${BOT_INFO.PREFIX}note set <id> <text>\n${BOT_INFO.PREFIX}note get <id>\n${BOT_INFO.PREFIX}note del <id>\n${BOT_INFO.PREFIX}note list`
+        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ ⚠️ *USAGE*
+┃ ${BOT_INFO.PREFIX}note set <id> <text>
+┃ ${BOT_INFO.PREFIX}note get <id>
+┃ ${BOT_INFO.PREFIX}note del <id>
+┃ ${BOT_INFO.PREFIX}note list
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -45,39 +53,88 @@ command(
     if (act === "list") {
       const notes = await listNotes(owner);
       if (!notes.length) {
-        await reply(conn, message, "*Notes:* _(empty)_");
+        await reply(conn, message, `╭━━━━*〔 📝 NOTES 〕*━━━━╮
+┃
+┃ 📭 *NO NOTES*
+┃ No saved notes found.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
         return;
       }
       await reply(
         conn,
         message,
-        `*Notes:*\n${notes.map((n) => `• *${n.id}* — ${n.text.slice(0, 60)}`).join("\n")}`
+        `╭━━━━*〔 📝 NOTES 〕*━━━━╮
+┃
+┃ 📝 *SAVED NOTES*
+┃
+┃ ${notes.map((n) => `• *${n.id}* — ${n.text.slice(0, 60)}`).join("\n┃ ")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
 
     if (act === "get") {
       if (!id) {
-        await replyFail(conn, message, "Provide note id.");
+        await replyFail(conn, message, `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ ⚠️ *NOTE ID REQUIRED*
+┃ Provide note id.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
         return;
       }
       const n = await getNote(owner, id);
       if (!n) {
-        await replyFail(conn, message, await t("NOTE_NOT_FOUND"));
+        await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ ❌ *NOTE NOT FOUND*
+┃ ${await t("NOTE_NOT_FOUND")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
         return;
       }
-      await reply(conn, message, `*Note \`${id}\`*\n${n.text}`);
+      await reply(conn, message, `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ 📝 *NOTE:* \`${id}\`
+┃
+┃ ${n.text}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
       return;
     }
 
     if (act === "del" || act === "delete" || act === "rm") {
       if (!id) {
-        await replyFail(conn, message, "Provide note id.");
+        await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ ⚠️ *NOTE ID REQUIRED*
+┃ Provide note id.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
         return;
       }
       const ok = await deleteNote(owner, id);
       if (!ok) {
-        await replyFail(conn, message, await t("NOTE_NOT_FOUND"));
+        await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ ❌ *NOTE NOT FOUND*
+┃ ${await t("NOTE_NOT_FOUND")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
         return;
       }
       await replyOk(conn, message, await t("NOTE_DELETED", { id }));
@@ -90,7 +147,12 @@ command(
         await replyFail(
           conn,
           message,
-          `Usage: ${BOT_INFO.PREFIX}note set <id> <text>`
+          `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ ⚠️ *USAGE*
+┃ ${BOT_INFO.PREFIX}note set <id> <text>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
         return;
       }
@@ -107,7 +169,12 @@ command(
       return;
     }
 
-    await replyFail(conn, message, "Unknown note action.");
+    await replyFail(conn, message, `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+┃
+┃ ❌ *UNKNOWN ACTION*
+┃ Unknown note action.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
   }
 );
 
@@ -120,11 +187,19 @@ command(
   },
   async (message, conn) => {
     const raw = (getCommandArgs(message.body, "remind") || "").trim();
+
     if (!raw) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        `Usage: ${BOT_INFO.PREFIX}remind <time> <text>\nTime: 30s, 10m, 2h, 1d`
+        `╭━━━━*〔 ⏰ REMIND 〕*━━━━╮
+┃
+┃ ⚠️ *USAGE*
+┃ ${BOT_INFO.PREFIX}remind <time> <text>
+┃
+┃ 🕐 *TIME:* 30s, 10m, 2h, 1d
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -132,16 +207,25 @@ command(
     const [whenToken, ...rest] = raw.split(/\s+/);
     const at = parseWhen(whenToken);
     const text = rest.join(" ").trim();
+
     if (!at || !text) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        `Invalid time or empty text.\nExample: ${BOT_INFO.PREFIX}remind 10m Check oven`
+        `╭━━━━*〔 ⏰ REMIND 〕*━━━━╮
+┃
+┃ ❌ *INVALID REMINDER*
+┃ Invalid time or empty text.
+┃
+┃ 💡 *EXAMPLE:* ${BOT_INFO.PREFIX}remind 10m Check oven
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
 
     const id = `r_${Date.now().toString(36)}`;
+
     await addReminder({
       id,
       jid: message.from,
@@ -151,10 +235,20 @@ command(
     });
 
     const when = new Date(at).toLocaleString();
-    await replyOk(conn, message, await t("REMINDER_SET", { when }));
+
+    await reply(
+      conn,
+      message,
+      `╭━━━━*〔 ⏰ REMIND 〕*━━━━╮
+┃
+┃ ✅ *REMINDER SET*
+┃ ⏰ *WHEN:* ${when}
+┃ 📝 *TEXT:* ${text}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
   }
 );
-
 command(
   {
     pattern: "reminders",
@@ -164,23 +258,39 @@ command(
   },
   async (message, conn) => {
     const list = await listReminders(message.from);
+
     if (!list.length) {
-      await reply(conn, message, "*Reminders:* _(none)_");
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 ⏰ REMINDERS 〕*━━━━╮
+┃
+┃ 📭 *NO REMINDERS*
+┃ No pending reminders found.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
+
     await reply(
       conn,
       message,
-      `*Reminders:*\n${list
+      `╭━━━━*〔 ⏰ REMINDERS 〕*━━━━╮
+┃
+┃ ⏰ *PENDING REMINDERS*
+┃
+┃ ${list
         .map(
           (r) =>
             `• \`${r.id}\` ${new Date(r.at).toLocaleString()} — ${r.text}`
         )
-        .join("\n")}`
+        .join("\n┃ ")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
-
 command(
   {
     pattern: "cancelremind",
@@ -190,19 +300,50 @@ command(
   },
   async (message, conn) => {
     const id = (getCommandArgs(message.body, "cancelremind") || "").trim();
+
     if (!id) {
-      await replyFail(conn, message, `Usage: ${BOT_INFO.PREFIX}cancelremind <id>`);
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 ❌ CANCEL REMIND 〕*━━━━╮
+┃
+┃ ⚠️ *REMINDER ID REQUIRED*
+┃
+┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}cancelremind <id>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
+
     const ok = await cancelReminder(id);
+
     if (!ok) {
-      await replyFail(conn, message, "Reminder not found.");
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 ❌ CANCEL REMIND 〕*━━━━╮
+┃
+┃ ❌ *REMINDER NOT FOUND*
+┃ No reminder found with this ID.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
-    await replyOk(conn, message, `Cancelled \`${id}\``);
+
+    await reply(
+      conn,
+      message,
+      `╭━━━━*〔 ❌ CANCEL REMIND 〕*━━━━╮
+┃
+┃ ✅ *REMINDER CANCELLED*
+┃ 🆔 *ID:* \`${id}\`
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
   }
 );
-
 command(
   {
     pattern: "poll",
@@ -212,23 +353,52 @@ command(
   },
   async (message, conn) => {
     const raw = (getCommandArgs(message.body, "poll") || "").trim();
+
     if (!raw.includes("|")) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        `Usage: ${BOT_INFO.PREFIX}poll Question? | Option A | Option B | Option C`
+        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+┃
+┃ ⚠️ *INVALID POLL*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}poll Question? | Option A | Option B
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
+
     const parts = raw.split("|").map((s) => s.trim()).filter(Boolean);
     const name = parts[0];
     const values = parts.slice(1);
+
     if (!name || values.length < 2) {
-      await replyFail(conn, message, "Need a question and at least 2 options.");
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+┃
+┃ ⚠️ *OPTIONS REQUIRED*
+┃ Need a question and at least 2 options.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
+
     if (values.length > 12) {
-      await replyFail(conn, message, "Max 12 options.");
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+┃
+┃ ⚠️ *TOO MANY OPTIONS*
+┃ Maximum 12 options are allowed.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
 
@@ -241,10 +411,15 @@ command(
         },
       });
     } catch (err) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        `Poll failed: ${err?.message || "unsupported"}`
+        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+┃
+┃ ❌ *POLL FAILED*
+┃ ${err?.message || "Unsupported"}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     }
   }

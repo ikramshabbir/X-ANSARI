@@ -43,12 +43,14 @@ command(
     if (!args) {
       const s = await toggleGroupFlag(message.from, "welcome");
 
-      await replyOk(
+      await reply(
         conn,
         message,
-        s.welcome
-          ? await t("WELCOME_ON")
-          : await t("WELCOME_OFF")
+        `╭━━━━*〔 👋 WELCOME 〕*━━━━╮
+┃
+┃ ${s.welcome ? await t("WELCOME_ON") : await t("WELCOME_OFF")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -58,13 +60,16 @@ command(
         welcome: args === "on",
       });
 
-      await replyOk(
-        conn,
-        message,
-        args === "on"
-          ? await t("WELCOME_ON")
-          : await t("WELCOME_OFF")
-      );
+      await reply(
+      conn,
+      message,
+      `╭━━━━*〔 👋 WELCOME 〕*━━━━╮
+┃
+┃ ✅ *WELCOME UPDATED*
+┃ 📝 *TEXT:* ${args}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
 
@@ -73,11 +78,15 @@ command(
       welcomeText: args,
     });
 
-    await replyOk(
-      conn,
-      message,
-      "Welcome text updated & enabled."
-    );
+    await reply(
+        conn,
+        message,
+        `╭━━━━*〔 👋 WELCOME 〕*━━━━╮
+┃
+┃ ${args === "on" ? await t("WELCOME_ON") : await t("WELCOME_OFF")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
   }
 );
 
@@ -96,12 +105,14 @@ command(
     if (!args) {
       const s = await toggleGroupFlag(message.from, "goodbye");
 
-      await replyOk(
+      await reply(
         conn,
         message,
-        s.goodbye
-          ? await t("GOODBYE_ON")
-          : await t("GOODBYE_OFF")
+        `╭━━━━*〔 👋 GOODBYE 〕*━━━━╮
+┃
+┃ ${s.goodbye ? await t("GOODBYE_ON") : await t("GOODBYE_OFF")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -111,13 +122,16 @@ command(
         goodbye: args === "on",
       });
 
-      await replyOk(
-        conn,
-        message,
-        args === "on"
-          ? await t("GOODBYE_ON")
-          : await t("GOODBYE_OFF")
-      );
+      await reply(
+      conn,
+      message,
+      `╭━━━━*〔 👋 GOODBYE 〕*━━━━╮
+┃
+┃ ✅ *GOODBYE UPDATED*
+┃ 📝 *TEXT:* ${args}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
 
@@ -126,11 +140,15 @@ command(
       goodbyeText: args,
     });
 
-    await replyOk(
-      conn,
-      message,
-      "Goodbye text updated & enabled."
-    );
+    await reply(
+        conn,
+        message,
+        `╭━━━━*〔 👋 GOODBYE 〕*━━━━╮
+┃
+┃ ${args === "on" ? await t("GOODBYE_ON") : await t("GOODBYE_OFF")}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
   }
 );
 
@@ -164,10 +182,14 @@ command(
       );
     }
 
-    await replyOk(
+    await reply(
       conn,
       message,
-      `Anti-link: *${onOff(s.antilink)}*`
+      `╭━━━━*〔 🔗 ANTILINK 〕*━━━━╮
+┃
+┃ 🔗 *ANTI-LINK:* ${onOff(s.antilink)}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -201,10 +223,16 @@ command(
       );
     }
 
-    await replyOk(
+    await reply(
       conn,
       message,
-      `Anti-spam: *${onOff(s.antispam)}* (${s.antispamLimit}/${s.antispamWindowMs}ms)`
+      `╭━━━━*〔 🛡️ ANTISPAM 〕*━━━━╮
+┃
+┃ 🛡️ *ANTI-SPAM:* ${onOff(s.antispam)}
+┃ 📊 *LIMIT:* ${s.antispamLimit}
+┃ ⏱️ *WINDOW:* ${s.antispamWindowMs}ms
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -224,14 +252,17 @@ command(
     await reply(
       conn,
       message,
-      `*Group settings*\n` +
-        `• Welcome: ${onOff(s.welcome)}\n` +
-        `• Goodbye: ${onOff(s.goodbye)}\n` +
-        `• Antilink: ${onOff(s.antilink)}\n` +
-        `• Antispam: ${onOff(s.antispam)}\n` +
-        `• Warn limit: ${s.warnLimit}\n` +
-        `• Muted: ${s.muted.length}\n` +
-        `• Disabled cmds: ${s.disabledPlugins.join(", ") || "none"}`
+      `╭━━━━*〔 ⚙️ GROUP SETTINGS 〕*━━━━╮
+┃
+┃ 👋 *WELCOME:* ${onOff(s.welcome)}
+┃ 👋 *GOODBYE:* ${onOff(s.goodbye)}
+┃ 🔗 *ANTILINK:* ${onOff(s.antilink)}
+┃ 🛡️ *ANTISPAM:* ${onOff(s.antispam)}
+┃ ⚠️ *WARN LIMIT:* ${s.warnLimit}
+┃ 🔇 *MUTED:* ${s.muted.length}
+┃ 🚫 *DISABLED:* ${s.disabledPlugins.join(", ") || "none"}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -322,10 +353,15 @@ command(
               }
             );
           } catch {
-            await replyFail(
+            await reply(
               conn,
               message,
-              "Could not remove user (need admin)."
+              `╭━━━━*〔 ⚠️ WARN 〕*━━━━╮
+┃
+┃ ❌ *REMOVE FAILED*
+┃ Could not remove user (need admin).
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
             );
           }
         }
@@ -347,11 +383,16 @@ command(
     const target = resolveTargetUser(message);
 
     if (!target) {
-      await replyFail(
-        conn,
-        message,
-        "Reply/mention a user."
-      );
+      await reply(
+      conn,
+      message,
+      `╭━━━━*〔 ⚠️ UNWARN 〕*━━━━╮
+┃
+┃ ⚠️ *USER REQUIRED*
+┃ Reply/mention a user.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
 
@@ -363,10 +404,15 @@ command(
       norm
     );
 
-    await replyOk(
+    await reply(
       conn,
       message,
-      `Warns reset for @${displayId(target)}`
+      `╭━━━━*〔 ⚠️ UNWARN 〕*━━━━╮
+┃
+┃ ✅ *WARNS RESET*
+┃ 👤 @${displayId(target)}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -401,7 +447,12 @@ command(
     await reply(
       conn,
       message,
-      `Warns for @${displayId(target)}: *${count}/${settings.warnLimit}*`
+      `╭━━━━*〔 ⚠️ WARNS 〕*━━━━╮
+┃
+┃ 👤 *USER:* @${displayId(target)}
+┃ ⚠️ *WARNS:* ${count}/${settings.warnLimit}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -420,11 +471,16 @@ command(
       resolveTargetUser(message);
 
     if (!target) {
-      await replyFail(
-        conn,
-        message,
-        "Reply/mention a user."
-      );
+      await reply(
+      conn,
+      message,
+      `╭━━━━*〔 🔇 MUTE 〕*━━━━╮
+┃
+┃ ⚠️ *USER REQUIRED*
+┃ Reply/mention a user.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
 
@@ -445,10 +501,15 @@ command(
       }
     );
 
-    await replyOk(
+    await reply(
       conn,
       message,
-      `Muted @${displayId(target)}`
+      `╭━━━━*〔 🔇 MUTE 〕*━━━━╮
+┃
+┃ 🔇 *MUTED*
+┃ 👤 @${displayId(target)}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -467,11 +528,16 @@ command(
       resolveTargetUser(message);
 
     if (!target) {
-      await replyFail(
-        conn,
-        message,
-        "Reply/mention a user."
-      );
+      await reply(
+      conn,
+      message,
+      `╭━━━━*〔 🔊 UNMUTE 〕*━━━━╮
+┃
+┃ ⚠️ *USER REQUIRED*
+┃ Reply/mention a user.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
 
@@ -490,10 +556,15 @@ command(
       }
     );
 
-    await replyOk(
+    await reply(
       conn,
       message,
-      `Unmuted @${displayId(target)}`
+      `╭━━━━*〔 🔊 UNMUTE 〕*━━━━╮
+┃
+┃ 🔊 *UNMUTED*
+┃ 👤 @${displayId(target)}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -545,11 +616,17 @@ command(
         .map((p) => p.id);
 
       if (!targets.length) {
-        await replyFail(
-          conn,
-          message,
-          "No removable members found."
-        );
+        await reply(
+              conn,
+              message,
+              `╭━━━━*〔 🚀 KICKALL 〕*━━━━╮
+┃
+┃ ❌ *KICKALL FAILED*
+┃ Failed to remove all members.
+┃ Bot must be admin.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+            );
         return;
       }
 
@@ -601,10 +678,15 @@ command(
       resolveTargetUser(message);
 
     if (!target) {
-      await replyFail(
+      await reply(
         conn,
         message,
-        "Reply/mention a user."
+        `╭━━━━*〔 🦵 KICK 〕*━━━━╮
+┃
+┃ ⚠️ *USER REQUIRED*
+┃ Reply/mention a user.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -620,16 +702,26 @@ command(
         message.from
       );
 
-      await replyOk(
+      await reply(
         conn,
         message,
-        `Removed @${displayId(target)}`
+        `╭━━━━*〔 🦵 KICK 〕*━━━━╮
+┃
+┃ ✅ *REMOVED*
+┃ 👤 @${displayId(target)}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     } catch {
-      await replyFail(
+      await reply(
         conn,
         message,
-        "Failed to kick (bot must be admin)."
+        `╭━━━━*〔 🦵 KICK 〕*━━━━╮
+┃
+┃ ❌ *KICK FAILED*
+┃ Bot must be admin.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
     }
   }

@@ -1,86 +1,107 @@
 /**
- * Info Command
- * Shows detailed message and user information (Baileys 7.x.x compatible)
+ * Premium Info Command
+ * Shows detailed message and user information
  */
 
 import { command } from "../plugins.js";
 import { reply } from "../utils/message.js";
-import { isPnUser, isLidUser, isGroup } from "../functions.js";
+import { isPnUser, isLidUser } from "../functions.js";
 
 command(
-    {
-        pattern: "info",
-        fromMe: false,
-        desc: "Shows user and message information",
-        type: "misc",
-    },
-    async (message, conn) => {
+  {
+    pattern: "info",
+    fromMe: false,
+    desc: "Shows user and message information",
+    type: "misc",
+  },
+  async (message, conn) => {
+    try {
+      const chatType = message.isGroup ? "Group" : "Direct Message";
+
+      const senderType = isLidUser(message.participant)
+        ? "LID (Local Identifier)"
+        : isPnUser(message.participant)
+          ? "PN (Phone Number)"
+          : "Unknown";
+
+      let info =
+        `╭━━━━*〔 💬 INFO 〕*━━━━╮\n` +
+        `┃\n` +
+        `┃ 💬 *CHAT*\n` +
+        `┃ ├─ Type      : ${chatType}\n` +
+        `┃ ├─ ID        : ${message.from}\n`;
+
+      if (message.fromAlt) {
+        info += `┃ └─ Alt ID    : ${message.fromAlt}\n`;
+      } else {
+        info += `┃ └─ Alt ID    : Not available\n`;
+      }
+
+      info +=
+        `┃\n` +
+        `┃ 👤 *SENDER*\n` +
+        `┃ ├─ Name      : ${message.pushName || "Unknown"}\n` +
+        `┃ ├─ ID        : ${message.participant || "Unknown"}\n`;
+
+      if (message.participantAlt) {
+        info += `┃ ├─ Alt ID    : ${message.participantAlt}\n`;
+      } else {
+        info += `┃ ├─ Alt ID    : Not available\n`;
+      }
+
+      info +=
+        `┃ ├─ Preferred : ${message.sender || "Unknown"}\n` +
+        `┃ └─ ID Type   : ${senderType}\n` +
+        `┃\n` +
+        `┃ 📨 *MESSAGE*\n` +
+        `┃ ├─ Type      : ${message.type || "Unknown"}\n` +
+        `┃ ├─ ID        : ${message.id || "Unknown"}\n` +
+        `┃ └─ Quoted    : ${message.quoted ? "Yes" : "No"}\n`;
+
+      if (message.isGroup) {
         try {
-            let info = "📱 *Message Information*\n\n";
-            
-            // Chat Information
-            info += `*Chat Type:* ${message.isGroup ? "Group" : "Direct Message"}\n`;
-            info += `*Chat ID:* ${message.from}\n`;
-            
-            // Show alternate identifier if available
-            if (message.fromAlt) {
-                info += `*Chat ID (Alt):* ${message.fromAlt}\n`;
-            }
-            
-            // Sender Information
-            info += `\n*Sender:* ${message.pushName || "Unknown"}\n`;
-            info += `*Sender ID:* ${message.participant}\n`;
-            
-            // Show alternate participant if available
-            if (message.participantAlt) {
-                info += `*Sender ID (Alt):* ${message.participantAlt}\n`;
-            }
-            
-            // Show the preferred identifier
-            info += `*Preferred ID:* ${message.sender}\n`;
-            
-            // Identifier Type Detection
-            const senderType = isLidUser(message.participant) 
-                ? "LID (Local Identifier)" 
-                : isPnUser(message.participant) 
-                ? "PN (Phone Number)" 
-                : "Unknown";
-            info += `*ID Type:* ${senderType}\n`;
-            
-            // Message Details
-            info += `\n*Message Type:* ${message.type}\n`;
-            info += `*Message ID:* ${message.id}\n`;
-            
-            // Show quoted message if exists
-            if (message.quoted) {
-                info += `*Quoted:* Yes\n`;
-            }
-            
-            // Group-specific information
-            if (message.isGroup) {
-                try {
-                    const groupMetadata = await conn.groupMetadata(message.from);
-                    info += `\n*Group Name:* ${groupMetadata.subject}\n`;
-                    info += `*Participants:* ${groupMetadata.participants.length}\n`;
-                    
-                    // In Baileys 7.x, group metadata has LID+PN pairs
-                    if (groupMetadata.owner) {
-                        info += `*Owner ID:* ${groupMetadata.owner}\n`;
-                    }
-                    if (groupMetadata.ownerPn) {
-                        info += `*Owner PN:* ${groupMetadata.ownerPn}\n`;
-                    }
-                } catch (error) {
-                    info += `\n_Could not fetch group metadata_\n`;
-                }
-            }
-            
-            // Send the information
-            await reply(conn, message, info);
-            
-        } catch (error) {
-            console.error("Error in info command:", error);
-            await reply(conn, message, "❌ Failed to get information.");
+          const groupMetadata = await conn.groupMetadata(message.from);
+
+          info +=
+            `┃\n` +
+            `┃ 👥 *GROUP*\n` +
+            `┃ ├─ Name      : ${groupMetadata.subject || "Unknown"}\n` +
+            `┃ ├─ Members   : ${groupMetadata.participants?.length || 0}\n`;
+
+          if (groupMetadata.owner) {
+            info += `┃ ├─ Owner ID  : ${groupMetadata.owner}\n`;
+          }
+
+          if (groupMetadata.ownerPn) {
+            info += `┃ └─ Owner PN  : ${groupMetadata.ownerPn}\n`;
+          } else {
+            info += `┃ └─ Owner PN  : Not available\n`;
+          }
+        } catch {
+          info +=
+            `┃\n` +
+            `┃ 👥 *GROUP*\n` +
+            `┃ └─ Metadata  : Could not fetch\n`;
         }
+      }
+
+      info +=
+        `┃\n` +
+        `╰━━━━━━━━━━━━━━━━━━━━━━╯`;
+
+      await reply(conn, message, info);
+    } catch (error) {
+      console.error("Error in info command:", error);
+      await reply(
+        conn,
+        message,
+        `╭━━━━*〔 💬 INFO 〕*━━━━╮
+┃
+┃ ❌ *INFO FAILED*
+┃ Failed to get information.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
+  }
 );

@@ -176,7 +176,13 @@ const stickerHandler = async (message, conn) => {
           await replyFail(
             conn,
             message,
-            `Reply to an image/video with \`${BOT_INFO.PREFIX}sticker\``
+            `╭━━━━*〔 🎨 STICKER 〕*━━━━╮
+┃
+┃ ⚠️ *MEDIA REQUIRED*
+┃ Reply to an image/video with
+┃ ${BOT_INFO.PREFIX}sticker
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
           );
           return;
         }
@@ -184,7 +190,16 @@ const stickerHandler = async (message, conn) => {
         const webp = await makeStickerBuffer(media);
         await sendSticker(conn, message, webp, pack, author);
       } catch (err) {
-        await replyFail(conn, message, err?.message || "Sticker failed.");
+        await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🎨 STICKER 〕*━━━━╮
+┃
+┃ ❌ *STICKER FAILED*
+┃ ${err?.message || "Sticker failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       }
     }, { timeoutMs: 60_000 });
   }
@@ -220,7 +235,16 @@ async function takeHandler(message, conn) {
   await withTyping(conn, message.from, async () => {
     try {
       if (!message.quoted || message.quoted.type !== "sticker") {
-        await replyFail(conn, message, "Reply to a sticker.");
+        await replyFail(
+            conn,
+            message,
+            `╭━━━━*〔 🏷️ TAKE 〕*━━━━╮
+┃
+┃ ⚠️ *STICKER REQUIRED*
+┃ Reply to a sticker.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+          );
         return;
       }
       console.log("[STICKER DEBUG]", {
@@ -237,7 +261,16 @@ async function takeHandler(message, conn) {
 
       const media = await downloadQuotedOrSelf(conn, message);
       if (!media) {
-        await replyFail(conn, message, "Could not download sticker.");
+        await replyFail(
+              conn,
+              message,
+              `╭━━━━*〔 🏷️ TAKE 〕*━━━━╮
+┃
+┃ ❌ *DOWNLOAD FAILED*
+┃ Could not download sticker.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+            );
         return;
       }
       const args =
@@ -258,7 +291,16 @@ async function takeHandler(message, conn) {
       }
       await sendSticker(conn, message, media.buffer, pack, author);
     } catch (err) {
-      await replyFail(conn, message, err?.message || "Take failed.");
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🏷️ TAKE 〕*━━━━╮
+┃
+┃ ❌ *TAKE FAILED*
+┃ ${err?.message || "Take failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
     }
   });
 }
@@ -301,12 +343,30 @@ command(
     await withTyping(conn, message.from, async () => {
       try {
         if (!message.quoted || message.quoted.type !== "sticker") {
-          await replyFail(conn, message, "Reply to a sticker.");
+          await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🖼️ TOIMG 〕*━━━━╮
+┃
+┃ ⚠️ *STICKER REQUIRED*
+┃ Reply to a sticker.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
           return;
         }
         const media = await downloadQuotedOrSelf(conn, message);
         if (!media?.buffer) {
-          await replyFail(conn, message, "Could not download sticker.");
+          await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🖼️ TOIMG 〕*━━━━╮
+┃
+┃ ❌ *DOWNLOAD FAILED*
+┃ Could not download sticker.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
           return;
         }
 
@@ -330,7 +390,16 @@ command(
           { quoted: { key: message.key, message: message.message } }
         );
       } catch (err) {
-        await replyFail(conn, message, err?.message || "toimg failed.");
+        await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🖼️ TOIMG 〕*━━━━╮
+┃
+┃ ❌ *TOIMG FAILED*
+┃ ${err?.message || "toimg failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       }
     });
   }
@@ -352,14 +421,30 @@ command(
       await reply(
         conn,
         message,
-        `*Sticker EXIF*\nPack: ${pack}\nAuthor: ${author}\n\n` +
+        `╭━━━━*〔 🏷️ EXIF 〕*━━━━╮\n` +
+              `┃\n` +
+              `┃ 🏷️ *PACK:* ${pack}\n` +
+              `┃ ✍️ *AUTHOR:* ${author}\n` +
+              `┃\n` +
+              `╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n` +
           `Usage: \`${BOT_INFO.PREFIX}exif PackName|Author\``
       );
       return;
     }
     const [pack, author] = args.split("|").map((x) => x.trim());
     if (!pack) {
-      await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}exif Pack|Author\``);
+      await replyFail(
+      conn,
+      message,
+      `╭━━━━*〔 🏷️ EXIF 〕*━━━━╮
+┃
+┃ ⚠️ *PACK NAME REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}exif Pack|Author
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    );
       return;
     }
     await kvSet("sticker_packname", pack);
@@ -367,7 +452,13 @@ command(
     await replyOk(
       conn,
       message,
-      `EXIF set — Pack: *${pack}* · Author: *${author || (await getPackMeta()).author}*`
+      `╭━━━━*〔 🏷️ EXIF 〕*━━━━╮\n` +
+    `┃\n` +
+    `┃ ✅ *EXIF UPDATED*\n` +
+    `┃ 🏷️ *PACK:* ${pack}\n` +
+    `┃ ✍️ *AUTHOR:* ${author || (await getPackMeta()).author}\n` +
+    `┃\n` +
+    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 );

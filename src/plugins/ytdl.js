@@ -382,12 +382,20 @@ command(
       await reply(
         conn,
         message,
-        `*YouTube*\n` +
-          `\`${BOT_INFO.PREFIX}yt <url|query>\` — info\n` +
-          `\`${BOT_INFO.PREFIX}ytmp3 <url|query>\` — audio\n` +
-          `\`${BOT_INFO.PREFIX}ytmp4 <url|query>\` — video ≤720p\n` +
-          `\`${BOT_INFO.PREFIX}play <query>\` — search → audio\n\n` +
-          `_Caps: ~${MEDIA.MAX_AUDIO_DURATION / 60}min audio / ~${MEDIA.MAX_VIDEO_DURATION / 60}min video. Needs system FFmpeg._`
+        `╭━━━━*〔 ▶️ YOUTUBE 〕*━━━━╮
+┃
+┃ 🎬 *YOUTUBE TOOLS*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}yt <url|query> — info
+┃ ${BOT_INFO.PREFIX}ytmp3 <url|query> — audio
+┃ ${BOT_INFO.PREFIX}ytmp4 <url|query> — video ≤720p
+┃ ${BOT_INFO.PREFIX}play <query> — search → audio
+┃
+┃ ⏱️ *AUDIO LIMIT:* ~${MEDIA.MAX_AUDIO_DURATION / 60} min
+┃ 🎥 *VIDEO LIMIT:* ~${MEDIA.MAX_VIDEO_DURATION / 60} min
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -399,14 +407,28 @@ command(
         await reply(
           conn,
           message,
-          `🎬 *${meta.title}*\n` +
-            `👤 ${meta.author}\n` +
-            `⏱ ${formatDuration(meta.duration)}\n` +
-            `🔗 ${meta.url}\n\n` +
-            `Use \`${BOT_INFO.PREFIX}ytmp3\` / \`${BOT_INFO.PREFIX}ytmp4\` to download.`
+          `╭━━━━*〔 ▶️ YOUTUBE 〕*━━━━╮
+┃
+┃ 🎬 *${meta.title}*
+┃ 👤 ${meta.author}
+┃ ⏱️ ${formatDuration(meta.duration)}
+┃ 🔗 ${meta.url}
+┃
+┃ 💡 Use ${BOT_INFO.PREFIX}ytmp3 / ${BOT_INFO.PREFIX}ytmp4 to download.
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
       } catch (err) {
-        await replyFail(conn, message, err?.message || "YouTube lookup failed.");
+        await replyFail(
+            conn,
+            message,
+            `╭━━━━*〔 ▶️ YOUTUBE 〕*━━━━╮
+┃
+┃ ❌ *LOOKUP FAILED*
+┃ ${err?.message || "YouTube lookup failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+          );
       }
     }, { timeoutMs: 45_000 });
   }
@@ -423,7 +445,18 @@ command(
   async (message, conn) => {
     const query = pickQuery(message, "ytdl");
     if (!query) {
-      await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}ytdl <url|query>\``);
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 ▶️ YTDL 〕*━━━━╮
+┃
+┃ ⚠️ *QUERY REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}ytdl <url|query>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     await withTyping(conn, message.from, async () => {
@@ -433,10 +466,26 @@ command(
         await reply(
           conn,
           message,
-          `🎬 *${meta.title}*\n👤 ${meta.author}\n⏱ ${formatDuration(meta.duration)}\n🔗 ${meta.url}`
+          `╭━━━━*〔 ▶️ YTDL 〕*━━━━╮
+┃
+┃ 🎬 *${meta.title}*
+┃ 👤 ${meta.author}
+┃ ⏱️ ${formatDuration(meta.duration)}
+┃ 🔗 ${meta.url}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
         );
       } catch (err) {
-        await replyFail(conn, message, err?.message || "YouTube lookup failed.");
+        await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 ▶️ YTDL 〕*━━━━╮
+┃
+┃ ❌ *LOOKUP FAILED*
+┃ ${err?.message || "YouTube lookup failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       }
     }, { timeoutMs: 45_000 });
   }
@@ -452,7 +501,18 @@ command(
   async (message, conn) => {
     const query = pickQuery(message, "ytmp3");
     if (!query) {
-      await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}ytmp3 <url|query>\``);
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🎵 YTMP3 〕*━━━━╮
+┃
+┃ ⚠️ *QUERY REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}ytmp3 <url|query>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     await withTyping(conn, message.from, async () => {
@@ -464,7 +524,12 @@ command(
           filePath = await fetchAudioMp3(yt, id, meta.duration);
           await sendAudioFile(conn, message, filePath, meta);
         } catch (err) {
-          await replyFail(conn, message, friendlyYtError(err) || "ytmp3 failed.");
+          await replyFail(conn, message, `╭━━━━*〔 🎵 YTMP3 〕*━━━━╮
+┃
+┃ ❌ *DOWNLOAD FAILED*
+┃ ${friendlyYtError(err) || "ytmp3 failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
         } finally {
           await safeUnlink(filePath);
         }
@@ -483,7 +548,18 @@ command(
   async (message, conn) => {
     const query = pickQuery(message, "ytmp4");
     if (!query) {
-      await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}ytmp4 <url|query>\``);
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 🎬 YTMP4 〕*━━━━╮
+┃
+┃ ⚠️ *QUERY REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}ytmp4 <url|query>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     await withTyping(conn, message.from, async () => {
@@ -495,7 +571,12 @@ command(
           filePath = await fetchVideoMp4(yt, id, meta.duration);
           await sendVideoFile(conn, message, filePath, meta);
         } catch (err) {
-          await replyFail(conn, message, friendlyYtError(err) || "ytmp4 failed.");
+          await replyFail(conn, message, `╭━━━━*〔 🎬 YTMP4 〕*━━━━╮
+┃
+┃ ❌ *DOWNLOAD FAILED*
+┃ ${friendlyYtError(err) || "ytmp4 failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`);
         } finally {
           await safeUnlink(filePath);
         }
@@ -519,7 +600,14 @@ command(
       await replyFail(
         conn,
         message,
-        `Usage: \`${BOT_INFO.PREFIX}p <query>\``
+        `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+┃
+┃ ⚠️ *QUERY REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}p <query>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -534,7 +622,12 @@ command(
           await reply(
             conn,
             message,
-            `▶️ *${meta.title}* · ${formatDuration(meta.duration)}`
+            `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+┃
+┃ 🎵 *${meta.title}*
+┃ ⏱️ *DURATION:* ${formatDuration(meta.duration)}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
           );
 
           filePath = await fetchAudioMp3(
@@ -553,7 +646,12 @@ command(
           await replyFail(
             conn,
             message,
-            friendlyYtError(err) || "play failed."
+            `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+┃
+┃ ❌ *PLAY FAILED*
+┃ ${friendlyYtError(err) || "play failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
           );
         } finally {
           await safeUnlink(filePath);
@@ -573,7 +671,18 @@ command(
   async (message, conn) => {
     const query = pickQuery(message, "play");
     if (!query) {
-      await replyFail(conn, message, `Usage: \`${BOT_INFO.PREFIX}play <query>\``);
+      await replyFail(
+        conn,
+        message,
+        `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+┃
+┃ ⚠️ *QUERY REQUIRED*
+┃
+┃ 💡 *USAGE:*
+┃ ${BOT_INFO.PREFIX}play <query>
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+      );
       return;
     }
     await withTyping(conn, message.from, async () => {
@@ -582,11 +691,29 @@ command(
         try {
           const { id, info, yt } = await resolveVideo(query);
           const meta = videoMeta(info);
-          await reply(conn, message, `▶️ *${meta.title}* · ${formatDuration(meta.duration)}`);
+          await reply(
+            conn,
+            message,
+            `╭━━━━〔 ▶️ PLAY 〕━━━━╮
+┃
+┃ *▶️ Play Audio*
+┃    Name : ${meta.title}
+┃
+╰━━━━━━━━━━━━━━━━━╯`
+          );
           filePath = await fetchAudioMp3(yt, id, meta.duration);
           await sendAudioFile(conn, message, filePath, meta);
         } catch (err) {
-          await replyFail(conn, message, friendlyYtError(err) || "play failed.");
+          await replyFail(
+          conn,
+          message,
+          `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+┃
+┃ ❌ *PLAY FAILED*
+┃ ${friendlyYtError(err) || "play failed."}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━╯`
+        );
         } finally {
           await safeUnlink(filePath);
         }
