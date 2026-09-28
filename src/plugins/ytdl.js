@@ -382,7 +382,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 ▶️ YOUTUBE 〕*━━━━╮
+        `╭━━━〔 *▶️ YOUTUBE* 〕━━━╮
 ┃
 ┃ 🎬 *YOUTUBE TOOLS*
 ┃
@@ -395,7 +395,7 @@ command(
 ┃ ⏱️ *AUDIO LIMIT:* ~${MEDIA.MAX_AUDIO_DURATION / 60} min
 ┃ 🎥 *VIDEO LIMIT:* ~${MEDIA.MAX_VIDEO_DURATION / 60} min
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -407,7 +407,7 @@ command(
         await reply(
           conn,
           message,
-          `╭━━━━*〔 ▶️ YOUTUBE 〕*━━━━╮
+          `╭━━━〔 *▶️ YOUTUBE* 〕━━━╮
 ┃
 ┃ 🎬 *${meta.title}*
 ┃ 👤 ${meta.author}
@@ -416,18 +416,18 @@ command(
 ┃
 ┃ 💡 Use ${BOT_INFO.PREFIX}ytmp3 / ${BOT_INFO.PREFIX}ytmp4 to download.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       } catch (err) {
         await replyFail(
             conn,
             message,
-            `╭━━━━*〔 ▶️ YOUTUBE 〕*━━━━╮
+            `╭━━━〔 *▶️ YOUTUBE* 〕━━━╮
 ┃
 ┃ ❌ *LOOKUP FAILED*
 ┃ ${err?.message || "YouTube lookup failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
       }
     }, { timeoutMs: 45_000 });
@@ -448,14 +448,14 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 ▶️ YTDL 〕*━━━━╮
+        `╭━━━〔 *▶️ YTDL* 〕━━━╮
 ┃
 ┃ ⚠️ *QUERY REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}ytdl <url|query>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -466,25 +466,25 @@ command(
         await reply(
           conn,
           message,
-          `╭━━━━*〔 ▶️ YTDL 〕*━━━━╮
+          `╭━━━〔 *▶️ YTDL* 〕━━━╮
 ┃
 ┃ 🎬 *${meta.title}*
 ┃ 👤 ${meta.author}
 ┃ ⏱️ ${formatDuration(meta.duration)}
 ┃ 🔗 ${meta.url}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       } catch (err) {
         await replyFail(
         conn,
         message,
-        `╭━━━━*〔 ▶️ YTDL 〕*━━━━╮
+        `╭━━━〔 *▶️ YTDL* 〕━━━╮
 ┃
 ┃ ❌ *LOOKUP FAILED*
 ┃ ${err?.message || "YouTube lookup failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       }
     }, { timeoutMs: 45_000 });
@@ -504,14 +504,14 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🎵 YTMP3 〕*━━━━╮
+        `╭━━━〔 *🎵 YTMP3* 〕━━━╮
 ┃
 ┃ ⚠️ *QUERY REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}ytmp3 <url|query>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -524,12 +524,12 @@ command(
           filePath = await fetchAudioMp3(yt, id, meta.duration);
           await sendAudioFile(conn, message, filePath, meta);
         } catch (err) {
-          await replyFail(conn, message, `╭━━━━*〔 🎵 YTMP3 〕*━━━━╮
+          await replyFail(conn, message, `╭━━━〔 *🎵 YTMP3* 〕━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ ${friendlyYtError(err) || "ytmp3 failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
         } finally {
           await safeUnlink(filePath);
         }
@@ -551,14 +551,14 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🎬 YTMP4 〕*━━━━╮
+        `╭━━━〔 *🎬 YTMP4* 〕━━━╮
 ┃
 ┃ ⚠️ *QUERY REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}ytmp4 <url|query>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -571,12 +571,12 @@ command(
           filePath = await fetchVideoMp4(yt, id, meta.duration);
           await sendVideoFile(conn, message, filePath, meta);
         } catch (err) {
-          await replyFail(conn, message, `╭━━━━*〔 🎬 YTMP4 〕*━━━━╮
+          await replyFail(conn, message, `╭━━━〔 *🎬 YTMP4* 〕━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ ${friendlyYtError(err) || "ytmp4 failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
         } finally {
           await safeUnlink(filePath);
         }
@@ -600,14 +600,14 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+        `╭━━━〔 *▶️ PLAY* 〕━━━╮
 ┃
 ┃ ⚠️ *QUERY REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}p <query>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -622,12 +622,12 @@ command(
           await reply(
             conn,
             message,
-            `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+            `╭━━━〔 *▶️ PLAY* 〕━━━╮
 ┃
 ┃ 🎵 *${meta.title}*
 ┃ ⏱️ *DURATION:* ${formatDuration(meta.duration)}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
 
           filePath = await fetchAudioMp3(
@@ -646,12 +646,12 @@ command(
           await replyFail(
             conn,
             message,
-            `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+            `╭━━━〔 *▶️ PLAY* 〕━━━╮
 ┃
 ┃ ❌ *PLAY FAILED*
 ┃ ${friendlyYtError(err) || "play failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
         } finally {
           await safeUnlink(filePath);
@@ -674,14 +674,14 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+        `╭━━━〔 *▶️ PLAY* 〕━━━╮
 ┃
 ┃ ⚠️ *QUERY REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}play <query>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -694,7 +694,7 @@ command(
           await reply(
             conn,
             message,
-            `╭━━━━〔 ▶️ PLAY 〕━━━━╮
+            `╭━━━〔 *▶️ PLAY* 〕━━━╮
 ┃
 ┃ *▶️ Play Audio*
 ┃    Name : ${meta.title}
@@ -707,12 +707,12 @@ command(
           await replyFail(
           conn,
           message,
-          `╭━━━━*〔 ▶️ PLAY 〕*━━━━╮
+          `╭━━━〔 *▶️ PLAY* 〕━━━╮
 ┃
 ┃ ❌ *PLAY FAILED*
 ┃ ${friendlyYtError(err) || "play failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
         } finally {
           await safeUnlink(filePath);
