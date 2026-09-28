@@ -37,13 +37,13 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🌐 LANG 〕*━━━━╮
+        `╭━━━〔 *🌐 LANG* 〕━━━╮
 ┃
 ┃ 🌐 *LANGUAGE*
 ┃ 🗣️ *CURRENT:* ${lang}
 ┃ 📋 *AVAILABLE:* ${AVAILABLE_LANGS.join(", ")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -77,13 +77,13 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🚫 DISABLE 〕*━━━━╮
+        `╭━━━〔 *🚫 DISABLE* 〕━━━╮
 ┃
 ┃ ⚠️ *COMMAND NAME REQUIRED*
 ┃
 ┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}disable <command>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       )
       return;
     }
@@ -101,12 +101,12 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━━*〔 🚫 DISABLE 〕*━━━━╮
+      `╭━━━〔 *🚫 DISABLE* 〕━━━╮
 ┃
 ┃ 🔒 *COMMAND PROTECTED*
 ┃ That command cannot be disabled.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     )
       return;
     }
@@ -119,12 +119,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 🚫 DISABLE 〕*━━━━╮
+      `╭━━━〔 *🚫 DISABLE* 〕━━━╮
 ┃
 ┃ ✅ *COMMAND DISABLED*
 ┃ 🔧 *COMMAND:* ${BOT_INFO.PREFIX}${name}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     )
   }
 );
@@ -146,13 +146,13 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 ✅ ENABLE 〕*━━━━╮
+        `╭━━━〔 *✅ ENABLE* 〕━━━╮
 ┃
 ┃ ⚠️ *COMMAND NAME REQUIRED*
 ┃
 ┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}enable <command>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       )
       return;
     }
@@ -165,12 +165,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ✅ ENABLE 〕*━━━━╮
+      `╭━━━〔 *✅ ENABLE* 〕━━━╮
 ┃
 ┃ ✅ *COMMAND ENABLED*
 ┃ 🔧 *COMMAND:* ${BOT_INFO.PREFIX}${name}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     )
   }
 );
@@ -190,25 +190,25 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🔌 PLUGINS 〕*━━━━╮
+        `╭━━━〔 *🔌 PLUGINS* 〕━━━╮
 ┃
 ┃ 📭 *NO DISABLED COMMANDS*
 ┃ All commands are enabled.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
     await reply(
       conn,
       message,
-      `╭━━━━*〔 🔌 PLUGINS 〕*━━━━╮
+      `╭━━━〔 *🔌 PLUGINS* 〕━━━╮
 ┃
 ┃ 🚫 *DISABLED COMMANDS*
 ┃
 ┃ ${disabled.map((c) => `• ${BOT_INFO.PREFIX}${c}`).join("\n┃ ")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     )
   }
 );
@@ -225,12 +225,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+        `╭━━━〔 *📢 BROADCAST* 〕━━━╮
 ┃
 ┃ 🔒 *OWNER ONLY*
 ┃ This command is restricted to the owner.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -240,13 +240,13 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+        `╭━━━〔 *📢 BROADCAST* 〕━━━╮
 ┃
 ┃ ⚠️ *MESSAGE REQUIRED*
 ┃
 ┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}broadcast <message>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -259,12 +259,12 @@ command(
         await reply(
           conn,
           message,
-          `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+          `╭━━━〔 *📢 BROADCAST* 〕━━━╮
 ┃
 ┃ ❌ *GROUP FETCH FAILED*
 ┃ ${err?.message || err}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
         return;
       }
@@ -287,13 +287,13 @@ command(
       await replyOk(
         conn,
         message,
-        `╭━━━━*〔 📢 BROADCAST 〕*━━━━╮
+        `╭━━━〔 *📢 BROADCAST* 〕━━━╮
 ┃
 ┃ ✅ *BROADCAST COMPLETE*
 ┃ 📤 *SENT:* ${ok}
 ┃ 👥 *TOTAL GROUPS:* ${jids.length}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }, { timeoutMs: 120_000 });
   }
@@ -315,13 +315,13 @@ command(
     await reply(
         conn,
         message,
-        `╭━━━━*〔 📋 CMDLIST 〕*━━━━╮
+        `╭━━━〔 *📋 CMDLIST* 〕━━━╮
 ┃
 ┃ 📋 *TOTAL COMMANDS:* ${cmds.length}
 ┃
 ┃ ${cmds.join(", ")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       )
   }
 );
