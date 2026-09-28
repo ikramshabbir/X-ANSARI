@@ -83,7 +83,7 @@ export async function runSetupCommand(message, conn, args) {
     return {
       ok: false,
       text:
-        `╭━━━*〔 ⚙️ SETUP 〕*━━━╮
+        `╭━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ⚠️ *SYSTEM LOG GROUP REQUIRED*
 ┃
@@ -103,7 +103,7 @@ export async function runSetupCommand(message, conn, args) {
     await setSetupStep("done");
     return {
       ok: true,
-      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+      text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ✅ *SETUP COMPLETE*
 ┃
@@ -118,7 +118,7 @@ export async function runSetupCommand(message, conn, args) {
     await setSetupStep("owner");
     return {
       ok: true,
-      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+      text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ 🔄 *SETUP RESET*
 ┃ Continuing wizard…
@@ -145,7 +145,7 @@ async function advanceWizard(message, conn, step, raw) {
       ok: true,
       text:
         `✅ Owner: Linked WhatsApp session\n\n` +
-        `╭━━━*〔 ⚙️ SETUP 〕*━━━╮
+        `╭━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ✅ *OWNER:* Linked WhatsApp session
 ┃
@@ -166,7 +166,7 @@ async function advanceWizard(message, conn, step, raw) {
     } else if (raw && raw !== "start") {
       return {
         ok: false,
-        text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+        text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ⚠️ *INVALID MODE*
 ┃
@@ -180,7 +180,7 @@ async function advanceWizard(message, conn, step, raw) {
       return {
         ok: true,
         text:
-          `╭━━━*〔 ⚙️ SETUP 〕*━━━╮
+          `╭━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ *STEP 2/4 — MODE*
 ┃
@@ -196,7 +196,7 @@ async function advanceWizard(message, conn, step, raw) {
     return {
       ok: true,
       text:
-        `╭━━━*〔 ⚙️ SETUP 〕*━━━╮
+        `╭━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ✅ *MODE:* ${await getMode()}
 ┃
@@ -216,7 +216,7 @@ async function advanceWizard(message, conn, step, raw) {
     } else if (raw && !["start", "public", "private"].includes(raw)) {
       return {
         ok: false,
-        text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+        text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ⚠️ *INVALID LANGUAGE*
 ┃
@@ -228,7 +228,7 @@ async function advanceWizard(message, conn, step, raw) {
     } else if (!AVAILABLE_LANGS.includes(raw)) {
       return {
         ok: true,
-        text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+        text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ *STEP 3/4 — LANGUAGE*
 ┃
@@ -241,7 +241,7 @@ async function advanceWizard(message, conn, step, raw) {
     await setSetupStep("exif");
     return {
       ok: true,
-      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+      text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ✅ *LANG:* ${await getLang()}
 ┃
@@ -268,7 +268,7 @@ async function advanceWizard(message, conn, step, raw) {
     const author = (await kvGetRaw("sticker_author")) || MEDIA.STICKER_AUTHOR;
     return {
       ok: true,
-      text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+      text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ ✅ *SETUP COMPLETE*
 ┃
@@ -290,7 +290,7 @@ async function advanceWizard(message, conn, step, raw) {
 
   return {
     ok: true,
-    text: `╭━━━━*〔 ⚙️ SETUP 〕*━━━╮
+    text: `╭━━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ 💤 *SETUP IDLE*
 ┃
