@@ -36,13 +36,13 @@ command(
         return replyFail(
           conn,
           message,
-          `╭━━━━*〔 👁️ VV 〕*━━━━╮
+          `╭━━━〔 *👁️ VV* 〕━━━╮
 ┃
 ┃ ⚠️ *VIEW ONCE MEDIA REQUIRED*
 ┃ Reply to a View Once image, video,
 ┃ audio or document.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
 
@@ -69,12 +69,12 @@ command(
         return replyFail(
           conn,
           message,
-          `╭━━━━*〔 👁️ VV 〕*━━━━╮
+          `╭━━━〔 *👁️ VV* 〕━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ Failed to download the View Once media.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
 
@@ -82,12 +82,12 @@ command(
         return replyFail(
           conn,
           message,
-          `╭━━━━*〔 👁️ VV 〕*━━━━╮
+          `╭━━━〔 *👁️ VV* 〕━━━╮
 ┃
 ┃ ❌ *RECOVERY FAILED*
 ┃ View Once media could not be recovered.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
 
@@ -217,12 +217,12 @@ command(
       return replyFail(
         conn,
         message,
-        `╭━━━━*〔 👁️ VV 〕*━━━━╮
+        `╭━━━〔 *👁️ VV* 〕━━━╮
 ┃
 ┃ ⚠️ *UNSUPPORTED MEDIA*
 ┃ Unsupported View Once media type.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     } catch (error) {
       console.log(
@@ -235,12 +235,12 @@ command(
       return replyFail(
         conn,
         message,
-        `╭━━━━*〔 👁️ VV 〕*━━━━╮
+        `╭━━━〔 *👁️ VV* 〕━━━╮
 ┃
 ┃ ❌ *VV FAILED*
 ┃ Failed to open View Once message.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
