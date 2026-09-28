@@ -47,12 +47,12 @@ command(
         const participants = groupMetadata.participants;
         const mentionIds = getParticipantIds(groupMetadata);
 
-        let tagMessage = `╭━━━━*〔 👥 TAGALL 〕*━━━━╮
+        let tagMessage = `╭━━━〔 *👥 TAGALL* 〕━━━╮
 ┃
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL MEMBERS:* ${participants.length}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n`;
+╰━━━━━━━━━━━━━━━━━╯\n\n`;
 
 participants.forEach((participant, index) => {
           tagMessage += `${index + 1}. @${displayId(participant)}\n`;
@@ -68,12 +68,12 @@ participants.forEach((participant, index) => {
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 👥 TAGALL 〕*━━━━╮
+        `╭━━━〔 *👥 TAGALL* 〕━━━╮
 ┃
 ┃ ❌ *TAGALL FAILED*
 ┃ Failed to tag all members.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -92,11 +92,11 @@ command(
     try {
       await withTyping(conn, message.from, async () => {
         const groupMetadata = await getGroupMeta(conn, message.from);
-        const notifyMessage = `╭━━━━*〔 📢 NOTIFY 〕*━━━━╮
+        const notifyMessage = `╭━━━〔 *📢 NOTIFY* 〕━━━╮
 ┃
 ┃ 🔔 *ATTENTION EVERYONE!*
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━━╯`;
 
                   await sendMessage(conn, message.from, notifyMessage, {
                       mentions: getParticipantIds(groupMetadata),
@@ -108,12 +108,12 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📢 NOTIFY 〕*━━━━╮
+        `╭━━━〔 *📢 NOTIFY* 〕━━━╮
 ┃
 ┃ ❌ *NOTIFY FAILED*
 ┃ Failed to notify members.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -134,9 +134,9 @@ command(
       const lidUsers = groupMetadata.participants.filter((p) => isLidUser(p.id));
       const pnUsers = groupMetadata.participants.filter((p) => isPnUser(p.id));
 
-      let info = `╭━━━━*〔 👥 GROUP INFO 〕*━━━━╮
+      let info = `╭━━━〔 *👥 GROUP INFO* 〕━━━╮
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n`;
+╰━━━━━━━━━━━━━━━━━╯\n\n`;
                                               info += formatGroupInfo(groupMetadata);
                                               info += `\n*🆔 Identifier Types:*\n`;
       info += `• LID Users: ${lidUsers.length}\n`;
@@ -148,12 +148,12 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 👥 GROUP INFO 〕*━━━━╮
+        `╭━━━〔 *👥 GROUP INFO* 〕━━━╮
 ┃
 ┃ ❌ *GROUP INFO FAILED*
 ┃ Failed to get group information.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -183,13 +183,13 @@ command(
         await replyOk(
           conn,
           message,
-          `╭━━━━*〔 ⬆️ PROMOTE 〕*━━━━╮
+          `╭━━━〔 *⬆️ PROMOTE* 〕━━━╮
 ┃
 ┃ ✅ *PROMOTED*
 ┃ 👤 @${displayId(targetUser)}
 ┃ 🛡️ *ROLE:* Admin
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`,
+╰━━━━━━━━━━━━━━━━━╯`,
           { mentions: [targetUser] }
         );
       });
@@ -198,12 +198,12 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 ⬆️ PROMOTE 〕*━━━━╮
+        `╭━━━〔 *⬆️ PROMOTE* 〕━━━╮
 ┃
 ┃ ❌ *PROMOTE FAILED*
 ┃ Failed to promote user.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -233,13 +233,13 @@ command(
         await replyOk(
           conn,
           message,
-          `╭━━━━*〔 ⬇️ DEMOTE 〕*━━━━╮
+          `╭━━━〔 *⬇️ DEMOTE* 〕━━━╮
 ┃
 ┃ ✅ *DEMOTED*
 ┃ 👤 @${displayId(targetUser)}
 ┃ 👤 *ROLE:* Member
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`,
+╰━━━━━━━━━━━━━━━━━╯`,
           { mentions: [targetUser] }
         );
       });
@@ -248,12 +248,12 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 ⬇️ DEMOTE 〕*━━━━╮
+        `╭━━━〔 *⬇️ DEMOTE* 〕━━━╮
 ┃
 ┃ ❌ *DEMOTE FAILED*
 ┃ Failed to demote user.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -280,12 +280,12 @@ command(
           return await sendError(
             conn,
             message.from,
-            `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+            `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
 ┃
 ┃ 📭 *NO PENDING REQUESTS*
 ┃ No join requests found.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
         }
 
@@ -297,12 +297,12 @@ command(
           return await sendError(
             conn,
             message.from,
-            `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+            `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
 ┃
 ┃ ⚠️ *NO VALID REQUESTS*
 ┃ No valid pending requests found.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
         }
 
@@ -315,12 +315,12 @@ command(
         await replyOk(
           conn,
           message,
-          `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+          `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
 ┃
 ┃ ✅ *REQUESTS APPROVED*
 ┃ 👥 *COUNT:* ${participants.length}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       });
     } catch (error) {
@@ -328,12 +328,12 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 ✅ ACCEPT ALL 〕*━━━━╮
+        `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
 ┃
 ┃ ❌ *APPROVAL FAILED*
 ┃ Failed to approve pending requests.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -357,21 +357,21 @@ command(
         return await sendError(
           conn,
           message.from,
-          `╭━━━━*〔 👑 ADMINS 〕*━━━━╮
+          `╭━━━〔 *👑 ADMINS* 〕━━━╮
 ┃
 ┃ 📭 *NO ADMINS FOUND*
 ┃ This group has no admins.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
 
-      let adminList = `╭━━━━*〔 👑 ADMINS 〕*━━━━╮
+      let adminList = `╭━━━〔 *👑 ADMINS* 〕━━━╮
 ┃
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL ADMINS:* ${adminsList.length}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n`;
+╰━━━━━━━━━━━━━━━━━╯\n\n`;
 
                                                 const mentionIds = [];
       adminsList.forEach((admin, index) => {
@@ -386,12 +386,12 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 👑 ADMINS 〕*━━━━╮
+        `╭━━━〔 *👑 ADMINS* 〕━━━╮
 ┃
 ┃ ❌ *ADMINS FAILED*
 ┃ Failed to get admin list.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
