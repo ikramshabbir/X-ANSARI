@@ -30,11 +30,11 @@ command(
   },
   async (message, conn) => {
     if (!(await isPrivileged(message, conn))) {
-      await replyFail(conn, message, `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+      await replyFail(conn, message, `╭━━━〔 *📝 CREATELOG* 〕━━━╮
 ┃
 ┃ 🔒 *OWNER/SUDO ONLY*
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
       return;
     }
     await kvDel("log_group_jid");
@@ -43,14 +43,14 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+        `╭━━━〔 *📝 CREATELOG* 〕━━━╮
 ┃
 ┃ ⚠️ *MANUAL SETUP REQUIRED*
 ┃
 ┃ Create a group, add the bot,
 ┃ then ${BOT_INFO.PREFIX}setlog
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -58,25 +58,25 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+        `╭━━━〔 *📝 CREATELOG* 〕━━━╮
 ┃
 ┃ ❌ *CREATELOG FAILED*
 ┃ ${res.error || "Unknown error"}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
     await replyOk(
       conn,
       message,
-      `╭━━━━*〔 📝 CREATELOG 〕*━━━━╮
+      `╭━━━〔 *📝 CREATELOG* 〕━━━╮
 ┃
 ┃ ${res.created ? "✅ *SYSTEM GROUP CREATED*" : "✅ *SYSTEM GROUP FOUND*"}
 ┃
 ┃ 🆔 *JID:* \`${res.jid}\`
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -91,27 +91,27 @@ command(
   },
   async (message, conn) => {
     if (!isOwnerMessage(message, conn) && !message.key.fromMe) {
-      await replyFail(conn, message, `╭━━━━*〔 📝 SETLOG 〕*━━━━╮
+      await replyFail(conn, message, `╭━━━〔 *📝 SETLOG* 〕━━━╮
 ┃
 ┃ 🔒 *OWNER ONLY*
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
       return;
     }
     if (!message.isGroup) {
-      await replyFail(conn, message, `╭━━━━*〔 📝 SETLOG 〕*━━━━╮
+      await replyFail(conn, message, `╭━━━〔 *📝 SETLOG* 〕━━━╮
 ┃
 ┃ ⚠️ *GROUP REQUIRED*
 ┃ Run this command inside a group.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
       return;
     }
     await setLogGroupJid(message.from);
     await replyOk(
         conn,
         message,
-        `╭━━━━*〔 📝 SETLOG 〕*━━━━╮
+        `╭━━━〔 *📝 SETLOG* 〕━━━╮
 ┃
 ┃ ✅ *SYSTEM LOG GROUP SET*
 ┃
@@ -119,7 +119,7 @@ command(
 ┃
 ┃ _Errors will only be posted in this group._
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     await systemLog("success", `Log group set to ${message.from}`);
   }
@@ -137,12 +137,12 @@ command(
       await replyFail(
       conn,
       message,
-      `╭━━━━*〔 ⚙️ SETUP 〕*━━━━╮
+      `╭━━━〔 *⚙️ SETUP* 〕━━━╮
 ┃
 ┃ 🔒 *OWNER/SUDO ONLY*
 ┃ This command is restricted to owner/sudo.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -174,7 +174,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+        `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
 ┃
 ┃ ⚙️ *QUICK GROUP MODERATION*
 ┃
@@ -189,7 +189,7 @@ command(
 ┃
 ┃ 💡 Tweak with ${BOT_INFO.PREFIX}groupsettings
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -204,7 +204,7 @@ command(
       await replyOk(
         conn,
         message,
-        `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+        `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
 ┃
 ┃ ✅ *RECOMMENDED APPLIED*
 ┃
@@ -213,7 +213,7 @@ command(
 ┃ 🔗 Antilink: ON
 ┃ 🛡️ Antispam: ON
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -225,7 +225,7 @@ command(
         antilink: false,
         antispam: false,
       });
-      await replyOk(conn, message, `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+      await replyOk(conn, message, `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
 ┃
 ┃ ✅ *MINIMAL APPLIED*
 ┃
@@ -233,7 +233,7 @@ command(
 ┃ 🔗 Antilink: OFF
 ┃ 🛡️ Antispam: OFF
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
       return;
     }
 
@@ -244,7 +244,7 @@ command(
         antilink: false,
         antispam: false,
       });
-      await replyOk(conn, message, `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+      await replyOk(conn, message, `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
 ┃
 ┃ 🔴 *MODERATION DISABLED*
 ┃
@@ -253,11 +253,11 @@ command(
 ┃ 🔗 Antilink: OFF
 ┃ 🛡️ Antispam: OFF
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
       return;
     }
 
-    await replyFail(conn, message, `╭━━━━*〔 🧑‍🔧 GROUP SETUP 〕*━━━━╮
+    await replyFail(conn, message, `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
 ┃
 ┃ ⚠️ *INVALID OPTION*
 ┃
@@ -266,7 +266,7 @@ command(
 ┃ ${BOT_INFO.PREFIX}groupsetup minimal
 ┃ ${BOT_INFO.PREFIX}groupsetup off
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
   }
 );
 
@@ -299,7 +299,7 @@ command(
     );
 
     let text =
-      `╭━━━━*〔 📊 STATUS 〕*━━━━╮\n` +
+      `╭━━━〔 *📊 STATUS* 〕━━━╮\n` +
       `┃\n` +
       `┃ 🤖 *BOT*\n` +
       `┃ ├─ Name      : ${BOT_INFO.NAME}\n` +
@@ -324,7 +324,7 @@ command(
 
     text +=
       `┃\n` +
-      `╰━━━━━━━━━━━━━━━━━━━━━━╯`;
+      `╰━━━━━━━━━━━━━━━━━╯`;
 
     await reply(conn, message, text);
   }
