@@ -325,11 +325,11 @@ async function igHandler(message, conn) {
     async () => {
       try {
         const result = await fetchInstagram(url);
-        const caption = `╭━━━━*〔 🎬 IG 〕*━━━━╮
+        const caption = `╭━━━〔 *🎬 IG* 〕*━━━╮
 ┃
 ┃ *▶️ Instagram Video*
 ┃
-╰━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`;
 
         await sendMediaUrl(
           conn,
@@ -383,7 +383,7 @@ async function ttHandler(message, conn) {
   await withTyping(conn, message.from, async () => {
     try {
       const result = await fetchTikTok(url);
-      const caption = `╭━━━*〔 🎬 TIKTOK 〕*━━╮
+      const caption = `╭━━━〔 *🎬 TIKTOK* 〕━━╮
       
 ┃
 ┃ *▶️ TikTok Video*
@@ -402,13 +402,13 @@ async function ttHandler(message, conn) {
         conn,
         message,
         err?.message ||
-                               `╭━━━━*〔 🎵 TIKTOK 〕*━━━━╮
+                               `╭━━━〔 *🎵 TIKTOK* 〕━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ TikTok download failed.
 ┃ The free API may be down — try later.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }, { timeoutMs: 90_000 });
@@ -449,14 +449,14 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📘 FACEBOOK 〕*━━━━╮
+        `╭━━━〔 *📘 FACEBOOK* 〕━━━╮
 ┃
 ┃ ⚠️ *FACEBOOK URL REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}fb <facebook url>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -475,7 +475,7 @@ command(
 
           assertVideoSize(buffer.length);
 
-          const caption = `╭━━━━*〔 🎬 FB 〕*━━━━╮
+          const caption = `╭━━━〔 *🎬 FB* 〕━━━╮
 ┃
 ┃ *▶️ Facebook Video*
 ┃
@@ -500,12 +500,12 @@ command(
             conn,
             message,
             err?.message ||
-                               `╭━━━━*〔 📘 FACEBOOK 〕*━━━━╮
+                               `╭━━━〔 *📘 FACEBOOK* 〕━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ Facebook download failed.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
         } finally {
           if (result?.tempDir) {
