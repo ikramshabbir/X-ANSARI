@@ -176,13 +176,13 @@ const stickerHandler = async (message, conn) => {
           await replyFail(
             conn,
             message,
-            `╭━━━━*〔 🎨 STICKER 〕*━━━━╮
+            `╭━━━〔 *🎨 STICKER* 〕━━━╮
 ┃
 ┃ ⚠️ *MEDIA REQUIRED*
 ┃ Reply to an image/video with
 ┃ ${BOT_INFO.PREFIX}sticker
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
           return;
         }
@@ -193,12 +193,12 @@ const stickerHandler = async (message, conn) => {
         await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🎨 STICKER 〕*━━━━╮
+        `╭━━━〔 *🎨 STICKER* 〕━━━╮
 ┃
 ┃ ❌ *STICKER FAILED*
 ┃ ${err?.message || "Sticker failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       }
     }, { timeoutMs: 60_000 });
@@ -238,12 +238,12 @@ async function takeHandler(message, conn) {
         await replyFail(
             conn,
             message,
-            `╭━━━━*〔 🏷️ TAKE 〕*━━━━╮
+            `╭━━━〔 *🏷️ TAKE* 〕━━━╮
 ┃
 ┃ ⚠️ *STICKER REQUIRED*
 ┃ Reply to a sticker.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
         return;
       }
@@ -264,12 +264,12 @@ async function takeHandler(message, conn) {
         await replyFail(
               conn,
               message,
-              `╭━━━━*〔 🏷️ TAKE 〕*━━━━╮
+              `╭━━━〔 *🏷️ TAKE* 〕━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ Could not download sticker.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
             );
         return;
       }
@@ -294,12 +294,12 @@ async function takeHandler(message, conn) {
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🏷️ TAKE 〕*━━━━╮
+        `╭━━━〔 *🏷️ TAKE* 〕━━━╮
 ┃
 ┃ ❌ *TAKE FAILED*
 ┃ ${err?.message || "Take failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   });
@@ -346,12 +346,12 @@ command(
           await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🖼️ TOIMG 〕*━━━━╮
+        `╭━━━〔 *🖼️ TOIMG* 〕━━━╮
 ┃
 ┃ ⚠️ *STICKER REQUIRED*
 ┃ Reply to a sticker.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
           return;
         }
@@ -360,12 +360,12 @@ command(
           await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🖼️ TOIMG 〕*━━━━╮
+        `╭━━━〔 *🖼️ TOIMG* 〕━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ Could not download sticker.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
           return;
         }
@@ -393,12 +393,12 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🖼️ TOIMG 〕*━━━━╮
+        `╭━━━〔 *🖼️ TOIMG* 〕━━━╮
 ┃
 ┃ ❌ *TOIMG FAILED*
 ┃ ${err?.message || "toimg failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       }
     });
@@ -421,12 +421,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🏷️ EXIF 〕*━━━━╮\n` +
+        `╭━━━〔 *🏷️ EXIF* 〕━━━╮\n` +
               `┃\n` +
               `┃ 🏷️ *PACK:* ${pack}\n` +
               `┃ ✍️ *AUTHOR:* ${author}\n` +
               `┃\n` +
-              `╰━━━━━━━━━━━━━━━━━━━━━━╯\n\n` +
+              `╰━━━━━━━━━━━━━━━━━╯\n\n` +
           `Usage: \`${BOT_INFO.PREFIX}exif PackName|Author\``
       );
       return;
@@ -436,14 +436,14 @@ command(
       await replyFail(
       conn,
       message,
-      `╭━━━━*〔 🏷️ EXIF 〕*━━━━╮
+      `╭━━━〔 *🏷️ EXIF* 〕━━━╮
 ┃
 ┃ ⚠️ *PACK NAME REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}exif Pack|Author
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -452,13 +452,13 @@ command(
     await replyOk(
       conn,
       message,
-      `╭━━━━*〔 🏷️ EXIF 〕*━━━━╮\n` +
+      `╭━━━〔 *🏷️ EXIF* 〕━━━╮\n` +
     `┃\n` +
     `┃ ✅ *EXIF UPDATED*\n` +
     `┃ 🏷️ *PACK:* ${pack}\n` +
     `┃ ✍️ *AUTHOR:* ${author || (await getPackMeta()).author}\n` +
     `┃\n` +
-    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+    `╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
