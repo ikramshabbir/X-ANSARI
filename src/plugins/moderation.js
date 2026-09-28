@@ -46,11 +46,11 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 👋 WELCOME 〕*━━━━╮
+        `╭━━━〔 *👋 WELCOME* 〕━━━╮
 ┃
 ┃ ${s.welcome ? await t("WELCOME_ON") : await t("WELCOME_OFF")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -63,12 +63,12 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━━*〔 👋 WELCOME 〕*━━━━╮
+      `╭━━━〔 *👋 WELCOME* 〕━━━╮
 ┃
 ┃ ✅ *WELCOME UPDATED*
 ┃ 📝 *TEXT:* ${args}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -81,11 +81,11 @@ command(
     await reply(
         conn,
         message,
-        `╭━━━━*〔 👋 WELCOME 〕*━━━━╮
+        `╭━━━〔 *👋 WELCOME* 〕━━━╮
 ┃
 ┃ ${args === "on" ? await t("WELCOME_ON") : await t("WELCOME_OFF")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
   }
 );
@@ -108,11 +108,11 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 👋 GOODBYE 〕*━━━━╮
+        `╭━━━〔 *👋 GOODBYE* 〕━━━╮
 ┃
 ┃ ${s.goodbye ? await t("GOODBYE_ON") : await t("GOODBYE_OFF")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -125,12 +125,12 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━━*〔 👋 GOODBYE 〕*━━━━╮
+      `╭━━━〔 *👋 GOODBYE* 〕━━━╮
 ┃
 ┃ ✅ *GOODBYE UPDATED*
 ┃ 📝 *TEXT:* ${args}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -143,11 +143,11 @@ command(
     await reply(
         conn,
         message,
-        `╭━━━━*〔 👋 GOODBYE 〕*━━━━╮
+        `╭━━━〔 *👋 GOODBYE* 〕━━━╮
 ┃
 ┃ ${args === "on" ? await t("GOODBYE_ON") : await t("GOODBYE_OFF")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
   }
 );
@@ -185,11 +185,11 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 🔗 ANTILINK 〕*━━━━╮
+      `╭━━━〔 *🔗 ANTILINK* 〕━━━╮
 ┃
 ┃ 🔗 *ANTI-LINK:* ${onOff(s.antilink)}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -226,13 +226,13 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 🛡️ ANTISPAM 〕*━━━━╮
+      `╭━━━〔 *🛡️ ANTISPAM* 〕━━━╮
 ┃
 ┃ 🛡️ *ANTI-SPAM:* ${onOff(s.antispam)}
 ┃ 📊 *LIMIT:* ${s.antispamLimit}
 ┃ ⏱️ *WINDOW:* ${s.antispamWindowMs}ms
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -252,7 +252,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ⚙️ GROUP SETTINGS 〕*━━━━╮
+      `╭━━〔 *⚙️ GROUP SETTINGS* 〕━━╮
 ┃
 ┃ 👋 *WELCOME:* ${onOff(s.welcome)}
 ┃ 👋 *GOODBYE:* ${onOff(s.goodbye)}
@@ -262,7 +262,7 @@ command(
 ┃ 🔇 *MUTED:* ${s.muted.length}
 ┃ 🚫 *DISABLED:* ${s.disabledPlugins.join(", ") || "none"}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -356,12 +356,12 @@ command(
             await reply(
               conn,
               message,
-              `╭━━━━*〔 ⚠️ WARN 〕*━━━━╮
+              `╭━━━〔 *⚠️ WARN* 〕━━━╮
 ┃
 ┃ ❌ *REMOVE FAILED*
 ┃ Could not remove user (need admin).
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
             );
           }
         }
@@ -386,12 +386,12 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━━*〔 ⚠️ UNWARN 〕*━━━━╮
+      `╭━━━〔 *⚠️ UNWARN* 〕━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -407,12 +407,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ⚠️ UNWARN 〕*━━━━╮
+      `╭━━━〔 *⚠️ UNWARN* 〕━━━╮
 ┃
 ┃ ✅ *WARNS RESET*
 ┃ 👤 @${displayId(target)}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -447,12 +447,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ⚠️ WARNS 〕*━━━━╮
+      `╭━━━〔 *⚠️ WARNS* 〕━━━╮
 ┃
 ┃ 👤 *USER:* @${displayId(target)}
 ┃ ⚠️ *WARNS:* ${count}/${settings.warnLimit}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -474,12 +474,12 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━━*〔 🔇 MUTE 〕*━━━━╮
+      `╭━━━〔 *🔇 MUTE* 〕━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -504,12 +504,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 🔇 MUTE 〕*━━━━╮
+      `╭━━━〔 *🔇 MUTE* 〕━━━╮
 ┃
 ┃ 🔇 *MUTED*
 ┃ 👤 @${displayId(target)}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -531,12 +531,12 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━━*〔 🔊 UNMUTE 〕*━━━━╮
+      `╭━━━〔 *🔊 UNMUTE* 〕━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -559,12 +559,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 🔊 UNMUTE 〕*━━━━╮
+      `╭━━━〔 *🔊 UNMUTE* 〕━━━╮
 ┃
 ┃ 🔊 *UNMUTED*
 ┃ 👤 @${displayId(target)}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -619,13 +619,13 @@ command(
         await reply(
               conn,
               message,
-              `╭━━━━*〔 🚀 KICKALL 〕*━━━━╮
+              `╭━━━〔 *🚀 KICKALL* 〕━━━╮
 ┃
 ┃ ❌ *KICKALL FAILED*
 ┃ Failed to remove all members.
 ┃ Bot must be admin.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
             );
         return;
       }
@@ -681,12 +681,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🦵 KICK 〕*━━━━╮
+        `╭━━━〔 *🦵 KICK* 〕━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -705,23 +705,23 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🦵 KICK 〕*━━━━╮
+        `╭━━━〔 *🦵 KICK* 〕━━━╮
 ┃
 ┃ ✅ *REMOVED*
 ┃ 👤 @${displayId(target)}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     } catch {
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🦵 KICK 〕*━━━━╮
+        `╭━━━〔 *🦵 KICK* 〕━━━╮
 ┃
 ┃ ❌ *KICK FAILED*
 ┃ Bot must be admin.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
