@@ -25,7 +25,7 @@ command(
           : "Unknown";
 
       let info =
-        `╭━━━━*〔 💬 INFO 〕*━━━━╮\n` +
+        `╭━━━〔 *💬 INFO* 〕━━━╮\n` +
         `┃\n` +
         `┃ 💬 *CHAT*\n` +
         `┃ ├─ Type      : ${chatType}\n` +
@@ -87,7 +87,7 @@ command(
 
       info +=
         `┃\n` +
-        `╰━━━━━━━━━━━━━━━━━━━━━━╯`;
+        `╰━━━━━━━━━━━━━━━━━╯`;
 
       await reply(conn, message, info);
     } catch (error) {
@@ -95,12 +95,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 💬 INFO 〕*━━━━╮
+        `╭━━━〔 *💬 INFO* 〕━━━╮
 ┃
 ┃ ❌ *INFO FAILED*
 ┃ Failed to get information.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
