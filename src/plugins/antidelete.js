@@ -650,12 +650,12 @@ command(
       return replyOk(
         conn,
         message,
-        `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+        `╭━━━〔 *🛡️ ANTIDELETE* 〕━━━╮\n` +
                                     `┃\n` +
                                     `┃ ✅ *ANTIDELETE ENABLED*\n` +
                                     `┃ 🟢 *STATUS:* ON\n` +
                                     `┃\n` +
-                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+                                    `╰━━━━━━━━━━━━━━━━━╯`
       );
     }
 
@@ -668,12 +668,12 @@ command(
       return replyOk(
         conn,
         message,
-        `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+        `╭━━━〔 *🛡️ ANTIDELETE* 〕━━━╮\n` +
                                     `┃\n` +
                                     `┃ 🔴 *ANTIDELETE DISABLED*\n` +
                                     `┃ ⚪ *STATUS:* OFF\n` +
                                     `┃\n` +
-                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+                                    `╰━━━━━━━━━━━━━━━━━╯`
       );
     }
 
@@ -681,16 +681,16 @@ command(
       conn,
       message,
       (await isAntiDeleteEnabled(sessionId))
-        ? `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+        ? `╭━━━〔 *🛡️ ANTIDELETE* 〕━━━╮\n` +
                                     `┃\n` +
                                     `┃ 🟢 *STATUS:* ON\n` +
                                     `┃\n` +
-                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
-        : `╭━━━━*〔 🛡️ ANTIDELETE 〕*━━━━╮\n` +
+                                    `╰━━━━━━━━━━━━━━━━━╯`
+        : `╭━━━〔 *🛡️ ANTIDELETE* 〕━━━╮\n` +
                                     `┃\n` +
                                     `┃ 🔴 *STATUS:* OFF\n` +
                                     `┃\n` +
-                                    `╰━━━━━━━━━━━━━━━━━━━━━━╯`
+                                    `╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
