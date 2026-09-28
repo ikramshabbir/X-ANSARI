@@ -325,7 +325,7 @@ async function igHandler(message, conn) {
     async () => {
       try {
         const result = await fetchInstagram(url);
-        const caption = `╭━━━━〔 🎬 IG 〕━━━━╮
+        const caption = `╭━━━━*〔 🎬 IG 〕*━━━━╮
 ┃
 ┃ *▶️ Instagram Video*
 ┃
@@ -383,11 +383,12 @@ async function ttHandler(message, conn) {
   await withTyping(conn, message.from, async () => {
     try {
       const result = await fetchTikTok(url);
-      const caption = `╭━━━━〔 🎬 TIKTOK 〕━━━━╮
+      const caption = `╭━━━*〔 🎬 TIKTOK 〕*━━╮
+      
 ┃
 ┃ *▶️ TikTok Video*
 ┃
-╰━━━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`;
 
       if (result.images?.length) {
         for (const img of result.images.slice(0, 5)) {
@@ -474,7 +475,7 @@ command(
 
           assertVideoSize(buffer.length);
 
-          const caption = `╭━━━━〔 🎬 FB 〕━━━━╮
+          const caption = `╭━━━━*〔 🎬 FB 〕*━━━━╮
 ┃
 ┃ *▶️ Facebook Video*
 ┃
