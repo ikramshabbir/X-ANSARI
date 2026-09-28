@@ -34,7 +34,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+        `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ ⚠️ *USAGE*
 ┃ ${BOT_INFO.PREFIX}note set <id> <text>
@@ -42,7 +42,7 @@ command(
 ┃ ${BOT_INFO.PREFIX}note del <id>
 ┃ ${BOT_INFO.PREFIX}note list
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -53,36 +53,36 @@ command(
     if (act === "list") {
       const notes = await listNotes(owner);
       if (!notes.length) {
-        await reply(conn, message, `╭━━━━*〔 📝 NOTES 〕*━━━━╮
+        await reply(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ 📭 *NO NOTES*
 ┃ No saved notes found.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
         return;
       }
       await reply(
         conn,
         message,
-        `╭━━━━*〔 📝 NOTES 〕*━━━━╮
+        `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ 📝 *SAVED NOTES*
 ┃
 ┃ ${notes.map((n) => `• *${n.id}* — ${n.text.slice(0, 60)}`).join("\n┃ ")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
 
     if (act === "get") {
       if (!id) {
-        await replyFail(conn, message, `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+        await replyFail(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ ⚠️ *NOTE ID REQUIRED*
 ┃ Provide note id.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
         return;
       }
       const n = await getNote(owner, id);
@@ -90,22 +90,22 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+        `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ ❌ *NOTE NOT FOUND*
 ┃ ${await t("NOTE_NOT_FOUND")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
         return;
       }
-      await reply(conn, message, `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+      await reply(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ 📝 *NOTE:* \`${id}\`
 ┃
 ┃ ${n.text}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
       return;
     }
 
@@ -114,12 +114,12 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+        `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ ⚠️ *NOTE ID REQUIRED*
 ┃ Provide note id.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
         return;
       }
@@ -128,12 +128,12 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+        `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ ❌ *NOTE NOT FOUND*
 ┃ ${await t("NOTE_NOT_FOUND")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
         return;
       }
@@ -147,12 +147,12 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+          `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ ⚠️ *USAGE*
 ┃ ${BOT_INFO.PREFIX}note set <id> <text>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
         return;
       }
@@ -169,12 +169,12 @@ command(
       return;
     }
 
-    await replyFail(conn, message, `╭━━━━*〔 📝 NOTE 〕*━━━━╮
+    await replyFail(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
 ┃
 ┃ ❌ *UNKNOWN ACTION*
 ┃ Unknown note action.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`);
+╰━━━━━━━━━━━━━━━━━╯`);
   }
 );
 
@@ -192,14 +192,14 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 ⏰ REMIND 〕*━━━━╮
+        `╭━━━〔 *⏰ REMIND* 〕━━━╮
 ┃
 ┃ ⚠️ *USAGE*
 ┃ ${BOT_INFO.PREFIX}remind <time> <text>
 ┃
 ┃ 🕐 *TIME:* 30s, 10m, 2h, 1d
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -212,14 +212,14 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 ⏰ REMIND 〕*━━━━╮
+        `╭━━━〔 *⏰ REMIND* 〕━━━╮
 ┃
 ┃ ❌ *INVALID REMINDER*
 ┃ Invalid time or empty text.
 ┃
 ┃ 💡 *EXAMPLE:* ${BOT_INFO.PREFIX}remind 10m Check oven
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -239,13 +239,13 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ⏰ REMIND 〕*━━━━╮
+      `╭━━━〔 *⏰ REMIND* 〕━━━╮
 ┃
 ┃ ✅ *REMINDER SET*
 ┃ ⏰ *WHEN:* ${when}
 ┃ 📝 *TEXT:* ${text}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -263,12 +263,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 ⏰ REMINDERS 〕*━━━━╮
+        `╭━━━〔 *⏰ REMINDERS* 〕━━━╮
 ┃
 ┃ 📭 *NO REMINDERS*
 ┃ No pending reminders found.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -276,7 +276,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ⏰ REMINDERS 〕*━━━━╮
+      `╭━━━〔 *⏰ REMINDERS* 〕━━━╮
 ┃
 ┃ ⏰ *PENDING REMINDERS*
 ┃
@@ -287,7 +287,7 @@ command(
         )
         .join("\n┃ ")}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -305,13 +305,13 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 ❌ CANCEL REMIND 〕*━━━━╮
+        `╭━━〔 *❌ CANCEL REMIND* 〕━━╮
 ┃
 ┃ ⚠️ *REMINDER ID REQUIRED*
 ┃
 ┃ 💡 *USAGE:* ${BOT_INFO.PREFIX}cancelremind <id>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -322,12 +322,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 ❌ CANCEL REMIND 〕*━━━━╮
+        `╭━━〔 *❌ CANCEL REMIND* 〕━━╮
 ┃
 ┃ ❌ *REMINDER NOT FOUND*
 ┃ No reminder found with this ID.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -335,12 +335,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ❌ CANCEL REMIND 〕*━━━━╮
+      `╭━━〔 *❌ CANCEL REMIND* 〕━━╮
 ┃
 ┃ ✅ *REMINDER CANCELLED*
 ┃ 🆔 *ID:* \`${id}\`
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -358,14 +358,14 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+        `╭━━━〔 *📊 POLL* 〕━━━╮
 ┃
 ┃ ⚠️ *INVALID POLL*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}poll Question? | Option A | Option B
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -378,12 +378,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+        `╭━━━〔 *📊 POLL* 〕━━━╮
 ┃
 ┃ ⚠️ *OPTIONS REQUIRED*
 ┃ Need a question and at least 2 options.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -392,12 +392,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+        `╭━━━〔 *📊 POLL* 〕━━━╮
 ┃
 ┃ ⚠️ *TOO MANY OPTIONS*
 ┃ Maximum 12 options are allowed.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
       return;
     }
@@ -414,12 +414,12 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━━*〔 📊 POLL 〕*━━━━╮
+        `╭━━━〔 *📊 POLL* 〕━━━╮
 ┃
 ┃ ❌ *POLL FAILED*
 ┃ ${err?.message || "Unsupported"}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
