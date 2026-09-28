@@ -2,9 +2,12 @@
  * Premium Ping Command
  */
 
-import { performance } from "node:perf_hooks";
 import { command } from "../plugins.js";
-import { reply, ackCommand } from "../utils/message.js";
+import { reply } from "../utils/message.js";
+import {
+  startPingTracking,
+  attachPingMessage,
+} from "../utils/pingLatency.js";
 
 command(
   {
@@ -14,21 +17,61 @@ command(
     type: "misc",
   },
   async (message, conn) => {
-    await ackCommand(conn, message, "🦅");
+    /*
+     * Start latency tracking BEFORE sending PONG.
+     * The tracker waits for WhatsApp SERVER_ACK.
+     */
+    const tracking = startPingTracking();
 
-    const start = performance.now();
-
-    const speed = Math.max(0, Math.round(performance.now() - start));
-
-    const text = `╭━━━〔 *🏓 PING* 〕━━━╮
+    // PONG
+    const pongText = `╭━━━〔 *⏳ PONG* 〕━━━╮
 ┃
-┃  *🏓 PONG! :* ${speed}ms
-┃  *⚡ Speed :* ${speed}ms
+┃  *⏳ PONG!*
+┃  *⚡ Speed   :* Loading...
+┃
+╰━━━━━━━━━━━━━━━━━╯`;
+
+    const pong = await reply(
+      conn,
+      message,
+      pongText
+    );
+
+    /*
+     * Attach the actual outgoing WhatsApp
+     * message ID to the latency tracker.
+     */
+    attachPingMessage(
+      tracking.token,
+      pong?.key?.remoteJid || message.from,
+      pong?.key?.id
+    );
+
+    /*
+     * Wait for the real SERVER_ACK.
+     * Timeout returns null after 15 seconds.
+     */
+    const pingSpeed = await tracking.promise;
+
+    const speedText =
+      pingSpeed !== null
+        ? `${pingSpeed}ms`
+        : "Timeout";
+
+    // PING
+    const pingText = `╭━━━〔 *🏓 PING* 〕━━━╮
+┃
+┃  *🏓 PING!*
+┃  *⚡ Speed :* ${speedText}
 ┃  *🤖 Status :* Online
 ┃  *🚀 Bot    :* X-ANSARI
 ┃
 ╰━━━━━━━━━━━━━━━━━╯`;
 
-    await reply(conn, message, text);
+    await reply(
+      conn,
+      message,
+      pingText
+    );
   }
 );

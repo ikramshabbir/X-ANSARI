@@ -37,6 +37,10 @@ import {
 } from "../utils/cache.js";
 
 import { serialize } from "../messages/serialize.js";
+import {
+  resolvePingMessage,
+  resolvePingReceipt,
+} from "../utils/pingLatency.js";
 import { messageHandler } from "../messages/handler.js";
 import { setConnection } from "../terminal/handler.js";
 
@@ -958,6 +962,39 @@ async function createConnection(
                 error?.message ||
                 error
             );
+          }
+        }
+      );
+
+      /* =================================================
+         PING LATENCY / SERVER ACK
+      ================================================= */
+
+      conn.ev.on(
+        "messages.update",
+        (updates) => {
+          for (const update of updates || []) {
+            if (update?.key?.fromMe) {
+              console.log(
+                "🔎 PING ACK UPDATE:",
+                JSON.stringify(update)
+              );
+            }
+
+            resolvePingMessage(update);
+          }
+        }
+      );
+
+      /* =================================================
+         PING GROUP RECEIPT / DELIVERY
+      ================================================= */
+
+      conn.ev.on(
+        "message-receipt.update",
+        (updates) => {
+          for (const update of updates || []) {
+            resolvePingReceipt(update);
           }
         }
       );
