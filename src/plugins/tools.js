@@ -340,12 +340,12 @@ command(
           await replyFail(
             conn,
             message,
-            `╭━━━━*〔 🎵 TOMP3 〕*━━━━╮
+            `╭━━━〔 *🎵 TOMP3* 〕━━━╮
 ┃
 ┃ ⚠️ *MEDIA REQUIRED*
 ┃ Reply to a video or audio.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
           );
           return;
         }
@@ -454,12 +454,12 @@ async function urlHandler(message, conn) {
         await replyFail(
           conn,
           message,
-          `╭━━━━*〔 🔗 TOURURL 〕*━━━━╮
+          `╭━━━〔 *🔗 TOURURL* 〕━━━╮
 ┃
 ┃ ⚠️ *MEDIA REQUIRED*
 ┃ Reply to an image, video, audio, or document.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
         return;
       }
@@ -478,23 +478,23 @@ async function urlHandler(message, conn) {
       await reply(
         conn,
         message,
-        `╭━━━━*〔 🔗 TOURURL 〕*━━━━╮
+        `╭━━━〔 *🔗 TOURURL* 〕━━━╮
 ┃
 ┃ 🔗 *URL:*
 ┃ ${url}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     } catch (err) {
       await replyFail(
         conn,
         message,
-        `╭━━━━*〔 🔗 TOURURL 〕*━━━━╮
+        `╭━━━〔 *🔗 TOURURL* 〕━━━╮
 ┃
 ┃ ❌ *UPLOAD FAILED*
 ┃ ${err?.message || "Upload failed."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }, { timeoutMs: 90_000 });
@@ -542,7 +542,7 @@ command(
           await replyFail(
           conn,
           message,
-          `╭━━━━*〔 💬 QUOTE 〕*━━━━╮
+          `╭━━━〔 *💬 QUOTE* 〕━━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
@@ -550,7 +550,7 @@ command(
 ┃ ${BOT_INFO.PREFIX}quote <text>
 ┃ Or reply to a message.
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
           return;
         }
@@ -616,12 +616,12 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━━*〔 💬 QUOTE 〕*━━━━╮
+          `╭━━━〔 *💬 QUOTE* 〕━━━╮
 ┃
 ┃ ❌ *QUOTE FAILED*
 ┃ ${err?.message || "Unable to create quote sticker."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       } finally {
         if (out) await safeUnlink(out);
@@ -645,14 +645,14 @@ command(
       await replyFail(
       conn,
       message,
-      `╭━━━━*〔 ✨ FANCY 〕*━━━━╮
+      `╭━━━〔 *✨ FANCY* 〕━━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}fancy <text>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
       return;
     }
@@ -667,12 +667,12 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━━*〔 ✨ FANCY 〕*━━━━╮
+      `╭━━━〔 *✨ FANCY* 〕━━━╮
 ┃
 ┃ 😎 *Stylish Font:*
 ${fancyOutput}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
   }
 );
@@ -696,14 +696,14 @@ command(
           await replyFail(
           conn,
           message,
-          `╭━━━━*〔 🔊 TTS 〕*━━━━╮
+          `╭━━━〔 *🔊 TTS* 〕━━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}tts <text>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
           return;
         }
@@ -736,12 +736,12 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━━*〔 🔊 TTS 〕*━━━━╮
+          `╭━━━〔 *🔊 TTS* 〕━━━╮
 ┃
 ┃ ❌ *TTS FAILED*
 ┃ ${err?.message || "Unable to generate audio."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
     });
@@ -761,14 +761,14 @@ async function textToSticker(message, conn, { animated = false } = {}) {
     await replyFail(
       conn,
       message,
-      `╭━━━━*〔 📝 ${pattern.toUpperCase()} 〕*━━━━╮
+      `╭━━〔 *📝 ${pattern.toUpperCase()}* 〕━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
 ┃ 💡 *USAGE:*
 ┃ ${BOT_INFO.PREFIX}${pattern} <text>
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
     );
     return;
   }
@@ -914,12 +914,12 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━━*〔 📝 TTP 〕*━━━━╮
+          `╭━━━〔 *📝 TTP* 〕━━━╮
 ┃
 ┃ ❌ *STICKER FAILED*
 ┃ ${err?.message || "Unable to create sticker."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
     });
@@ -941,12 +941,12 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━━*〔 🎞️ ATTP 〕*━━━━╮
+          `╭━━━〔 *🎞️ ATTP* 〕━━━╮
 ┃
 ┃ ❌ *STICKER FAILED*
 ┃ ${err?.message || "Unable to create animated sticker."}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
     }, { timeoutMs: 60_000 });
