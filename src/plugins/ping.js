@@ -20,15 +20,14 @@ command(
 
     const speed = Math.max(0, Math.round(performance.now() - start));
 
-    const text = `╭━━━━*〔 🏓 PING 〕*━━━━╮
+    const text = `╭━━━〔 *🏓 PING* 〕━━━╮
 ┃
 ┃  *🏓 PONG! :* ${speed}ms
-┃
-┃  *⚡ Speed :* ${speed} ms
+┃  *⚡ Speed :* ${speed}ms
 ┃  *🤖 Status :* Online
-┃  *🚀 Bot       :* X-ANSARI
+┃  *🚀 Bot    :* X-ANSARI
 ┃
-╰━━━━━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━━╯`;
 
     await reply(conn, message, text);
   }
