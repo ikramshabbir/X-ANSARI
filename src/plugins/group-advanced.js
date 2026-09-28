@@ -134,7 +134,7 @@ command(
       const lidUsers = groupMetadata.participants.filter((p) => isLidUser(p.id));
       const pnUsers = groupMetadata.participants.filter((p) => isPnUser(p.id));
 
-      let info = `╭━━━〔 *👥 GROUP INFO* 〕━━━╮
+      let info = `╭━━〔 *👥 GROUP INFO* 〕━━╮
 ┃
 ╰━━━━━━━━━━━━━━━━━╯\n\n`;
                                               info += formatGroupInfo(groupMetadata);
@@ -148,7 +148,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *👥 GROUP INFO* 〕━━━╮
+        `╭━━〔 *👥 GROUP INFO* 〕━━╮
 ┃
 ┃ ❌ *GROUP INFO FAILED*
 ┃ Failed to get group information.
@@ -280,7 +280,7 @@ command(
           return await sendError(
             conn,
             message.from,
-            `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
+            `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
 ┃
 ┃ 📭 *NO PENDING REQUESTS*
 ┃ No join requests found.
@@ -297,7 +297,7 @@ command(
           return await sendError(
             conn,
             message.from,
-            `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
+            `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
 ┃
 ┃ ⚠️ *NO VALID REQUESTS*
 ┃ No valid pending requests found.
@@ -315,7 +315,7 @@ command(
         await replyOk(
           conn,
           message,
-          `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
+          `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
 ┃
 ┃ ✅ *REQUESTS APPROVED*
 ┃ 👥 *COUNT:* ${participants.length}
@@ -328,7 +328,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *✅ ACCEPT ALL* 〕━━━╮
+        `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
 ┃
 ┃ ❌ *APPROVAL FAILED*
 ┃ Failed to approve pending requests.
