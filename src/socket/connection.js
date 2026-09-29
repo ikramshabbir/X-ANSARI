@@ -871,21 +871,6 @@ async function createConnection(
                  RAW MESSAGE DEBUG
               --------------------------------------- */
 
-              console.log(
-                `📩 RAW MESSAGE [${sessionId}]:`,
-                rawMessage?.key?.remoteJid ||
-                  "NO_JID",
-
-                rawMessage?.key?.fromMe
-                  ? "FROM_ME"
-                  : "FROM_OTHER",
-
-                rawMessage?.message
-                  ? Object.keys(
-                      rawMessage.message
-                    )
-                  : "NO_MESSAGE"
-              );
 
               try {
                 /* ---------------------------------------

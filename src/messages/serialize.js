@@ -299,9 +299,6 @@ async function serialize(conn, message, sessionId = "default") {
   }
 
   if (!message?.message) {
-    console.log(
-      "⚠️ Serialize: missing message content"
-    );
     return null;
   }
 
