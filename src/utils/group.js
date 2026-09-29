@@ -236,35 +236,49 @@ export function formatGroupInfo(groupMetadata) {
   const members = getMembers(groupMetadata);
   const superAdmins = admins.filter((a) => a.admin === "superadmin");
 
-  let info = `*📋 GROUP INFORMATION*\n\n`;
-  info += `*Name:* ${groupMetadata.subject}\n`;
-  info += `*Group ID:* ${groupMetadata.id}\n`;
+  let info =
+    `┃ 📋 *GROUP INFORMATION*\n` +
+    `┃ ├─ Name        : ${groupMetadata.subject}\n` +
+    `┃ ├─ Group ID    : ${groupMetadata.id}\n`;
 
   if (groupMetadata.creation) {
-    info += `*Created:* ${new Date(groupMetadata.creation * 1000).toLocaleDateString()}\n`;
+    info += `┃ └─ Created     : ${new Date(groupMetadata.creation * 1000).toLocaleDateString()}\n`;
+  } else {
+    info += `┃ └─ Created     : Unknown\n`;
   }
 
   if (groupMetadata.owner) {
-    info += `\n*👑 Owner:* ${displayId(groupMetadata.owner)}\n`;
+    info +=
+      `┃\n` +
+      `┃ 👑 *OWNER*\n` +
+      `┃ └─ ID          : ${displayId(groupMetadata.owner)}\n`;
+
     if (groupMetadata.ownerPn) {
-      info += `*Owner PN:* ${groupMetadata.ownerPn.split("@")[0]}\n`;
+      info += `┃ └─ Owner PN    : ${groupMetadata.ownerPn.split("@")[0]}\n`;
     }
   }
 
-  info += `\n*👥 Members:*\n`;
-  info += `• Total: ${groupMetadata.participants.length}\n`;
-  info += `• Super Admins: ${superAdmins.length}\n`;
-  info += `• Admins: ${admins.length - superAdmins.length}\n`;
-  info += `• Regular: ${members.length}\n`;
+  info +=
+    `┃\n` +
+    `┃ 👥 *MEMBERS*\n` +
+    `┃ ├─ Total       : ${groupMetadata.participants.length}\n` +
+    `┃ ├─ Super Admin : ${superAdmins.length}\n` +
+    `┃ ├─ Admins      : ${admins.length - superAdmins.length}\n` +
+    `┃ └─ Regular     : ${members.length}\n`;
 
   if (groupMetadata.announce !== undefined) {
-    info += `\n*⚙️ Settings:*\n`;
-    info += `• Announce: ${groupMetadata.announce ? "Only Admins" : "All Members"}\n`;
-    info += `• Restrict: ${groupMetadata.restrict ? "Only Admins" : "All Members"}\n`;
+    info +=
+      `┃\n` +
+      `┃ ⚙️ *SETTINGS*\n` +
+      `┃ ├─ Announce    : ${groupMetadata.announce ? "Only Admins" : "All Members"}\n` +
+      `┃ └─ Restrict    : ${groupMetadata.restrict ? "Only Admins" : "All Members"}\n`;
   }
 
   if (groupMetadata.desc) {
-    info += `\n*📄 Description:*\n${groupMetadata.desc}\n`;
+    info +=
+      `┃\n` +
+      `┃ 📄 *DESCRIPTION*\n` +
+      `┃ └─ ${groupMetadata.desc}\n`;
   }
 
   return info;

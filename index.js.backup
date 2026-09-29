@@ -90,7 +90,7 @@ const initialize = async () => {
     }
 
     console.log("⏳ Connecting to WhatsApp...\n");
-    // Default session disabled; restore saved WhatsApp sessions only.
+    await connect();
     const savedSessions = await getSavedSessionIds();
     if (savedSessions.length) {
       console.log(`🔄 Restoring ${savedSessions.length} saved WhatsApp session(s)...`);

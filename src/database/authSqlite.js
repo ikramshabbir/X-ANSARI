@@ -164,7 +164,7 @@ export async function useBetterSqliteAuthState(dbPath) {
           for (const category in data) {
             for (const id in data[category]) {
               entries.push({
-                key: `${category}-${id}.json`,
+                key: makeStorageKey(category, id),
                 value: data[category][id],
               });
             }

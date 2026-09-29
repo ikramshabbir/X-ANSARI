@@ -52,7 +52,7 @@ command(
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL MEMBERS:* ${participants.length}
 ┃
-╰━━━━━━━━━━━━━━━━━╯\n\n`;
+**╰━━━━━━━━━━━━━━━━━╯**\n\n`;
 
 participants.forEach((participant, index) => {
           tagMessage += `${index + 1}. @${displayId(participant)}\n`;
@@ -73,7 +73,7 @@ participants.forEach((participant, index) => {
 ┃ ❌ *TAGALL FAILED*
 ┃ Failed to tag all members.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
       );
     }
   }
@@ -96,7 +96,7 @@ command(
 ┃
 ┃ 🔔 *ATTENTION EVERYONE!*
 ┃
-╰━━━━━━━━━━━━━━━━━╯`;
+**╰━━━━━━━━━━━━━━━━━╯**`;
 
                   await sendMessage(conn, message.from, notifyMessage, {
                       mentions: getParticipantIds(groupMetadata),
@@ -113,7 +113,7 @@ command(
 ┃ ❌ *NOTIFY FAILED*
 ┃ Failed to notify members.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
       );
     }
   }
@@ -134,13 +134,18 @@ command(
       const lidUsers = groupMetadata.participants.filter((p) => isLidUser(p.id));
       const pnUsers = groupMetadata.participants.filter((p) => isPnUser(p.id));
 
-      let info = `╭━━〔 *👥 GROUP INFO* 〕━━╮
-┃
-╰━━━━━━━━━━━━━━━━━╯\n\n`;
-                                              info += formatGroupInfo(groupMetadata);
-                                              info += `\n*🆔 Identifier Types:*\n`;
-      info += `• LID Users: ${lidUsers.length}\n`;
-      info += `• PN Users: ${pnUsers.length}\n`;
+      let info =
+        `╭━━〔 *👥 GROUP INFO* 〕━━╮\n` +
+        `┃\n`;
+
+      info += formatGroupInfo(groupMetadata);
+
+      info +=
+        `┃\n` +
+        `┃ 🆔 *IDENTIFIER TYPES*\n` +
+        `┃ ├─ LID Users   : ${lidUsers.length}\n` +
+        `┃ └─ PN Users    : ${pnUsers.length}\n` +
+        `**╰━━━━━━━━━━━━━━━━━╯**`;
 
       await sendMessage(conn, message.from, info);
     } catch (error) {
@@ -153,7 +158,7 @@ command(
 ┃ ❌ *GROUP INFO FAILED*
 ┃ Failed to get group information.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
       );
     }
   }
@@ -189,7 +194,7 @@ command(
 ┃ 👤 @${displayId(targetUser)}
 ┃ 🛡️ *ROLE:* Admin
 ┃
-╰━━━━━━━━━━━━━━━━━╯`,
+**╰━━━━━━━━━━━━━━━━━╯**`,
           { mentions: [targetUser] }
         );
       });
@@ -203,7 +208,7 @@ command(
 ┃ ❌ *PROMOTE FAILED*
 ┃ Failed to promote user.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
       );
     }
   }
@@ -239,7 +244,7 @@ command(
 ┃ 👤 @${displayId(targetUser)}
 ┃ 👤 *ROLE:* Member
 ┃
-╰━━━━━━━━━━━━━━━━━╯`,
+**╰━━━━━━━━━━━━━━━━━╯**`,
           { mentions: [targetUser] }
         );
       });
@@ -253,7 +258,7 @@ command(
 ┃ ❌ *DEMOTE FAILED*
 ┃ Failed to demote user.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
       );
     }
   }
@@ -285,7 +290,7 @@ command(
 ┃ 📭 *NO PENDING REQUESTS*
 ┃ No join requests found.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
           );
         }
 
@@ -302,7 +307,7 @@ command(
 ┃ ⚠️ *NO VALID REQUESTS*
 ┃ No valid pending requests found.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
           );
         }
 
@@ -320,7 +325,7 @@ command(
 ┃ ✅ *REQUESTS APPROVED*
 ┃ 👥 *COUNT:* ${participants.length}
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
         );
       });
     } catch (error) {
@@ -333,7 +338,7 @@ command(
 ┃ ❌ *APPROVAL FAILED*
 ┃ Failed to approve pending requests.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
       );
     }
   }
@@ -362,7 +367,7 @@ command(
 ┃ 📭 *NO ADMINS FOUND*
 ┃ This group has no admins.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
         );
       }
 
@@ -371,7 +376,7 @@ command(
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL ADMINS:* ${adminsList.length}
 ┃
-╰━━━━━━━━━━━━━━━━━╯\n\n`;
+**╰━━━━━━━━━━━━━━━━━╯**\n\n`;
 
                                                 const mentionIds = [];
       adminsList.forEach((admin, index) => {
@@ -391,7 +396,7 @@ command(
 ┃ ❌ *ADMINS FAILED*
 ┃ Failed to get admin list.
 ┃
-╰━━━━━━━━━━━━━━━━━╯`
+**╰━━━━━━━━━━━━━━━━━╯**`
       );
     }
   }

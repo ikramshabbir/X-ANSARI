@@ -263,7 +263,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *⏰ REMINDERS* 〕━━━╮
+        `╭━〔 *⏰ REMINDERS* 〕━╮
 ┃
 ┃ 📭 *NO REMINDERS*
 ┃ No pending reminders found.
@@ -276,7 +276,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *⏰ REMINDERS* 〕━━━╮
+      `╭━〔 *⏰ REMINDERS* 〕━╮
 ┃
 ┃ ⏰ *PENDING REMINDERS*
 ┃
@@ -305,7 +305,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━〔 *❌ CANCEL REMIND* 〕━━╮
+        `╭━﹝ *❌ CANCEL REMIND* ﹞━╮
 ┃
 ┃ ⚠️ *REMINDER ID REQUIRED*
 ┃
@@ -322,7 +322,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━〔 *❌ CANCEL REMIND* 〕━━╮
+        `╭━﹝ *❌ CANCEL REMIND* ﹞━╮
 ┃
 ┃ ❌ *REMINDER NOT FOUND*
 ┃ No reminder found with this ID.
@@ -335,7 +335,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━〔 *❌ CANCEL REMIND* 〕━━╮
+      `╭━﹝ *❌ CANCEL REMIND* ﹞━╮
 ┃
 ┃ ✅ *REMINDER CANCELLED*
 ┃ 🆔 *ID:* \`${id}\`
