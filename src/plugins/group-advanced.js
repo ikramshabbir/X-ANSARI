@@ -52,7 +52,7 @@ command(
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL MEMBERS:* ${participants.length}
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**\n\n`;
+╰━━━━━━━━━━━━━━━━━╯\n\n`;
 
 participants.forEach((participant, index) => {
           tagMessage += `${index + 1}. @${displayId(participant)}\n`;
@@ -73,7 +73,7 @@ participants.forEach((participant, index) => {
 ┃ ❌ *TAGALL FAILED*
 ┃ Failed to tag all members.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -96,7 +96,7 @@ command(
 ┃
 ┃ 🔔 *ATTENTION EVERYONE!*
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`;
+╰━━━━━━━━━━━━━━━━━╯`;
 
                   await sendMessage(conn, message.from, notifyMessage, {
                       mentions: getParticipantIds(groupMetadata),
@@ -113,7 +113,7 @@ command(
 ┃ ❌ *NOTIFY FAILED*
 ┃ Failed to notify members.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -135,7 +135,7 @@ command(
       const pnUsers = groupMetadata.participants.filter((p) => isPnUser(p.id));
 
       let info =
-        `╭━━〔 *👥 GROUP INFO* 〕━━╮\n` +
+        `╭━〔 *👥 GROUP INFO* 〕━╮\n` +
         `┃\n`;
 
       info += formatGroupInfo(groupMetadata);
@@ -145,7 +145,7 @@ command(
         `┃ 🆔 *IDENTIFIER TYPES*\n` +
         `┃ ├─ LID Users   : ${lidUsers.length}\n` +
         `┃ └─ PN Users    : ${pnUsers.length}\n` +
-        `**╰━━━━━━━━━━━━━━━━━╯**`;
+        `╰━━━━━━━━━━━━━━━━━╯`;
 
       await sendMessage(conn, message.from, info);
     } catch (error) {
@@ -158,7 +158,7 @@ command(
 ┃ ❌ *GROUP INFO FAILED*
 ┃ Failed to get group information.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -194,7 +194,7 @@ command(
 ┃ 👤 @${displayId(targetUser)}
 ┃ 🛡️ *ROLE:* Admin
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`,
+╰━━━━━━━━━━━━━━━━━╯`,
           { mentions: [targetUser] }
         );
       });
@@ -208,7 +208,7 @@ command(
 ┃ ❌ *PROMOTE FAILED*
 ┃ Failed to promote user.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -244,7 +244,7 @@ command(
 ┃ 👤 @${displayId(targetUser)}
 ┃ 👤 *ROLE:* Member
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`,
+╰━━━━━━━━━━━━━━━━━╯`,
           { mentions: [targetUser] }
         );
       });
@@ -258,7 +258,7 @@ command(
 ┃ ❌ *DEMOTE FAILED*
 ┃ Failed to demote user.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -285,12 +285,12 @@ command(
           return await sendError(
             conn,
             message.from,
-            `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
+            `╭━〔 *✅ ACCEPT ALL* 〕━╮
 ┃
 ┃ 📭 *NO PENDING REQUESTS*
 ┃ No join requests found.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
           );
         }
 
@@ -302,12 +302,12 @@ command(
           return await sendError(
             conn,
             message.from,
-            `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
+            `╭━〔 *✅ ACCEPT ALL* 〕━╮
 ┃
 ┃ ⚠️ *NO VALID REQUESTS*
 ┃ No valid pending requests found.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
           );
         }
 
@@ -320,12 +320,12 @@ command(
         await replyOk(
           conn,
           message,
-          `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
+          `╭━〔 *✅ ACCEPT ALL* 〕━╮
 ┃
 ┃ ✅ *REQUESTS APPROVED*
 ┃ 👥 *COUNT:* ${participants.length}
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       });
     } catch (error) {
@@ -333,12 +333,12 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━〔 *✅ ACCEPT ALL* 〕━━╮
+        `╭━〔 *✅ ACCEPT ALL* 〕━╮
 ┃
 ┃ ❌ *APPROVAL FAILED*
 ┃ Failed to approve pending requests.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }
@@ -367,7 +367,7 @@ command(
 ┃ 📭 *NO ADMINS FOUND*
 ┃ This group has no admins.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
         );
       }
 
@@ -376,7 +376,7 @@ command(
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL ADMINS:* ${adminsList.length}
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**\n\n`;
+╰━━━━━━━━━━━━━━━━━╯\n\n`;
 
                                                 const mentionIds = [];
       adminsList.forEach((admin, index) => {
@@ -396,7 +396,7 @@ command(
 ┃ ❌ *ADMINS FAILED*
 ┃ Failed to get admin list.
 ┃
-**╰━━━━━━━━━━━━━━━━━╯**`
+╰━━━━━━━━━━━━━━━━━╯`
       );
     }
   }

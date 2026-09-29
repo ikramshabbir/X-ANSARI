@@ -30,7 +30,7 @@ command(
   },
   async (message, conn) => {
     if (!(await isPrivileged(message, conn))) {
-      await replyFail(conn, message, `╭━━━〔 *📝 CREATELOG* 〕━━━╮
+      await replyFail(conn, message, `╭━〔 *📝 CREATELOG* 〕━╮
 ┃
 ┃ 🔒 *OWNER/SUDO ONLY*
 ┃
@@ -43,7 +43,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📝 CREATELOG* 〕━━━╮
+        `╭━〔 *📝 CREATELOG* 〕━╮
 ┃
 ┃ ⚠️ *MANUAL SETUP REQUIRED*
 ┃
@@ -58,7 +58,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📝 CREATELOG* 〕━━━╮
+        `╭━〔 *📝 CREATELOG* 〕━╮
 ┃
 ┃ ❌ *CREATELOG FAILED*
 ┃ ${res.error || "Unknown error"}
@@ -70,7 +70,7 @@ command(
     await replyOk(
       conn,
       message,
-      `╭━━━〔 *📝 CREATELOG* 〕━━━╮
+      `╭━〔 *📝 CREATELOG* 〕━╮
 ┃
 ┃ ${res.created ? "✅ *SYSTEM GROUP CREATED*" : "✅ *SYSTEM GROUP FOUND*"}
 ┃
@@ -91,7 +91,7 @@ command(
   },
   async (message, conn) => {
     if (!isOwnerMessage(message, conn) && !message.key.fromMe) {
-      await replyFail(conn, message, `╭━━━〔 *📝 SETLOG* 〕━━━╮
+      await replyFail(conn, message, `╭━━〔 *📝 SETLOG* 〕━━╮
 ┃
 ┃ 🔒 *OWNER ONLY*
 ┃
@@ -174,7 +174,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
+        `╭━﹝ *🧑‍🔧 GROUP SETUP* ﹞━╮
 ┃
 ┃ ⚙️ *QUICK GROUP MODERATION*
 ┃

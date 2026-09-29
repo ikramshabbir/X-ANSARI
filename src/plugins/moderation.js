@@ -46,7 +46,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *👋 WELCOME* 〕━━━╮
+        `╭━━〔 *👋 WELCOME* 〕━━╮
 ┃
 ┃ ${s.welcome ? await t("WELCOME_ON") : await t("WELCOME_OFF")}
 ┃
@@ -63,7 +63,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *👋 WELCOME* 〕━━━╮
+      `╭━━〔 *👋 WELCOME* 〕━━╮
 ┃
 ┃ ✅ *WELCOME UPDATED*
 ┃ 📝 *TEXT:* ${args}
@@ -81,7 +81,7 @@ command(
     await reply(
         conn,
         message,
-        `╭━━━〔 *👋 WELCOME* 〕━━━╮
+        `╭━━〔 *👋 WELCOME* 〕━━╮
 ┃
 ┃ ${args === "on" ? await t("WELCOME_ON") : await t("WELCOME_OFF")}
 ┃
@@ -108,7 +108,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *👋 GOODBYE* 〕━━━╮
+        `╭━━〔 *👋 GOODBYE* 〕━━╮
 ┃
 ┃ ${s.goodbye ? await t("GOODBYE_ON") : await t("GOODBYE_OFF")}
 ┃
@@ -125,7 +125,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *👋 GOODBYE* 〕━━━╮
+      `╭━━〔 *👋 GOODBYE* 〕━━╮
 ┃
 ┃ ✅ *GOODBYE UPDATED*
 ┃ 📝 *TEXT:* ${args}
@@ -143,7 +143,7 @@ command(
     await reply(
         conn,
         message,
-        `╭━━━〔 *👋 GOODBYE* 〕━━━╮
+        `╭━━〔 *👋 GOODBYE* 〕━━╮
 ┃
 ┃ ${args === "on" ? await t("GOODBYE_ON") : await t("GOODBYE_OFF")}
 ┃
@@ -185,7 +185,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *🔗 ANTILINK* 〕━━━╮
+      `╭━━〔 *🔗 ANTILINK* 〕━━╮
 ┃
 ┃ 🔗 *ANTI-LINK:* ${onOff(s.antilink)}
 ┃
@@ -226,7 +226,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *🛡️ ANTISPAM* 〕━━━╮
+      `╭━━〔 *🛡️ ANTISPAM* 〕━━╮
 ┃
 ┃ 🛡️ *ANTI-SPAM:* ${onOff(s.antispam)}
 ┃ 📊 *LIMIT:* ${s.antispamLimit}
@@ -252,7 +252,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━〔 *⚙️ GROUP SETTINGS* 〕━━╮
+      `╭━﹝ *⚙️ GROUP SETTINGS* ﹞━╮
 ┃
 ┃ 👋 *WELCOME:* ${onOff(s.welcome)}
 ┃ 👋 *GOODBYE:* ${onOff(s.goodbye)}

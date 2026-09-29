@@ -83,7 +83,7 @@ export async function runSetupCommand(message, conn, args) {
     return {
       ok: false,
       text:
-        `╭━━━〔 *⚙️ SETUP* 〕━━━╮
+        `╭━━〔 *⚙️ SETUP* 〕━━╮
 ┃
 ┃ ⚠️ *SYSTEM LOG GROUP REQUIRED*
 ┃

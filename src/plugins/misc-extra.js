@@ -225,7 +225,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📢 BROADCAST* 〕━━━╮
+        `╭━〔 *📢 BROADCAST* 〕━╮
 ┃
 ┃ 🔒 *OWNER ONLY*
 ┃ This command is restricted to the owner.
@@ -240,7 +240,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📢 BROADCAST* 〕━━━╮
+        `╭━〔 *📢 BROADCAST* 〕━╮
 ┃
 ┃ ⚠️ *MESSAGE REQUIRED*
 ┃
@@ -259,7 +259,7 @@ command(
         await reply(
           conn,
           message,
-          `╭━━━〔 *📢 BROADCAST* 〕━━━╮
+          `╭━〔 *📢 BROADCAST* 〕━╮
 ┃
 ┃ ❌ *GROUP FETCH FAILED*
 ┃ ${err?.message || err}
@@ -287,7 +287,7 @@ command(
       await replyOk(
         conn,
         message,
-        `╭━━━〔 *📢 BROADCAST* 〕━━━╮
+        `╭━〔 *📢 BROADCAST* 〕━╮
 ┃
 ┃ ✅ *BROADCAST COMPLETE*
 ┃ 📤 *SENT:* ${ok}

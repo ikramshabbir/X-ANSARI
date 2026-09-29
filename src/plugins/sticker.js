@@ -176,7 +176,7 @@ const stickerHandler = async (message, conn) => {
           await replyFail(
             conn,
             message,
-            `╭━━━〔 *🎨 STICKER* 〕━━━╮
+            `╭━〔 *🎨 STICKER* 〕━╮
 ┃
 ┃ ⚠️ *MEDIA REQUIRED*
 ┃ Reply to an image/video with
@@ -193,7 +193,7 @@ const stickerHandler = async (message, conn) => {
         await replyFail(
         conn,
         message,
-        `╭━━━〔 *🎨 STICKER* 〕━━━╮
+        `╭━〔 *🎨 STICKER* 〕━╮
 ┃
 ┃ ❌ *STICKER FAILED*
 ┃ ${err?.message || "Sticker failed."}
