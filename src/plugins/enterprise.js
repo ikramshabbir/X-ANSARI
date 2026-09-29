@@ -49,7 +49,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📋 AUDIT* 〕━━━╮
+        `╭━━﹝ *📋 AUDIT* ﹞━━╮
 ┃
 ┃ ❌ *PERMISSION DENIED*
 ┃ No permission.
@@ -62,7 +62,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📋 AUDIT* 〕━━━╮
+        `╭━━﹝ *📋 AUDIT* ﹞━━╮
 ┃
 ┃ ⚠️ *SYSTEM LOG GROUP REQUIRED*
 ┃ Use \`#audit\` only in the *system log group*.
@@ -83,7 +83,7 @@ command(
       await replyOk(
       conn,
       message,
-      `╭━━━〔 *📋 AUDIT* 〕━━━╮\n` +
+      `╭━━﹝ *📋 AUDIT* ﹞━━╮\n` +
       `┃\n` +
       `┃ ✅ *AUDIT LOG CLEARED*\n` +
       `┃ 🧹 All audit entries removed.\n` +
@@ -104,7 +104,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *📋 AUDIT* 〕━━━╮\n` +
+      `╭━━﹝ *📋 AUDIT* ﹞━━╮\n` +
       `┃\n` +
       `┃ 📭 *AUDIT LOG EMPTY*\n` +
       `┃ No audit entries found.\n` +
@@ -123,7 +123,7 @@ command(
     await reply(
     conn,
     message,
-    `╭━━━〔 *📋 AUDIT* 〕━━━╮\n` +
+    `╭━━﹝ *📋 AUDIT* ﹞━━╮\n` +
     `┃\n` +
     `┃ 📋 *AUDIT LOG — LATEST*\n` +
     `┃\n` +
@@ -150,7 +150,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *🚩 FLAG* 〕━━━╮
+        `╭━━﹝ *🚩 FLAG* ﹞━━╮
 ┃
 ┃ ❌ *PERMISSION DENIED*
 ┃ No permission.
@@ -169,7 +169,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *🚩 FLAG* 〕━━━╮\n` +
+      `╭━━﹝ *🚩 FLAG* ﹞━━╮\n` +
       `┃\n` +
       `┃ 🚩 *FEATURE FLAGS*\n` +
       `┃\n` +
@@ -203,7 +203,7 @@ command(
     await replyOk(
       conn,
       message,
-      `╭━━━〔 *🚩 FLAG* 〕━━━╮\n` +
+      `╭━━﹝ *🚩 FLAG* ﹞━━╮\n` +
       `┃\n` +
       `┃ ✅ *FLAG UPDATED*\n` +
       `┃ 🚩 *NAME:* ${name}\n` +
@@ -226,7 +226,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📜 POLICY* 〕━━━╮
+        `╭━━﹝ *📜 POLICY* ﹞━━╮
 ┃
 ┃ ❌ *PERMISSION DENIED*
 ┃ No permission.
@@ -241,7 +241,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📜 POLICY* 〕━━━╮\n` +
+        `╭━━﹝ *📜 POLICY* ﹞━━╮\n` +
         `┃\n` +
         `┃ 📜 *GLOBAL POLICIES*\n` +
         `┃\n` +
@@ -273,7 +273,7 @@ command(
     await replyOk(
       conn,
       message,
-      `╭━━━〔 *📜 POLICY* 〕━━━╮\n` +
+      `╭━━﹝ *📜 POLICY* ﹞━━╮\n` +
       `┃\n` +
       `┃ ✅ *POLICY UPDATED*\n` +
       `┃ 📜 *KEY:* ${key}\n` +
@@ -296,7 +296,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *👤 ROLE* 〕━━━╮
+        `╭━━﹝ *👤 ROLE* ﹞━━╮
 ┃
 ┃ ❌ *PERMISSION DENIED*
 ┃ Owner/admin only.
@@ -314,7 +314,7 @@ command(
         await reply(
           conn,
           message,
-          `╭━━━〔 *👤 ROLE* 〕━━━╮\n` +
+          `╭━━﹝ *👤 ROLE* ﹞━━╮\n` +
           `┃\n` +
           `┃ 📭 *ROLE LIST EMPTY*\n` +
           `┃ No custom roles assigned.\n` +
@@ -327,7 +327,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *👤 ROLE* 〕━━━╮\n` +
+        `╭━━﹝ *👤 ROLE* ﹞━━╮\n` +
         `┃\n` +
         `┃ 👤 *ROLE LIST*\n` +
         `┃\n` +
@@ -344,7 +344,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *👤 ROLE* 〕━━━╮\n` +
+        `╭━━﹝ *👤 ROLE* ﹞━━╮\n` +
         `┃\n` +
         `┃ 👤 *YOUR ROLE*\n` +
         `┃ 🛡️ *ROLE:* ${r}\n` +
@@ -381,7 +381,7 @@ command(
         await replyOk(
         conn,
         message,
-        `╭━━━〔 *👤 ROLE* 〕━━━╮\n` +
+        `╭━━﹝ *👤 ROLE* ﹞━━╮\n` +
         `┃\n` +
         `┃ ✅ *ROLE UPDATED*\n` +
         `┃ 👤 *USER:* ${n}\n` +
@@ -393,7 +393,7 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *👤 ROLE* 〕━━━╮
+          `╭━━﹝ *👤 ROLE* ﹞━━╮
 ┃
 ┃ ❌ *ROLE UPDATE FAILED*
 ┃ ${err.message}
@@ -407,7 +407,7 @@ command(
     await replyFail(
         conn,
         message,
-        `╭━━━〔 *👤 ROLE* 〕━━━╮
+        `╭━━﹝ *👤 ROLE* ﹞━━╮
 ┃
 ┃ ⚠️ *INVALID ACTION*
 ┃ Use \`list\`, \`me\`, or \`set\`.
@@ -429,7 +429,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *💾 BACKUP* 〕━━━╮
+        `╭━━﹝ *💾 BACKUP* ﹞━━╮
 ┃
 ┃ ❌ *PERMISSION DENIED*
 ┃ No permission.
@@ -460,7 +460,7 @@ command(
           mimetype: "application/json",
           fileName: `xasena-backup-${checksum}.json`,
           caption:
-              `╭━━━〔 *💾 BACKUP* 〕━━━╮\n` +
+              `╭━━﹝ *💾 BACKUP* ﹞━━╮\n` +
               `┃\n` +
               `┃ ✅ *BACKUP READY*\n` +
               `┃ 🔐 *SHA256:* \`${checksum}\`\n` +
@@ -472,7 +472,7 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *💾 BACKUP* 〕━━━╮
+          `╭━━﹝ *💾 BACKUP* ﹞━━╮
 ┃
 ┃ ❌ *BACKUP FAILED*
 ┃ ${err?.message || "Backup failed"}
@@ -496,7 +496,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *💾 BACKUP* 〕━━━╮
+        `╭━━﹝ *💾 BACKUP* ﹞━━╮
 ┃
 ┃ ❌ *PERMISSION DENIED*
 ┃ Owner/sudo only.
@@ -510,7 +510,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *💾 BACKUP* 〕━━━╮\n` +
+      `╭━━﹝ *💾 BACKUP* ﹞━━╮\n` +
     `┃\n` +
     `┃ 📈 *RUNTIME METRICS*\n` +
     `┃\n` +
