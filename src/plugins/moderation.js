@@ -356,7 +356,7 @@ command(
             await reply(
               conn,
               message,
-              `╭━━━〔 *⚠️ WARN* 〕━━━╮
+              `╭━━━﹝ *⚠️ WARN* ﹞━━━╮
 ┃
 ┃ ❌ *REMOVE FAILED*
 ┃ Could not remove user (need admin).
@@ -386,7 +386,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *⚠️ UNWARN* 〕━━━╮
+      `╭━━━﹝ *⚠️ UNWARN* ﹞━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
@@ -407,7 +407,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *⚠️ UNWARN* 〕━━━╮
+      `╭━━━﹝ *⚠️ UNWARN* ﹞━━━╮
 ┃
 ┃ ✅ *WARNS RESET*
 ┃ 👤 @${displayId(target)}
@@ -447,7 +447,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *⚠️ WARNS* 〕━━━╮
+      `╭━━━﹝ *⚠️ WARNS* ﹞━━━╮
 ┃
 ┃ 👤 *USER:* @${displayId(target)}
 ┃ ⚠️ *WARNS:* ${count}/${settings.warnLimit}
@@ -474,7 +474,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *🔇 MUTE* 〕━━━╮
+      `╭━━━﹝ *🔇 MUTE* ﹞━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
@@ -504,7 +504,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *🔇 MUTE* 〕━━━╮
+      `╭━━━﹝ *🔇 MUTE* ﹞━━━╮
 ┃
 ┃ 🔇 *MUTED*
 ┃ 👤 @${displayId(target)}
@@ -531,7 +531,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *🔊 UNMUTE* 〕━━━╮
+      `╭━━━﹝ *🔊 UNMUTE* ﹞━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
@@ -559,7 +559,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *🔊 UNMUTE* 〕━━━╮
+      `╭━━━﹝ *🔊 UNMUTE* ﹞━━━╮
 ┃
 ┃ 🔊 *UNMUTED*
 ┃ 👤 @${displayId(target)}
@@ -619,7 +619,7 @@ command(
         await reply(
               conn,
               message,
-              `╭━━━〔 *🚀 KICKALL* 〕━━━╮
+              `╭━━━﹝ *🚀 KICKALL* ﹞━━━╮
 ┃
 ┃ ❌ *KICKALL FAILED*
 ┃ Failed to remove all members.
@@ -681,7 +681,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🦵 KICK* 〕━━━╮
+        `╭━━━﹝ *🦵 KICK* ﹞━━━╮
 ┃
 ┃ ⚠️ *USER REQUIRED*
 ┃ Reply/mention a user.
@@ -705,7 +705,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🦵 KICK* 〕━━━╮
+        `╭━━━﹝ *🦵 KICK* ﹞━━━╮
 ┃
 ┃ ✅ *REMOVED*
 ┃ 👤 @${displayId(target)}
@@ -716,7 +716,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🦵 KICK* 〕━━━╮
+        `╭━━━﹝ *🦵 KICK* ﹞━━━╮
 ┃
 ┃ ❌ *KICK FAILED*
 ┃ Bot must be admin.
