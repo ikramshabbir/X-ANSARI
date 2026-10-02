@@ -383,7 +383,7 @@ async function ttHandler(message, conn) {
   await withTyping(conn, message.from, async () => {
     try {
       const result = await fetchTikTok(url);
-      const caption = `╭━━━〔 *🎬 TIKTOK* 〕━━╮      
+      const caption = `╭━━━﹝ *🎵 TIKTOK* ﹞━━━╮      
 ┃
 ┃ *▶️ TikTok Video*
 ┃
@@ -401,7 +401,7 @@ async function ttHandler(message, conn) {
         conn,
         message,
         err?.message ||
-                               `╭━━━〔 *🎵 TIKTOK* 〕━━━╮
+                               `╭━━━﹝ *🎵 TIKTOK* ﹞━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ TikTok download failed.
@@ -448,7 +448,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📘 FACEBOOK* 〕━━━╮
+        `╭━━﹝ *📘 FACEBOOK* ﹞━━╮
 ┃
 ┃ ⚠️ *FACEBOOK URL REQUIRED*
 ┃
@@ -499,7 +499,7 @@ command(
             conn,
             message,
             err?.message ||
-                               `╭━━━〔 *📘 FACEBOOK* 〕━━━╮
+                               `╭━━﹝ *📘 FACEBOOK* ﹞━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ Facebook download failed.
