@@ -238,7 +238,7 @@ async function takeHandler(message, conn) {
         await replyFail(
             conn,
             message,
-            `╭━━━〔 *🏷️ TAKE* 〕━━━╮
+            `╭━━━﹝ *🏷️ TAKE* ﹞━━━╮
 ┃
 ┃ ⚠️ *STICKER REQUIRED*
 ┃ Reply to a sticker.
@@ -264,7 +264,7 @@ async function takeHandler(message, conn) {
         await replyFail(
               conn,
               message,
-              `╭━━━〔 *🏷️ TAKE* 〕━━━╮
+              `╭━━━﹝ *🏷️ TAKE* ﹞━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ Could not download sticker.
@@ -294,7 +294,7 @@ async function takeHandler(message, conn) {
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *🏷️ TAKE* 〕━━━╮
+        `╭━━━﹝ *🏷️ TAKE* ﹞━━━╮
 ┃
 ┃ ❌ *TAKE FAILED*
 ┃ ${err?.message || "Take failed."}
@@ -346,7 +346,7 @@ command(
           await replyFail(
         conn,
         message,
-        `╭━━━〔 *🖼️ TOIMG* 〕━━━╮
+        `╭━━━﹝ *🖼️ TOIMG* ﹞━━━╮
 ┃
 ┃ ⚠️ *STICKER REQUIRED*
 ┃ Reply to a sticker.
@@ -360,7 +360,7 @@ command(
           await replyFail(
         conn,
         message,
-        `╭━━━〔 *🖼️ TOIMG* 〕━━━╮
+        `╭━━━﹝ *🖼️ TOIMG* ﹞━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ Could not download sticker.
@@ -393,7 +393,7 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━〔 *🖼️ TOIMG* 〕━━━╮
+        `╭━━━﹝ *🖼️ TOIMG* ﹞━━━╮
 ┃
 ┃ ❌ *TOIMG FAILED*
 ┃ ${err?.message || "toimg failed."}
@@ -421,7 +421,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🏷️ EXIF* 〕━━━╮\n` +
+        `╭━━━﹝ *🏷️ EXIF* ﹞━━━╮\n` +
               `┃\n` +
               `┃ 🏷️ *PACK:* ${pack}\n` +
               `┃ ✍️ *AUTHOR:* ${author}\n` +
@@ -436,7 +436,7 @@ command(
       await replyFail(
       conn,
       message,
-      `╭━━━〔 *🏷️ EXIF* 〕━━━╮
+      `╭━━━﹝ *🏷️ EXIF* ﹞━━━╮
 ┃
 ┃ ⚠️ *PACK NAME REQUIRED*
 ┃
@@ -452,7 +452,7 @@ command(
     await replyOk(
       conn,
       message,
-      `╭━━━〔 *🏷️ EXIF* 〕━━━╮\n` +
+      `╭━━━﹝ *🏷️ EXIF* ﹞━━━╮\n` +
     `┃\n` +
     `┃ ✅ *EXIF UPDATED*\n` +
     `┃ 🏷️ *PACK:* ${pack}\n` +
