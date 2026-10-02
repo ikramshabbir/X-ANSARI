@@ -35,7 +35,7 @@ command(
         }
         const participantIds = getParticipantIds(groupMetadata);
 
-        const finalMessage = `╭━━━〔 *📢 MENTION* 〕━━━╮
+        const finalMessage = `╭━━━﹝ *📢 MENTION* ﹞━━━╮
 ┃
 ┃ ${mentionText}
 ┃
@@ -50,7 +50,7 @@ command(
       await sendError(
         conn,
         message.from,
-        `╭━━━〔 *📢 MENTION* 〕━━━╮
+        `╭━━━﹝ *📢 MENTION* ﹞━━━╮
 ┃
 ┃ ❌ *MENTION FAILED*
 ┃ Failed to mention group members.
