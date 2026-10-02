@@ -99,7 +99,7 @@ command(
       return;
     }
     if (!message.isGroup) {
-      await replyFail(conn, message, `╭━━━〔 *📝 SETLOG* 〕━━━╮
+      await replyFail(conn, message, `╭━━〔 *📝 SETLOG* 〕━━╮
 ┃
 ┃ ⚠️ *GROUP REQUIRED*
 ┃ Run this command inside a group.
@@ -111,7 +111,7 @@ command(
     await replyOk(
         conn,
         message,
-        `╭━━━〔 *📝 SETLOG* 〕━━━╮
+        `╭━━〔 *📝 SETLOG* 〕━━╮
 ┃
 ┃ ✅ *SYSTEM LOG GROUP SET*
 ┃
@@ -137,7 +137,7 @@ command(
       await replyFail(
       conn,
       message,
-      `╭━━━〔 *⚙️ SETUP* 〕━━━╮
+      `╭━━━﹝ *⚙️ SETUP* ﹞━━━╮
 ┃
 ┃ 🔒 *OWNER/SUDO ONLY*
 ┃ This command is restricted to owner/sudo.
@@ -204,7 +204,7 @@ command(
       await replyOk(
         conn,
         message,
-        `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
+        `╭━﹝ *🧑‍🔧 GROUP SETUP* ﹞━╮
 ┃
 ┃ ✅ *RECOMMENDED APPLIED*
 ┃
@@ -225,7 +225,7 @@ command(
         antilink: false,
         antispam: false,
       });
-      await replyOk(conn, message, `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
+      await replyOk(conn, message, `╭━﹝ *🧑‍🔧 GROUP SETUP* ﹞━╮
 ┃
 ┃ ✅ *MINIMAL APPLIED*
 ┃
@@ -244,7 +244,7 @@ command(
         antilink: false,
         antispam: false,
       });
-      await replyOk(conn, message, `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
+      await replyOk(conn, message, `╭━﹝ *🧑‍🔧 GROUP SETUP* ﹞━╮
 ┃
 ┃ 🔴 *MODERATION DISABLED*
 ┃
@@ -257,7 +257,7 @@ command(
       return;
     }
 
-    await replyFail(conn, message, `╭━━〔 *🧑‍🔧 GROUP SETUP* 〕━━╮
+    await replyFail(conn, message, `╭━﹝ *🧑‍🔧 GROUP SETUP* ﹞━╮
 ┃
 ┃ ⚠️ *INVALID OPTION*
 ┃
