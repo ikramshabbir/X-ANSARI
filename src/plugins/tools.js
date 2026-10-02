@@ -340,7 +340,7 @@ command(
           await replyFail(
             conn,
             message,
-            `╭━━━〔 *🎵 TOMP3* 〕━━━╮
+            `╭━━━﹝ *🎵 TOMP3* ﹞━━━╮
 ┃
 ┃ ⚠️ *MEDIA REQUIRED*
 ┃ Reply to a video or audio.
@@ -454,7 +454,7 @@ async function urlHandler(message, conn) {
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *🔗 TOURURL* 〕━━━╮
+          `╭━━━﹝ *🔗 TOURURL* ﹞━━━╮
 ┃
 ┃ ⚠️ *MEDIA REQUIRED*
 ┃ Reply to an image, video, audio, or document.
@@ -478,7 +478,7 @@ async function urlHandler(message, conn) {
       await reply(
         conn,
         message,
-        `╭━━━〔 *🔗 TOURURL* 〕━━━╮
+        `╭━━━﹝ *🔗 TOURURL* ﹞━━━╮
 ┃
 ┃ 🔗 *URL:*
 ┃ ${url}
@@ -489,7 +489,7 @@ async function urlHandler(message, conn) {
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *🔗 TOURURL* 〕━━━╮
+        `╭━━━﹝ *🔗 TOURURL* ﹞━━━╮
 ┃
 ┃ ❌ *UPLOAD FAILED*
 ┃ ${err?.message || "Upload failed."}
@@ -542,7 +542,7 @@ command(
           await replyFail(
           conn,
           message,
-          `╭━━━〔 *💬 QUOTE* 〕━━━╮
+          `╭━━━﹝ *💬 QUOTE* ﹞━━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
@@ -616,7 +616,7 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *💬 QUOTE* 〕━━━╮
+          `╭━━━﹝ *💬 QUOTE* ﹞━━━╮
 ┃
 ┃ ❌ *QUOTE FAILED*
 ┃ ${err?.message || "Unable to create quote sticker."}
@@ -645,7 +645,7 @@ command(
       await replyFail(
       conn,
       message,
-      `╭━━━〔 *✨ FANCY* 〕━━━╮
+      `╭━━━﹝ *✨ FANCY* ﹞━━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
@@ -667,7 +667,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *✨ FANCY* 〕━━━╮
+      `╭━━━﹝ *✨ FANCY* ﹞━━━╮
 ┃
 ┃ 😎 *Stylish Font:*
 ${fancyOutput}
@@ -696,7 +696,7 @@ command(
           await replyFail(
           conn,
           message,
-          `╭━━━〔 *🔊 TTS* 〕━━━╮
+          `╭━━━﹝ *🔊 TTS* ﹞━━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
@@ -736,7 +736,7 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *🔊 TTS* 〕━━━╮
+          `╭━━━﹝ *🔊 TTS* ﹞━━━╮
 ┃
 ┃ ❌ *TTS FAILED*
 ┃ ${err?.message || "Unable to generate audio."}
@@ -761,7 +761,7 @@ async function textToSticker(message, conn, { animated = false } = {}) {
     await replyFail(
       conn,
       message,
-      `╭━━〔 *📝 ${pattern.toUpperCase()}* 〕━━╮
+      `╭━━﹝ *📝 ${pattern.toUpperCase()}* ﹞━━╮
 ┃
 ┃ ⚠️ *TEXT REQUIRED*
 ┃
@@ -914,7 +914,7 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *📝 TTP* 〕━━━╮
+          `╭━━━﹝ *📝 TTP* ﹞━━━╮
 ┃
 ┃ ❌ *STICKER FAILED*
 ┃ ${err?.message || "Unable to create sticker."}
@@ -941,7 +941,7 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *🎞️ ATTP* 〕━━━╮
+          `╭━━━﹝ *🎞️ ATTP* ﹞━━━╮
 ┃
 ┃ ❌ *STICKER FAILED*
 ┃ ${err?.message || "Unable to create animated sticker."}
