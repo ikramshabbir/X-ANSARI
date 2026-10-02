@@ -383,8 +383,7 @@ async function ttHandler(message, conn) {
   await withTyping(conn, message.from, async () => {
     try {
       const result = await fetchTikTok(url);
-      const caption = `╭━━━〔 *🎬 TIKTOK* 〕━━╮
-      
+      const caption = `╭━━━〔 *🎬 TIKTOK* 〕━━╮      
 ┃
 ┃ *▶️ TikTok Video*
 ┃
