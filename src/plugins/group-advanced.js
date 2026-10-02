@@ -47,7 +47,7 @@ command(
         const participants = groupMetadata.participants;
         const mentionIds = getParticipantIds(groupMetadata);
 
-        let tagMessage = `╭━━━〔 *👥 TAGALL* 〕━━━╮
+        let tagMessage = `╭━━━﹝ *👥 TAGALL* ﹞━━━╮
 ┃
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL MEMBERS:* ${participants.length}
@@ -68,7 +68,7 @@ participants.forEach((participant, index) => {
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *👥 TAGALL* 〕━━━╮
+        `╭━━━﹝ *👥 TAGALL* ﹞━━━╮
 ┃
 ┃ ❌ *TAGALL FAILED*
 ┃ Failed to tag all members.
@@ -92,7 +92,7 @@ command(
     try {
       await withTyping(conn, message.from, async () => {
         const groupMetadata = await getGroupMeta(conn, message.from);
-        const notifyMessage = `╭━━━〔 *📢 NOTIFY* 〕━━━╮
+        const notifyMessage = `╭━━━﹝ *📢 NOTIFY* ﹞━━━╮
 ┃
 ┃ 🔔 *ATTENTION EVERYONE!*
 ┃
@@ -108,7 +108,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📢 NOTIFY* 〕━━━╮
+        `╭━━━﹝ *📢 NOTIFY* ﹞━━━╮
 ┃
 ┃ ❌ *NOTIFY FAILED*
 ┃ Failed to notify members.
@@ -153,7 +153,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━〔 *👥 GROUP INFO* 〕━━╮
+        `╭━〔 *👥 GROUP INFO* 〕━╮
 ┃
 ┃ ❌ *GROUP INFO FAILED*
 ┃ Failed to get group information.
@@ -188,7 +188,7 @@ command(
         await replyOk(
           conn,
           message,
-          `╭━━━〔 *⬆️ PROMOTE* 〕━━━╮
+          `╭━━━﹝ *⬆️ PROMOTE* ﹞━━━╮
 ┃
 ┃ ✅ *PROMOTED*
 ┃ 👤 @${displayId(targetUser)}
@@ -203,7 +203,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *⬆️ PROMOTE* 〕━━━╮
+        `╭━━━﹝ *⬆️ PROMOTE* ﹞━━━╮
 ┃
 ┃ ❌ *PROMOTE FAILED*
 ┃ Failed to promote user.
@@ -238,7 +238,7 @@ command(
         await replyOk(
           conn,
           message,
-          `╭━━━〔 *⬇️ DEMOTE* 〕━━━╮
+          `╭━━━﹝ *⬇️ DEMOTE* ﹞━━━╮
 ┃
 ┃ ✅ *DEMOTED*
 ┃ 👤 @${displayId(targetUser)}
@@ -253,7 +253,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *⬇️ DEMOTE* 〕━━━╮
+        `╭━━━﹝ *⬇️ DEMOTE* ﹞━━━╮
 ┃
 ┃ ❌ *DEMOTE FAILED*
 ┃ Failed to demote user.
@@ -362,7 +362,7 @@ command(
         return await sendError(
           conn,
           message.from,
-          `╭━━━〔 *👑 ADMINS* 〕━━━╮
+          `╭━━━﹝ *👑 ADMINS* ﹞━━━╮
 ┃
 ┃ 📭 *NO ADMINS FOUND*
 ┃ This group has no admins.
@@ -371,7 +371,7 @@ command(
         );
       }
 
-      let adminList = `╭━━━〔 *👑 ADMINS* 〕━━━╮
+      let adminList = `╭━━━﹝ *👑 ADMINS* ﹞━━━╮
 ┃
 ┃ 🏷️ *GROUP:* ${groupMetadata.subject}
 ┃ 👥 *TOTAL ADMINS:* ${adminsList.length}
@@ -391,7 +391,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *👑 ADMINS* 〕━━━╮
+        `╭━━━﹝ *👑 ADMINS* ﹞━━━╮
 ┃
 ┃ ❌ *ADMINS FAILED*
 ┃ Failed to get admin list.
