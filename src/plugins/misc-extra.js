@@ -37,7 +37,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🌐 LANG* 〕━━━╮
+        `╭━━━﹝ *🌐 LANG* ﹞━━━╮
 ┃
 ┃ 🌐 *LANGUAGE*
 ┃ 🗣️ *CURRENT:* ${lang}
@@ -77,7 +77,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🚫 DISABLE* 〕━━━╮
+        `╭━━━﹝ *🚫 DISABLE* ﹞━━━╮
 ┃
 ┃ ⚠️ *COMMAND NAME REQUIRED*
 ┃
@@ -101,7 +101,7 @@ command(
       await reply(
       conn,
       message,
-      `╭━━━〔 *🚫 DISABLE* 〕━━━╮
+      `╭━━━﹝ *🚫 DISABLE* ﹞━━━╮
 ┃
 ┃ 🔒 *COMMAND PROTECTED*
 ┃ That command cannot be disabled.
@@ -119,7 +119,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *🚫 DISABLE* 〕━━━╮
+      `╭━━━﹝ *🚫 DISABLE* ﹞━━━╮
 ┃
 ┃ ✅ *COMMAND DISABLED*
 ┃ 🔧 *COMMAND:* ${BOT_INFO.PREFIX}${name}
@@ -146,7 +146,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *✅ ENABLE* 〕━━━╮
+        `╭━━━﹝ *✅ ENABLE* ﹞━━━╮
 ┃
 ┃ ⚠️ *COMMAND NAME REQUIRED*
 ┃
@@ -165,7 +165,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *✅ ENABLE* 〕━━━╮
+      `╭━━━﹝ *✅ ENABLE* ﹞━━━╮
 ┃
 ┃ ✅ *COMMAND ENABLED*
 ┃ 🔧 *COMMAND:* ${BOT_INFO.PREFIX}${name}
@@ -190,7 +190,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🔌 PLUGINS* 〕━━━╮
+        `╭━━━﹝ *🔌 PLUGINS* ﹞━━━╮
 ┃
 ┃ 📭 *NO DISABLED COMMANDS*
 ┃ All commands are enabled.
@@ -202,7 +202,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *🔌 PLUGINS* 〕━━━╮
+      `╭━━━﹝ *🔌 PLUGINS* ﹞━━━╮
 ┃
 ┃ 🚫 *DISABLED COMMANDS*
 ┃
@@ -315,7 +315,7 @@ command(
     await reply(
         conn,
         message,
-        `╭━━━〔 *📋 CMDLIST* 〕━━━╮
+        `╭━━━﹝ *📋 CMDLIST* ﹞━━━╮
 ┃
 ┃ 📋 *TOTAL COMMANDS:* ${cmds.length}
 ┃
