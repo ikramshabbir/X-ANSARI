@@ -53,7 +53,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *⚙️ MODE* 〕━━━╮\n` +
+        `╭━━━﹝ *⚙️ MODE* ﹞━━━╮\n` +
           `┃\n` +
           `┃ ⚙️ *BOT MODE:* ${mode}\n` +
           `┃\n` +
@@ -119,7 +119,7 @@ command(
         await reply(
           conn,
           message,
-          `╭━━━〔 *🛡️ SUDO* 〕━━━╮\n` +
+          `╭━━━﹝ *🛡️ SUDO* ﹞━━━╮\n` +
         `┃\n` +
         `┃ 📭 *SUDO LIST EMPTY*\n` +
         `┃ No sudo users added.\n` +
@@ -133,7 +133,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *🛡️ SUDO* 〕━━━╮\n` +
+        `╭━━━﹝ *🛡️ SUDO* ﹞━━━╮\n` +
         `┃\n` +
         `┃ 🛡️ *SUDO LIST*\n` +
         `┃\n` +
@@ -193,7 +193,7 @@ command(
       await replyOk(
         conn,
         message,
-        `╭━━━〔 *🛡️ SUDO* 〕━━━╮\n` +
+        `╭━━━﹝ *🛡️ SUDO* ﹞━━━╮\n` +
                                     `┃\n` +
                                     `┃ ✅ *SUDO ADDED*\n` +
                                     `┃ 👤 *USER:* ${number}\n` +
@@ -214,7 +214,7 @@ command(
       await replyOk(
         conn,
         message,
-        `╭━━━〔 *🛡️ SUDO* 〕━━━╮\n` +
+        `╭━━━﹝ *🛡️ SUDO* ﹞━━━╮\n` +
                                     `┃\n` +
                                     `┃ 🗑️ *SUDO REMOVED*\n` +
                                     `┃ 👤 *USER:* ${number}\n` +
