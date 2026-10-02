@@ -34,7 +34,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *📝 NOTE* 〕━━━╮
+        `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ ⚠️ *USAGE*
 ┃ ${BOT_INFO.PREFIX}note set <id> <text>
@@ -53,7 +53,7 @@ command(
     if (act === "list") {
       const notes = await listNotes(owner);
       if (!notes.length) {
-        await reply(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
+        await reply(conn, message, `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ 📭 *NO NOTES*
 ┃ No saved notes found.
@@ -64,7 +64,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📝 NOTE* 〕━━━╮
+        `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ 📝 *SAVED NOTES*
 ┃
@@ -77,7 +77,7 @@ command(
 
     if (act === "get") {
       if (!id) {
-        await replyFail(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
+        await replyFail(conn, message, `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ ⚠️ *NOTE ID REQUIRED*
 ┃ Provide note id.
@@ -90,7 +90,7 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━〔 *📝 NOTE* 〕━━━╮
+        `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ ❌ *NOTE NOT FOUND*
 ┃ ${await t("NOTE_NOT_FOUND")}
@@ -99,7 +99,7 @@ command(
       );
         return;
       }
-      await reply(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
+      await reply(conn, message, `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ 📝 *NOTE:* \`${id}\`
 ┃
@@ -114,7 +114,7 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━〔 *📝 NOTE* 〕━━━╮
+        `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ ⚠️ *NOTE ID REQUIRED*
 ┃ Provide note id.
@@ -128,7 +128,7 @@ command(
         await replyFail(
         conn,
         message,
-        `╭━━━〔 *📝 NOTE* 〕━━━╮
+        `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ ❌ *NOTE NOT FOUND*
 ┃ ${await t("NOTE_NOT_FOUND")}
@@ -147,7 +147,7 @@ command(
         await replyFail(
           conn,
           message,
-          `╭━━━〔 *📝 NOTE* 〕━━━╮
+          `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ ⚠️ *USAGE*
 ┃ ${BOT_INFO.PREFIX}note set <id> <text>
@@ -169,7 +169,7 @@ command(
       return;
     }
 
-    await replyFail(conn, message, `╭━━━〔 *📝 NOTE* 〕━━━╮
+    await replyFail(conn, message, `╭━━━﹝ *📝 NOTE* ﹞━━━╮
 ┃
 ┃ ❌ *UNKNOWN ACTION*
 ┃ Unknown note action.
@@ -192,7 +192,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *⏰ REMIND* 〕━━━╮
+        `╭━━━﹝ *⏰ REMIND* ﹞━━━╮
 ┃
 ┃ ⚠️ *USAGE*
 ┃ ${BOT_INFO.PREFIX}remind <time> <text>
@@ -212,7 +212,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *⏰ REMIND* 〕━━━╮
+        `╭━━━﹝ *⏰ REMIND* ﹞━━━╮
 ┃
 ┃ ❌ *INVALID REMINDER*
 ┃ Invalid time or empty text.
@@ -239,7 +239,7 @@ command(
     await reply(
       conn,
       message,
-      `╭━━━〔 *⏰ REMIND* 〕━━━╮
+      `╭━━━﹝ *⏰ REMIND* ﹞━━━╮
 ┃
 ┃ ✅ *REMINDER SET*
 ┃ ⏰ *WHEN:* ${when}
@@ -358,7 +358,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📊 POLL* 〕━━━╮
+        `╭━━━﹝ *📊 POLL* ﹞━━━╮
 ┃
 ┃ ⚠️ *INVALID POLL*
 ┃
@@ -378,7 +378,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📊 POLL* 〕━━━╮
+        `╭━━━﹝ *📊 POLL* ﹞━━━╮
 ┃
 ┃ ⚠️ *OPTIONS REQUIRED*
 ┃ Need a question and at least 2 options.
@@ -392,7 +392,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📊 POLL* 〕━━━╮
+        `╭━━━﹝ *📊 POLL* ﹞━━━╮
 ┃
 ┃ ⚠️ *TOO MANY OPTIONS*
 ┃ Maximum 12 options are allowed.
@@ -414,7 +414,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *📊 POLL* 〕━━━╮
+        `╭━━━﹝ *📊 POLL* ﹞━━━╮
 ┃
 ┃ ❌ *POLL FAILED*
 ┃ ${err?.message || "Unsupported"}
