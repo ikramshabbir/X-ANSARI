@@ -504,7 +504,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *🎵 YTMP3* 〕━━━╮
+        `╭━━━﹝ *🎵 YTMP3* ﹞━━━╮
 ┃
 ┃ ⚠️ *QUERY REQUIRED*
 ┃
@@ -524,7 +524,7 @@ command(
           filePath = await fetchAudioMp3(yt, id, meta.duration);
           await sendAudioFile(conn, message, filePath, meta);
         } catch (err) {
-          await replyFail(conn, message, `╭━━━〔 *🎵 YTMP3* 〕━━━╮
+          await replyFail(conn, message, `╭━━━﹝ *🎵 YTMP3* ﹞━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ ${friendlyYtError(err) || "ytmp3 failed."}
@@ -551,7 +551,7 @@ command(
       await replyFail(
         conn,
         message,
-        `╭━━━〔 *🎬 YTMP4* 〕━━━╮
+        `╭━━━﹝ *🎬 YTMP4* ﹞━━━╮
 ┃
 ┃ ⚠️ *QUERY REQUIRED*
 ┃
@@ -571,7 +571,7 @@ command(
           filePath = await fetchVideoMp4(yt, id, meta.duration);
           await sendVideoFile(conn, message, filePath, meta);
         } catch (err) {
-          await replyFail(conn, message, `╭━━━〔 *🎬 YTMP4* 〕━━━╮
+          await replyFail(conn, message, `╭━━━﹝ *🎬 YTMP4* ﹞━━━╮
 ┃
 ┃ ❌ *DOWNLOAD FAILED*
 ┃ ${friendlyYtError(err) || "ytmp4 failed."}
