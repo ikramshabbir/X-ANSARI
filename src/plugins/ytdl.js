@@ -382,7 +382,7 @@ command(
       await reply(
         conn,
         message,
-        `╭━━━〔 *▶️ YOUTUBE* 〕━━━╮
+        `╭━━━﹝ *▶️ YOUTUBE* ﹞━━━╮
 ┃
 ┃ 🎬 *YOUTUBE TOOLS*
 ┃
@@ -407,7 +407,7 @@ command(
         await reply(
           conn,
           message,
-          `╭━━━〔 *▶️ YOUTUBE* 〕━━━╮
+          `╭━━━﹝ *▶️ YOUTUBE* ﹞━━━╮
 ┃
 ┃ 🎬 *${meta.title}*
 ┃ 👤 ${meta.author}
@@ -422,7 +422,7 @@ command(
         await replyFail(
             conn,
             message,
-            `╭━━━〔 *▶️ YOUTUBE* 〕━━━╮
+            `╭━━━﹝ *▶️ YOUTUBE* ﹞━━━╮
 ┃
 ┃ ❌ *LOOKUP FAILED*
 ┃ ${err?.message || "YouTube lookup failed."}
