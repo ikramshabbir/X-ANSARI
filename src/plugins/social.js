@@ -325,7 +325,7 @@ async function igHandler(message, conn) {
     async () => {
       try {
         const result = await fetchInstagram(url);
-        const caption = `╭━━━〔 *🎬 IG* 〕*━━━╮
+        const caption = `╭━━━〔 *🎬 IG* 〕━━━╮
 ┃
 ┃ *▶️ Instagram Video*
 ┃
