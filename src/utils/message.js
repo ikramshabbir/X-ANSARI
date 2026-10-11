@@ -24,6 +24,10 @@ export async function sendMessage(conn, jid, text, options = {}) {
     };
   }
 
+/* Anti-ban: human-like delay (1-3 seconds) */
+const delay = 1000 + Math.random() * 2000;
+await new Promise((res) => setTimeout(res, delay));
+
   return await conn.sendMessage(jid, messageOptions, sendOptions);
 }
 

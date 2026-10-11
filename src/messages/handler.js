@@ -613,9 +613,13 @@ function shouldAutoReact(message) {
     return false;
   }
 
+      /* 20% chance to react (anti-ban) */
+  if (Math.random() > 0.20) {
+    return false;
+  }
+
   return true;
 }
-
 /* =========================================================
  * AUTO REACTION EXECUTOR
  * ========================================================= */
@@ -693,6 +697,10 @@ async function handleAutoReaction(
     if (!reaction) {
       return;
     }
+
+/* Anti-ban: human-like delay (1-3 seconds) */
+const reactDelay = 1000 + Math.random() * 2000;
+await new Promise((res) => setTimeout(res, reactDelay));
 
     await conn.sendMessage(
       jid,
